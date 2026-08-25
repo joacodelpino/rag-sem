@@ -1,11 +1,9 @@
 """
 Generación.
 
-La llamada al LLM está detrás de una interfaz mínima (generate_answer) para
-poder cambiar de proveedor cambiando solo variables de entorno, sin tocar
-retrieval.py ni app.py. Se usa el cliente de OpenAI porque su API la exponen
-también Groq, Together, vLLM y Ollama entre otros — no ata la demo a un
-proveedor específico.
+Todo el contacto con el LLM vive en este archivo. Si en algún momento hay que
+cambiar de proveedor, se cambia solo generate_answer() — retrieval.py, app.py
+y los evals no se enteran.
 """
 import os
 
@@ -16,9 +14,7 @@ from retrieval import Chunk
 
 load_dotenv()
 
-LLM_API_KEY = os.environ.get("LLM_API_KEY")
-LLM_BASE_URL = os.environ.get("LLM_BASE_URL", "https://api.openai.com/v1")
-LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-4o-mini")
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
 
 SYSTEM_PROMPT = (
     "Sos un asistente que responde consultas sobre documentación jurídica "
@@ -32,9 +28,10 @@ _client = None
 
 
 def _get_client() -> OpenAI:
+    # OpenAI() toma OPENAI_API_KEY del entorno por sí solo.
     global _client
     if _client is None:
-        _client = OpenAI(api_key=LLM_API_KEY, base_url=LLM_BASE_URL)
+        _client = OpenAI()
     return _client
 
 
@@ -53,7 +50,7 @@ def generate_answer(query: str, chunks: list[Chunk]) -> str:
     client = _get_client()
 
     response = client.chat.completions.create(
-        model=LLM_MODEL,
+        model=OPENAI_MODEL,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": f"Contexto:\n{context}\n\nConsulta: {query}"},

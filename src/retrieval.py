@@ -7,6 +7,10 @@ list[Chunk]. Esto es a propósito: Ragas evalúa cada configuración por
 separado para armar la tabla de ablación, así que necesitan poder llamarse
 en aislamiento sin pasar por el resto del pipeline.
 
+Chunk lleva su id de Qdrant además del texto: las métricas de recuperación
+(recall@k, MRR, NDCG) se calculan comparando ids recuperados contra ids
+relevantes, no comparando strings de texto.
+
 Por ahora solo está implementada retrieve_naive. Las otras dos se agregan
 sobre la misma colección de Qdrant (ya tiene vector denso; el sparse se
 suma como un named vector adicional cuando se implemente la ruta híbrida).
@@ -21,7 +25,7 @@ from sentence_transformers import SentenceTransformer
 load_dotenv()
 
 QDRANT_URL = os.environ.get("QDRANT_URL", "http://localhost:6333")
-COLLECTION = os.environ.get("QDRANT_COLLECTION", "legal_docs_naive")
+COLLECTION = os.environ.get("QDRANT_COLLECTION", "legal_docs")
 EMBEDDING_MODEL = os.environ.get("EMBEDDING_MODEL", "BAAI/bge-m3")
 
 _client = None
@@ -46,6 +50,7 @@ def _get_embedder() -> SentenceTransformer:
 
 @dataclass
 class Chunk:
+    id: int
     text: str
     source: str
     score: float
@@ -65,6 +70,11 @@ def retrieve_naive(query: str, top_k: int = 5) -> list[Chunk]:
     ).points
 
     return [
-        Chunk(text=hit.payload["text"], source=hit.payload["source"], score=hit.score)
+        Chunk(
+            id=hit.id,
+            text=hit.payload["text"],
+            source=hit.payload["source"],
+            score=hit.score,
+        )
         for hit in hits
     ]

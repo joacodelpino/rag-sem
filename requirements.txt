@@ -1,6 +1,8 @@
-streamlit==1.38.0
-qdrant-client==1.11.1
-sentence-transformers==3.1.1
-PyMuPDF==1.24.10
-openai==1.47.1
-python-dotenv==1.0.1
+# torch NO va acá: se instala aparte con el índice CPU-only de PyTorch para
+# no bajar los ~2 GB de wheels con CUDA que no vamos a usar. Ver README.
+streamlit>=1.38
+qdrant-client>=1.11
+sentence-transformers>=3.1
+PyMuPDF>=1.24
+openai>=1.47
+python-dotenv>=1.0

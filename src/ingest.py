@@ -11,7 +11,7 @@ reingestar.
 import os
 from pathlib import Path
 
-import fitz  # PyMuPDF
+import pymupdf
 from dotenv import load_dotenv
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, PointStruct, VectorParams
@@ -21,7 +21,7 @@ load_dotenv()
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data" / "raw"
 QDRANT_URL = os.environ.get("QDRANT_URL", "http://localhost:6333")
-COLLECTION = os.environ.get("QDRANT_COLLECTION", "legal_docs_naive")
+COLLECTION = os.environ.get("QDRANT_COLLECTION", "legal_docs")
 EMBEDDING_MODEL = os.environ.get("EMBEDDING_MODEL", "BAAI/bge-m3")
 
 # Chunking simple por caracteres con solapamiento. Para el corpus jurídico
@@ -35,7 +35,7 @@ CHUNK_OVERLAP = 150
 def read_document(path: Path) -> str:
     """Extrae texto plano de un .txt o .pdf."""
     if path.suffix.lower() == ".pdf":
-        with fitz.open(path) as doc:
+        with pymupdf.open(path) as doc:
             return "\n".join(page.get_text() for page in doc)
     return path.read_text(encoding="utf-8")
 
@@ -70,7 +70,9 @@ def load_documents() -> list[dict]:
 def build_collection(client: QdrantClient, vector_size: int) -> None:
     """Recrea la colección desde cero. Para la demo esto es intencional:
     cada corrida de ingest.py parte de un estado limpio y reproducible."""
-    client.recreate_collection(
+    if client.collection_exists(COLLECTION):
+        client.delete_collection(COLLECTION)
+    client.create_collection(
         collection_name=COLLECTION,
         vectors_config=VectorParams(size=vector_size, distance=Distance.COSINE),
     )
