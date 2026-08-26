@@ -1,0 +1,9 @@
+[server]
+# El file-watcher de Streamlit recorre los módulos importados para detectar
+# cambios, y al hacerlo dispara los imports perezosos de transformers/torch
+# (ModuleNotFoundError: torchvision, entre otros). Con "poll" mira el disco en
+# vez de los módulos: el hot-reload sigue funcionando y el ruido desaparece.
+fileWatcherType = "poll"
+
+[browser]
+gatherUsageStats = false

@@ -4,10 +4,10 @@ Demo académica de RAG vectorial y RAG de segunda generación (híbrido +
 reranking) sobre un corpus de documentación jurídica, con **Qdrant** como
 base vectorial y **Ragas** como framework de evaluación.
 
-Estado actual: **walking skeleton** — solo la ruta naive (búsqueda vectorial
-densa) está implementada, de punta a punta, con 4 documentos de ejemplo.
-Las rutas híbrida y híbrida+reranking, y el módulo de evaluación con Ragas,
-se agregan en los próximos pasos.
+Estado actual: **las tres configuraciones de recuperación implementadas** —
+naive (densa), híbrida (densa + BM25 fusionadas con RRF) e híbrida + reranking
+con cross-encoder, comparables lado a lado en la app. Falta el módulo de
+evaluación con Ragas y el corpus real.
 
 ## Cómo levantarlo
 
@@ -42,6 +42,11 @@ streamlit run src/app.py
 Abrí http://localhost:8501 y probá, por ejemplo:
 *"¿Cuántos días hábiles hay para presentar el recurso jerárquico?"*
 
+## Cómo funciona
+
+Ver [ARQUITECTURA.md](ARQUITECTURA.md) — recorrido archivo por archivo del
+pipeline, pensado para poder explicarlo en la exposición.
+
 ## Estructura
 
 ```
@@ -53,10 +58,13 @@ rag-legal-demo/
 │   ├── raw/                  # documentos del corpus (4 .txt de ejemplo por ahora)
 │   └── golden_set.csv        # 30 preguntas del set dorado (a completar)
 ├── src/
-│   ├── ingest.py             # parsing + chunking + indexado (ruta naive)
-│   ├── retrieval.py          # retrieve_naive() — híbrido y rerank van acá
+│   ├── ingest.py             # parsing + chunking + indexado (denso + sparse)
+│   ├── chunk.py              # el tipo que viaja por todo el pipeline
+│   ├── bm25.py               # BM25 a mano: la mitad léxica de la híbrida
+│   ├── rerank.py             # cross-encoder: la segunda etapa
+│   ├── retrieval.py          # las 3 configuraciones, misma firma
 │   ├── generate.py           # prompt + llamada a OpenAI (único punto de contacto con el LLM)
-│   └── app.py                # Streamlit (1 columna por ahora, 3 cuando existan las 3 rutas)
+│   └── app.py                # Streamlit, configuraciones en columnas
 ├── evals/
 │   └── results/              # CSV de cada corrida de Ragas (a implementar)
 └── notebooks/                # exploración, no se presenta

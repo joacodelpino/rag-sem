@@ -10,7 +10,7 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from retrieval import Chunk
+from chunk import Chunk
 
 load_dotenv()
 

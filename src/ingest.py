@@ -1,12 +1,18 @@
 """
-Ingesta - ruta naive.
+Ingesta — parsing, chunking e indexado en Qdrant.
 
-Parsea los documentos de data/raw/, los divide en chunks, los embebe con
-BGE-M3 (denso, local) y los sube a Qdrant.
+Corre una sola vez, offline: no interviene durante la consulta.
 
-Por ahora solo arma el vector denso: la ruta híbrida (BM25/sparse) y el
-reranker se agregan sobre esta misma colección más adelante, no requieren
-reingestar.
+Cada chunk se sube con DOS vectores en el mismo punto de la colección:
+
+  - "dense": embedding de BGE-M3, captura significado (encuentra "plazo para
+    apelar" aunque el documento diga "término para recurrir").
+  - "bm25":  vector sparse léxico, captura coincidencia exacta de términos
+    (encuentra "artículo 34" o "UVA", donde el denso se diluye).
+
+Las tres configuraciones de recuperación (naive, híbrida, híbrida+rerank) leen
+de esta misma colección. No hay que reingestar para cambiar de configuración:
+eso es justamente lo que hace comparable la tabla de ablación.
 """
 import os
 from pathlib import Path
@@ -14,8 +20,17 @@ from pathlib import Path
 import pymupdf
 from dotenv import load_dotenv
 from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, PointStruct, VectorParams
+from qdrant_client.models import (
+    Distance,
+    Modifier,
+    PointStruct,
+    SparseVector,
+    SparseVectorParams,
+    VectorParams,
+)
 from sentence_transformers import SentenceTransformer
+
+import bm25
 
 load_dotenv()
 
@@ -33,7 +48,8 @@ CHUNK_OVERLAP = 150
 
 
 def read_document(path: Path) -> str:
-    """Extrae texto plano de un .txt o .pdf."""
+    """Extrae texto plano de un .txt o .pdf (PDFs con texto nativo; los
+    escaneados necesitarían OCR, todavía no implementado)."""
     if path.suffix.lower() == ".pdf":
         with pymupdf.open(path) as doc:
             return "\n".join(page.get_text() for page in doc)
@@ -55,8 +71,8 @@ def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OVE
 
 
 def load_documents() -> list[dict]:
-    """Lee todos los documentos de data/raw/ y devuelve chunks con metadata
-    de origen (para poder citar la fuente en la respuesta)."""
+    """Lee todos los documentos de data/raw/ y los devuelve troceados, con
+    metadata de origen para poder citar la fuente en la respuesta."""
     records = []
     for path in sorted(DATA_DIR.glob("*")):
         if path.suffix.lower() not in (".txt", ".pdf"):
@@ -68,14 +84,47 @@ def load_documents() -> list[dict]:
 
 
 def build_collection(client: QdrantClient, vector_size: int) -> None:
-    """Recrea la colección desde cero. Para la demo esto es intencional:
-    cada corrida de ingest.py parte de un estado limpio y reproducible."""
+    """Recrea la colección con los dos vectores nombrados: denso y sparse.
+
+    Se borra y se rehace en cada corrida a propósito: cada ingesta parte de un
+    estado limpio y reproducible, sin puntos huérfanos de corridas anteriores.
+
+    Modifier.IDF es la línea clave de la ruta híbrida: le dice a Qdrant que
+    mantenga las frecuencias de documento de cada término y aplique el IDF en
+    tiempo de consulta. Sin esto, el vector sparse sería solo TF y BM25 quedaría
+    a medias.
+    """
     if client.collection_exists(COLLECTION):
         client.delete_collection(COLLECTION)
     client.create_collection(
         collection_name=COLLECTION,
-        vectors_config=VectorParams(size=vector_size, distance=Distance.COSINE),
+        vectors_config={
+            "dense": VectorParams(size=vector_size, distance=Distance.COSINE),
+        },
+        sparse_vectors_config={
+            "bm25": SparseVectorParams(modifier=Modifier.IDF),
+        },
     )
+
+
+def build_sparse_vectors(records: list[dict]) -> list[SparseVector]:
+    """Calcula el vector BM25 de cada chunk.
+
+    Necesita dos pasadas sobre el corpus: la primera tokeniza y mide la
+    longitud promedio de documento, la segunda calcula los pesos. Es que la
+    normalización por longitud de BM25 compara cada documento contra ese
+    promedio, así que no se puede calcular chunk por chunk de forma aislada.
+    """
+    tokenized = [bm25.tokenize(r["text"]) for r in records]
+    avg_len = sum(len(t) for t in tokenized) / len(tokenized)
+
+    vectors = []
+    for tokens in tokenized:
+        weights = bm25.document_weights(tokens, avg_len)
+        vectors.append(
+            SparseVector(indices=list(weights.keys()), values=list(weights.values()))
+        )
+    return vectors
 
 
 def main():
@@ -88,18 +137,21 @@ def main():
         raise SystemExit(f"No se encontraron documentos .txt/.pdf en {DATA_DIR}")
     print(f"{len(records)} chunks generados a partir de {len(set(r['source'] for r in records))} documentos.")
 
-    print("Generando embeddings ...")
+    print("Generando embeddings densos (BGE-M3, local en CPU) ...")
     texts = [r["text"] for r in records]
-    embeddings = model.encode(texts, normalize_embeddings=True, show_progress_bar=True)
+    dense = model.encode(texts, normalize_embeddings=True, show_progress_bar=True)
+
+    print("Calculando vectores sparse (BM25) ...")
+    sparse = build_sparse_vectors(records)
 
     client = QdrantClient(url=QDRANT_URL)
-    build_collection(client, vector_size=embeddings.shape[1])
+    build_collection(client, vector_size=dense.shape[1])
 
     print(f"Subiendo {len(records)} puntos a la colección '{COLLECTION}' ...")
     points = [
         PointStruct(
             id=i,
-            vector=embeddings[i].tolist(),
+            vector={"dense": dense[i].tolist(), "bm25": sparse[i]},
             payload={"source": r["source"], "chunk_index": r["chunk_index"], "text": r["text"]},
         )
         for i, r in enumerate(records)

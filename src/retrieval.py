@@ -1,32 +1,57 @@
 """
-Recuperación.
+Recuperación — las configuraciones que compara la ablación.
 
-Cada configuración (naive, híbrida, híbrida+reranking) se expone como una
-función independiente con la misma firma: retrieve_x(query, top_k) ->
-list[Chunk]. Esto es a propósito: Ragas evalúa cada configuración por
-separado para armar la tabla de ablación, así que necesitan poder llamarse
-en aislamiento sin pasar por el resto del pipeline.
+Cada configuración se expone como una función independiente con la MISMA firma:
 
-Chunk lleva su id de Qdrant además del texto: las métricas de recuperación
-(recall@k, MRR, NDCG) se calculan comparando ids recuperados contra ids
-relevantes, no comparando strings de texto.
+    retrieve_x(query, top_k) -> list[Chunk]
 
-Por ahora solo está implementada retrieve_naive. Las otras dos se agregan
-sobre la misma colección de Qdrant (ya tiene vector denso; el sparse se
-suma como un named vector adicional cuando se implemente la ruta híbrida).
+Esto es a propósito y es el punto central del diseño: Ragas evalúa cada
+configuración por separado, así que necesitan poder llamarse en aislamiento,
+sin pasar por el resto del pipeline y sin conocerse entre sí.
+
+Las tres configuraciones de la ablación:
+    retrieve_naive          — solo vectorial densa
+    retrieve_hybrid         — densa + BM25 fusionadas con RRF
+    retrieve_hybrid_rerank  — lo anterior, reordenado con un cross-encoder
+
+Más retrieve_sparse (BM25 puro), que no es una configuración de la ablación:
+está para poder mostrar en la demo qué aporta cada mitad de la híbrida.
 """
 import os
-from dataclasses import dataclass
 
 from dotenv import load_dotenv
 from qdrant_client import QdrantClient
+from qdrant_client.models import SparseVector
 from sentence_transformers import SentenceTransformer
+
+import bm25
+import rerank
+from chunk import Chunk
 
 load_dotenv()
 
 QDRANT_URL = os.environ.get("QDRANT_URL", "http://localhost:6333")
 COLLECTION = os.environ.get("QDRANT_COLLECTION", "legal_docs")
 EMBEDDING_MODEL = os.environ.get("EMBEDDING_MODEL", "BAAI/bge-m3")
+
+# Cuántos candidatos trae cada rama antes de fusionar. Más grande que el top_k
+# final a propósito: RRF solo puede rescatar un documento si al menos una de
+# las dos ramas lo trajo, así que conviene darle margen. 20 es el valor típico
+# en la literatura para top_k=5.
+CANDIDATES_PER_BRANCH = 20
+
+# Constante de RRF. Amortigua el peso de las primeras posiciones: con k=60 la
+# diferencia entre el puesto 1 y el 2 pesa poco más que entre el 10 y el 11.
+# Es el valor del paper original (Cormack et al., 2009) y el que usa Qdrant.
+RRF_K = 60
+
+# Cuántos candidatos ve el cross-encoder. Es EL parámetro que gobierna el
+# trade-off de la arquitectura en dos etapas: más candidatos significa más
+# chances de rescatar un documento que la primera etapa dejó en el puesto 15,
+# pero el costo crece lineal porque el modelo corre una vez por candidato.
+# Con 20 el reranking tarda unos segundos en CPU; con 100 no sería usable en
+# vivo durante la exposición.
+RERANK_CANDIDATES = 20
 
 _client = None
 _embedder = None
@@ -48,27 +73,8 @@ def _get_embedder() -> SentenceTransformer:
     return _embedder
 
 
-@dataclass
-class Chunk:
-    id: int
-    text: str
-    source: str
-    score: float
-
-
-def retrieve_naive(query: str, top_k: int = 5) -> list[Chunk]:
-    """Búsqueda vectorial densa pura: embebe la consulta y trae los top_k
-    chunks más cercanos por similitud coseno. Sin fusión ni reordenamiento."""
-    client = _get_client()
-    embedder = _get_embedder()
-
-    query_vector = embedder.encode(query, normalize_embeddings=True).tolist()
-    hits = client.query_points(
-        collection_name=COLLECTION,
-        query=query_vector,
-        limit=top_k,
-    ).points
-
+def _to_chunks(hits) -> list[Chunk]:
+    """Traduce la respuesta de Qdrant al tipo que consume el resto del código."""
     return [
         Chunk(
             id=hit.id,
@@ -78,3 +84,136 @@ def retrieve_naive(query: str, top_k: int = 5) -> list[Chunk]:
         )
         for hit in hits
     ]
+
+
+def retrieve_naive(query: str, top_k: int = 5) -> list[Chunk]:
+    """Configuración 1 — búsqueda vectorial densa pura.
+
+    Embebe la consulta con el mismo modelo que se usó en la ingesta y trae los
+    top_k chunks más cercanos por similitud coseno. Sin fusión ni reordenamiento.
+
+    Fuerte en paráfrasis (encuentra el concepto aunque el vocabulario no
+    coincida), débil en términos exactos y raros: números de artículo, siglas,
+    nombres propios se diluyen en el promedio del embedding.
+    """
+    client = _get_client()
+    query_vector = _get_embedder().encode(query, normalize_embeddings=True).tolist()
+
+    hits = client.query_points(
+        collection_name=COLLECTION,
+        query=query_vector,
+        using="dense",
+        limit=top_k,
+    ).points
+    return _to_chunks(hits)
+
+
+def retrieve_sparse(query: str, top_k: int = 5) -> list[Chunk]:
+    """BM25 puro. Es el complemento exacto del denso: acierta el término
+    literal y no entiende nada de sinónimos.
+
+    No es una de las tres configuraciones de la ablación — está para poder
+    mostrar en la demo qué aporta cada rama por separado antes de fusionarlas.
+    """
+    client = _get_client()
+    weights = bm25.query_weights(query)
+
+    hits = client.query_points(
+        collection_name=COLLECTION,
+        query=SparseVector(indices=list(weights.keys()), values=list(weights.values())),
+        using="bm25",
+        limit=top_k,
+    ).points
+    return _to_chunks(hits)
+
+
+def reciprocal_rank_fusion(rankings: list[list[Chunk]], top_k: int) -> list[Chunk]:
+    """Fusiona varias listas rankeadas en una sola, usando solo las POSICIONES.
+
+        score(doc) = suma sobre cada ranking de  1 / (RRF_K + posición)
+
+    Por qué RRF y no un promedio de los scores originales, que es la pregunta
+    obvia: los dos scores viven en escalas incomparables. El coseno de BGE-M3
+    da valores en un rango angosto y siempre positivo (típicamente 0.4–0.8
+    incluso para resultados malos), mientras que BM25 no tiene techo y depende
+    del largo de la consulta y del IDF de la colección. Promediarlos, o
+    normalizarlos min-max por consulta, deja que la rama con más varianza
+    domine la fusión — y peor, el resultado cambia según qué otros documentos
+    entraron en el lote.
+
+    RRF tira los scores y se queda solo con el orden, que es lo único
+    comparable entre las dos ramas. Un documento que salió 2º en las dos
+    listas le gana a uno que salió 1º en una sola: eso es exactamente lo que
+    queremos, evidencia de dos señales independientes.
+
+    Recibe una lista de rankings (no solo dos) para poder sumar una tercera
+    rama después sin tocar la función.
+    """
+    scores: dict[int, float] = {}
+    chunks: dict[int, Chunk] = {}
+
+    for ranking in rankings:
+        for position, chunk in enumerate(ranking, start=1):
+            scores[chunk.id] = scores.get(chunk.id, 0.0) + 1.0 / (RRF_K + position)
+            chunks[chunk.id] = chunk
+
+    ordered = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+
+    # El score que sale es el de RRF, no el original: es el que explica este
+    # orden, y es el que hay que mostrar en la demo para que se entienda por
+    # qué un documento subió o bajó respecto de las ramas individuales.
+    return [
+        Chunk(
+            id=chunk_id,
+            text=chunks[chunk_id].text,
+            source=chunks[chunk_id].source,
+            score=rrf_score,
+        )
+        for chunk_id, rrf_score in ordered[:top_k]
+    ]
+
+
+def retrieve_hybrid(query: str, top_k: int = 5) -> list[Chunk]:
+    """Configuración 2 — densa + BM25 fusionadas con RRF.
+
+    Corre las dos ramas por separado, cada una trayendo CANDIDATES_PER_BRANCH
+    candidatos, y las fusiona por posición. La idea es que las dos fallan en
+    casos distintos: donde el denso se pierde con un número de artículo, BM25
+    lo clava; donde BM25 no encuentra nada porque el documento usa otro
+    vocabulario, el denso sí.
+
+    Nota: Qdrant puede hacer esta fusión del lado del servidor (prefetch +
+    FusionQuery). Acá se hace explícita en Python a propósito, para poder
+    mostrarla y explicarla en la exposición, y para poder inspeccionar los
+    rankings intermedios de cada rama.
+    """
+    dense_hits = retrieve_naive(query, top_k=CANDIDATES_PER_BRANCH)
+    sparse_hits = retrieve_sparse(query, top_k=CANDIDATES_PER_BRANCH)
+    return reciprocal_rank_fusion([dense_hits, sparse_hits], top_k=top_k)
+
+
+def retrieve_hybrid_rerank(query: str, top_k: int = 5) -> list[Chunk]:
+    """Configuración 3 — híbrida + reranking con cross-encoder.
+
+    Arquitectura en dos etapas, que es la idea central del "RAG de segunda
+    generación":
+
+      1. RECUPERAR barato y amplio: la ruta híbrida trae RERANK_CANDIDATES
+         candidatos en vez de top_k. Acá lo que importa es el RECALL — que el
+         chunk correcto esté en la bolsa, aunque salga en el puesto 14. El
+         orden todavía no importa.
+      2. REORDENAR caro y preciso: el cross-encoder mira cada par
+         (consulta, chunk) y los reordena. Acá lo que importa es la PRECISIÓN
+         en las primeras posiciones, que es lo que efectivamente le llega al
+         LLM.
+
+    Por qué no usar el cross-encoder para todo: no se puede precomputar nada,
+    así que correrlo sobre el corpus entero significaría una pasada del modelo
+    por cada chunk en cada consulta. Ver rerank.py para el detalle.
+
+    Fijate que el top_k que se le pide a la primera etapa NO es el top_k final:
+    el reranker no puede rescatar lo que la recuperación no trajo, así que
+    darle una bolsa más grande es lo que le da margen para mejorar.
+    """
+    candidatos = retrieve_hybrid(query, top_k=RERANK_CANDIDATES)
+    return rerank.rerank(query, candidatos, top_k=top_k)
