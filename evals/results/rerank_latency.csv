@@ -1,0 +1,7 @@
+modelo,params_millones,carga_pesos_s,consulta,pares_medidos,pares_reales_del_corpus,latencia_rerank_s,latencia_por_par_s
+cross-encoder/mmarco-mMiniLMv2-L12-H384-v1,118,8.96,¿Cuántos días hábiles hay para presentar el recurso jerárquico?,20,8,13.59,0.68
+cross-encoder/mmarco-mMiniLMv2-L12-H384-v1,118,8.96,¿Qué pasa si el inquilino se va antes de tiempo?,20,8,2.08,0.104
+cross-encoder/mmarco-mMiniLMv2-L12-H384-v1,118,8.96,¿Qué interés se aplica por el incumplimiento?,20,8,1.97,0.099
+BAAI/bge-reranker-v2-m3,568,9.94,¿Cuántos días hábiles hay para presentar el recurso jerárquico?,20,8,27.81,1.391
+BAAI/bge-reranker-v2-m3,568,9.94,¿Qué pasa si el inquilino se va antes de tiempo?,20,8,18.64,0.932
+BAAI/bge-reranker-v2-m3,568,9.94,¿Qué interés se aplica por el incumplimiento?,20,8,18.77,0.939

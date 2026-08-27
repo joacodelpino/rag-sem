@@ -27,6 +27,25 @@ a unas decenas, y reranking caro y preciso solo sobre esas decenas.
 
 Corre local en CPU, igual que los embeddings: nada del corpus sale de la
 máquina.
+
+MODELOS SOPORTADOS (via RERANKER_MODEL, ver .env.example)
+
+  cross-encoder/mmarco-mMiniLMv2-L12-H384-v1   ~118M params
+  BAAI/bge-reranker-v2-m3                      ~568M params
+
+Existen para poder poner el trade-off calidad/latencia en la tabla de
+ablación: el chico para la demo en vivo, el grande para la corrida de
+evaluación. Cambiar la variable no requiere reingestar, porque el reranker
+actúa sobre candidatos ya recuperados y no sobre el índice.
+
+OJO CON LA ESCALA DE LOS SCORES: los dos modelos NO devuelven lo mismo de
+fábrica. bge-reranker-v2-m3 trae activation_fn = Sigmoid() y predict() da
+probabilidades 0-1; mmarco-mMiniLMv2 trae Identity() y predict() da el logit
+crudo (medido: +7.18 para un chunk relevante, -7.52 para uno que no lo es).
+El ORDEN es el mismo en los dos casos —la sigmoide es monótona— pero los
+números no serían comparables entre corridas, y un umbral fijo se rompería al
+cambiar de modelo. Por eso abajo se fija la activación explícitamente en vez
+de confiar en el default de cada modelo.
 """
 import os
 
@@ -57,8 +76,29 @@ def _get_reranker() -> CrossEncoder:
     """
     global _reranker
     if _reranker is None:
-        _reranker = CrossEncoder(RERANKER_MODEL)
+        # activation_fn explícita: ver la nota sobre escalas en el docstring
+        # del módulo. Para bge esto coincide con su default; para mmarco
+        # convierte el logit crudo en la misma probabilidad 0-1, y así el
+        # score significa lo mismo sin importar qué modelo esté configurado.
+        _reranker = CrossEncoder(RERANKER_MODEL, activation_fn=torch.nn.Sigmoid())
     return _reranker
+
+
+def warmup() -> None:
+    """Fuerza la carga de los pesos Y una primera inferencia de descarte.
+
+    La inferencia falsa no sobra: medido, la PRIMERA llamada a predict() de
+    cada modelo cuesta bastante más que las siguientes aunque los pesos ya
+    estén en memoria (13.6s vs 2.0s en el modelo chico, 27.8s vs 18.7s en el
+    grande, sobre 20 pares). Es el costo de inicializar los kernels y el grafo
+    de cómputo de torch, y se paga una sola vez por proceso.
+
+    O sea que precargar solo los pesos NO alcanza para sacarle el costo a la
+    primera consulta: hay que hacerla correr de verdad una vez. Llamando a
+    warmup() al arrancar la app, ese costo cae en el startup de Streamlit y no
+    sobre quien pregunte primero en la exposición.
+    """
+    _get_reranker().predict([("calentamiento", "texto de descarte")])
 
 
 def rerank(query: str, chunks: list[Chunk], top_k: int) -> list[Chunk]:
@@ -84,11 +124,12 @@ def rerank(query: str, chunks: list[Chunk], top_k: int) -> list[Chunk]:
     # Una sola llamada con todos los pares, no una por chunk: el modelo los
     # procesa en batch y la diferencia de tiempo es enorme.
     #
-    # predict() ya devuelve valores 0–1: sentence-transformers aplica una
-    # sigmoide por defecto sobre el logit crudo (m.activation_fn es Sigmoid()
-    # para modelos de una sola etiqueta como este). Aplicarle otra sigmoide
-    # encima comprime todo el rango entre 0.5 y 0.73 y hace que los scores de
-    # la demo no signifiquen nada — no cambia el orden, pero no se puede leer.
+    # predict() ya devuelve la probabilidad 0–1: la sigmoide la aplica
+    # sentence-transformers usando la activation_fn que fijamos en el
+    # constructor. NO aplicarle otra encima: una segunda sigmoide comprime
+    # todo el rango entre 0.5 y 0.73 y hace que los scores de la demo no
+    # signifiquen nada (no cambia el orden, pero deja de poder leerse).
+    # Fue un bug real de este archivo, no una hipótesis.
     pairs = [(query, chunk.text) for chunk in chunks]
     scores = _get_reranker().predict(pairs)
 

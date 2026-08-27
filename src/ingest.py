@@ -17,7 +17,7 @@ eso es justamente lo que hace comparable la tabla de ablación.
 import os
 from pathlib import Path
 
-import pymupdf
+import pymupdf 
 from dotenv import load_dotenv
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
@@ -45,6 +45,10 @@ EMBEDDING_MODEL = os.environ.get("EMBEDDING_MODEL", "BAAI/bge-m3")
 # funcione con cualquier .txt/.pdf.
 CHUNK_SIZE = 800
 CHUNK_OVERLAP = 150
+
+# Cuántos puntos por llamada a Qdrant. Ver el comentario en main(): existe
+# para no pasarse del límite de 32 MB por request.
+UPSERT_BATCH = 256
 
 
 def read_document(path: Path) -> str:
@@ -156,7 +160,21 @@ def main():
         )
         for i, r in enumerate(records)
     ]
-    client.upsert(collection_name=COLLECTION, points=points)
+
+    # Subida por lotes, no de una. Qdrant rechaza payloads de más de 32 MB
+    # (error 400, "JSON payload is larger than allowed") y cada punto pesa
+    # bastante: 1024 floats del vector denso serializados como JSON, más el
+    # texto del chunk. Con el corpus real un único upsert daba 56 MB.
+    #
+    # Que esto falle al final es lo peor posible, porque la colección ya se
+    # borró y los embeddings —media hora de CPU— se pierden. Por eso el lote
+    # es conservador: 256 puntos son ~7 MB, bien lejos del límite, y el costo
+    # de hacer varias llamadas HTTP es despreciable al lado de embeber.
+    for inicio in range(0, len(points), UPSERT_BATCH):
+        lote = points[inicio:inicio + UPSERT_BATCH]
+        client.upsert(collection_name=COLLECTION, points=lote)
+        print(f"  {min(inicio + UPSERT_BATCH, len(points))}/{len(points)}")
+
     print("Listo.")
 
 

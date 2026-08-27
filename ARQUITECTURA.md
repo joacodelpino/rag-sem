@@ -220,7 +220,7 @@ interacción, y sin eso recargaría BGE-M3 en cada consulta.
 La etapa que define el "RAG de segunda generación". La distinción con el modelo
 de embeddings es **el concepto a explicar en la exposición**:
 
-|  | Bi-encoder (BGE-M3) | Cross-encoder (BGE-reranker-v2-m3) |
+|  | Bi-encoder (BGE-M3) | Cross-encoder (`RERANKER_MODEL`) |
 |---|---|---|
 | Qué recibe | consulta y documento **por separado** | el par **concatenado**, en una pasada |
 | Cómo compara | coseno entre dos vectores | atención cruzada entre los dos textos |
@@ -250,11 +250,63 @@ sobre el coseno que vale la pena mostrar — permite poner un umbral y decir
 "ninguno de estos documentos responde la pregunta", algo que con similitud
 coseno es mucho más difícil porque hasta la basura puntúa 0.4.
 
-> Trampa con la que nos chocamos: `CrossEncoder.predict()` de
-> sentence-transformers **ya aplica una sigmoide** sobre el logit crudo
-> (`m.activation_fn` es `Sigmoid()`). Aplicarle otra encima comprime todo entre
-> 0.5 y 0.73. No cambia el orden —la sigmoide es monótona, así que las métricas
-> de ranking no se enteran— pero los scores dejan de significar nada.
+> Trampa con la que nos chocamos: `CrossEncoder.predict()` aplica la
+> `activation_fn` del modelo, y **cada modelo trae una distinta**.
+> `bge-reranker-v2-m3` trae `Sigmoid()` y devuelve 0–1; `mmarco-mMiniLMv2`
+> trae `Identity()` y devuelve el logit crudo (medido: `+7.18` para un chunk
+> relevante, `−7.52` para uno que no). Aplicarle una sigmoide encima al
+> primero comprime todo entre 0.5 y 0.73; no aplicársela al segundo deja los
+> scores en otra escala. En ninguno de los dos casos cambia el orden —la
+> sigmoide es monótona, así que las métricas de ranking no se enteran— pero
+> los scores dejan de ser legibles y de ser comparables entre corridas.
+> Por eso `rerank.py` pasa `activation_fn=torch.nn.Sigmoid()` explícitamente
+> en el constructor, en vez de confiar en el default de cada modelo.
+
+#### Los dos modelos soportados
+
+`RERANKER_MODEL` elige cuál corre, y **cambiarlo no requiere reingestar**: el
+reranker actúa sobre candidatos ya recuperados, no sobre el índice.
+
+| Modelo | Params | Para qué |
+|---|---|---|
+| `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1` | ~118M | demo en vivo |
+| `BAAI/bge-reranker-v2-m3` | ~568M | corrida de evaluación |
+
+Los dos son XLM-RoBERTa multilingüe con español entre los idiomas de
+entrenamiento. Existen los dos a propósito: el trade-off calidad/latencia es
+en sí mismo un resultado para la tabla de ablación, no solo un problema de
+ingeniería a resolver.
+
+Latencia medida con `RERANK_CANDIDATES=20`, en régimen (o sea descartando la
+primera consulta, ver más abajo), vía `python evals/bench_rerank.py` →
+`evals/results/rerank_latency.csv`:
+
+| Modelo | s / par | 20 candidatos |
+|---|---|---|
+| mmarco-mMiniLMv2 (118M) | ~0.10 | **~2.0 s** |
+| bge-reranker-v2-m3 (568M) | ~0.94 | **~18.7 s** |
+
+**~9× de diferencia**, con 4.8× de parámetros. Los 18.7s del grande son
+inviables en vivo; los 2.0s del chico son perfectamente presentables. Lo que
+todavía no sabemos es cuánta calidad cuesta esa diferencia — eso lo tiene que
+contestar Ragas sobre el set dorado, no la intuición.
+
+#### Precarga de modelos
+
+`retrieval.warmup()` precalienta los dos modelos y la conexión a Qdrant, y
+`app.py` lo llama al arrancar dentro de un `@st.cache_resource`. Sin eso, ese
+costo lo paga la **primera consulta**, que en una exposición en vivo es la
+peor persona posible a quien cobrárselo.
+
+El detalle que casi se nos pasa: **cargar los pesos no alcanza**. El
+benchmark mostró que la primera llamada a `predict()` cuesta bastante más que
+las siguientes aunque el modelo ya esté en memoria — 13.6s vs 2.0s en el
+chico, 27.8s vs 18.7s en el grande. Es la inicialización de los kernels y el
+grafo de cómputo de torch. Por eso `warmup()` no se limita a instanciar los
+modelos: les hace correr una inferencia de descarte.
+
+Verificado después del cambio: startup 17.5s, y la primera consulta real
+**1.29s**, igual que las siguientes.
 
 ### `src/chunk.py` — el tipo compartido
 
@@ -304,8 +356,21 @@ módulos; el hot-reload sigue funcionando.
 
 ### `evals/` y `notebooks/`
 
-Vacíos todavía. `evals/run_ragas.py` es el próximo módulo grande;
-`evals/results/` guarda el CSV de cada corrida.
+`evals/bench_rerank.py` mide la latencia de cada reranker con
+`RERANK_CANDIDATES=20` sobre las mismas consultas y escribe
+`evals/results/rerank_latency.csv`.
+
+Ojo con una limitación del benchmark mientras el corpus sea el de ejemplo:
+con 8 chunks la recuperación no puede devolver 20 candidatos, así que el
+script **completa la lista repitiendo chunks** para poder medir el costo real
+de 20 pares. Eso no afecta la latencia (no hay caché por par) pero invalida
+cualquier lectura de calidad sobre esas corridas: el script mide tiempo y
+nada más. Con el corpus real el relleno deja de aplicarse solo.
+
+`evals/run_ragas.py` es el próximo módulo grande, y ahí entra
+`retrieval.config_snapshot()`: devuelve el reranker, los candidatos y el
+chunking con los que efectivamente se corrió, para que cada fila de la tabla
+quede etiquetada sin anotarlo a mano (que es como termina desincronizado).
 
 ---
 
@@ -337,4 +402,5 @@ no a otra cosa.
   probablemente rinda mejor que una ventana fija.
 - **OCR**: `ingest.py` soporta `.pdf` con texto nativo. Los 4 escaneados
   necesitan Tesseract, todavía no implementado.
-- **Reranker y Ragas**: no implementados.
+- **Ragas**: no implementado. Es el módulo que falta para la tabla de
+  ablación.

@@ -217,3 +217,48 @@ def retrieve_hybrid_rerank(query: str, top_k: int = 5) -> list[Chunk]:
     """
     candidatos = retrieve_hybrid(query, top_k=RERANK_CANDIDATES)
     return rerank.rerank(query, candidatos, top_k=top_k)
+
+
+def config_snapshot() -> dict:
+    """Devuelve la configuración con la que corre AHORA el pipeline.
+
+    Existe para que el módulo de evaluación pueda etiquetar cada corrida sin
+    adivinar: una fila de la tabla de ablación no significa nada si no se sabe
+    con qué reranker, cuántos candidatos y qué chunking se produjo. Como esto
+    lee las constantes y variables de entorno reales, no puede desincronizarse
+    de lo que efectivamente se ejecutó (que es justo lo que pasa cuando la
+    configuración se anota a mano en el CSV).
+
+    El chunking se importa de ingest.py adentro de la función, no arriba, por
+    dos razones: evita pagar el import de PyMuPDF en cada proceso que solo
+    quiere consultar, y evita duplicar las constantes acá, que es como
+    terminan divergiendo del valor con el que realmente se indexó.
+    """
+    import ingest
+
+    return {
+        "collection": COLLECTION,
+        "embedding_model": EMBEDDING_MODEL,
+        "reranker_model": rerank.RERANKER_MODEL,
+        "candidates_per_branch": CANDIDATES_PER_BRANCH,
+        "rrf_k": RRF_K,
+        "rerank_candidates": RERANK_CANDIDATES,
+        "chunk_size": ingest.CHUNK_SIZE,
+        "chunk_overlap": ingest.CHUNK_OVERLAP,
+    }
+
+
+def warmup() -> None:
+    """Carga por adelantado los dos modelos locales y despierta la conexión.
+
+    Ver rerank.warmup(): la idea es que el costo de leer los pesos desde disco
+    lo pague el arranque de la app y no la primera consulta de la exposición.
+    Se cargan los dos porque la demo muestra las cuatro configuraciones a la
+    vez, así que la primera consulta usa el embedder Y el reranker.
+    """
+    # encode() y no solo cargar el modelo: igual que en el reranker, la
+    # primera inferencia inicializa el grafo de cómputo y cuesta de más.
+    _get_embedder().encode("calentamiento", normalize_embeddings=True)
+    rerank.warmup()
+    # Abre la conexión HTTP a Qdrant para que tampoco la pague la 1ª consulta.
+    _get_client().get_collections()

@@ -11,10 +11,12 @@ import streamlit as st
 
 from generate import generate_answer
 from retrieval import (
+    config_snapshot,
     retrieve_hybrid,
     retrieve_hybrid_rerank,
     retrieve_naive,
     retrieve_sparse,
+    warmup,
 )
 
 # Las configuraciones que se muestran en columnas. Agregar una acá es lo único
@@ -25,6 +27,27 @@ CONFIGS = {
     "Híbrida (RRF)": retrieve_hybrid,
     "Híbrida + rerank": retrieve_hybrid_rerank,
 }
+
+
+@st.cache_resource(show_spinner="Cargando modelos (solo la primera vez)...")
+def precargar_modelos():
+    """Carga los pesos de BGE-M3 y del reranker al arrancar la app.
+
+    Sin esto, la carga desde disco la paga la PRIMERA consulta: medido, ~46s
+    de espera para quien pregunte primero. En una exposición en vivo eso es
+    inaceptable, así que se mueve al startup — cuando la página termina de
+    cargar, los modelos ya están en memoria y la primera consulta cuesta lo
+    mismo que las siguientes.
+
+    cache_resource y no cache_data porque lo que se cachea es un efecto
+    (modelos cargados en los singletons de retrieval/rerank), no un valor
+    serializable. Streamlit lo ejecuta una vez por proceso, no por sesión.
+    """
+    warmup()
+    return config_snapshot()
+
+
+CONFIG = precargar_modelos()
 
 
 @st.cache_data(show_spinner=False)
@@ -49,6 +72,14 @@ st.caption(
     "El score significa algo distinto en cada columna (coseno, BM25, RRF, "
     "cross-encoder): comparalos dentro de una columna, no entre columnas."
 )
+
+with st.sidebar:
+    st.subheader("Configuración de la corrida")
+    st.caption(
+        "Es la misma que devuelve `config_snapshot()` y con la que se etiquetan "
+        "las corridas de evaluación."
+    )
+    st.json(CONFIG)
 
 query = st.text_input(
     "Consulta",
