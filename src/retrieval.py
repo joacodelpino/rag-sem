@@ -18,6 +18,7 @@ Más retrieve_sparse (BM25 puro), que no es una configuración de la ablación:
 está para poder mostrar en la demo qué aporta cada mitad de la híbrida.
 """
 import os
+from dataclasses import replace
 
 from dotenv import load_dotenv
 from qdrant_client import QdrantClient
@@ -74,13 +75,23 @@ def _get_embedder() -> SentenceTransformer:
 
 
 def _to_chunks(hits) -> list[Chunk]:
-    """Traduce la respuesta de Qdrant al tipo que consume el resto del código."""
+    """Traduce la respuesta de Qdrant al tipo que consume el resto del código.
+
+    Los campos de identidad se leen con .get() y no con [] a propósito: un
+    índice construido antes de conectar el manifiesto no los tiene, y es mejor
+    que la app muestre el nombre de archivo a que reviente con KeyError. Si
+    aparecen vacíos, hay que reingestar.
+    """
     return [
         Chunk(
             id=hit.id,
             text=hit.payload["text"],
             source=hit.payload["source"],
             score=hit.score,
+            titulo=hit.payload.get("titulo", ""),
+            numero_ley=hit.payload.get("numero_ley", ""),
+            version=hit.payload.get("version", ""),
+            seccion=hit.payload.get("seccion", ""),
         )
         for hit in hits
     ]
@@ -162,13 +173,12 @@ def reciprocal_rank_fusion(rankings: list[list[Chunk]], top_k: int) -> list[Chun
     # El score que sale es el de RRF, no el original: es el que explica este
     # orden, y es el que hay que mostrar en la demo para que se entienda por
     # qué un documento subió o bajó respecto de las ramas individuales.
+    # replace() y no un Chunk() nuevo: copia todos los campos de identidad sin
+    # tener que enumerarlos, así agregar un campo al dataclass no obliga a
+    # acordarse de tocar también esta función (que es como se pierden en el
+    # camino los metadatos).
     return [
-        Chunk(
-            id=chunk_id,
-            text=chunks[chunk_id].text,
-            source=chunks[chunk_id].source,
-            score=rrf_score,
-        )
+        replace(chunks[chunk_id], score=rrf_score)
         for chunk_id, rrf_score in ordered[:top_k]
     ]
 
@@ -243,8 +253,11 @@ def config_snapshot() -> dict:
         "candidates_per_branch": CANDIDATES_PER_BRANCH,
         "rrf_k": RRF_K,
         "rerank_candidates": RERANK_CANDIDATES,
+        "chunk_strategy": ingest.CHUNK_STRATEGY,
         "chunk_size": ingest.CHUNK_SIZE,
         "chunk_overlap": ingest.CHUNK_OVERLAP,
+        "chunk_max_chars": ingest.CHUNK_MAX_CHARS,
+        "chunk_min_chars": ingest.CHUNK_MIN_CHARS,
     }
 
 

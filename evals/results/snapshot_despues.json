@@ -1,0 +1,1077 @@
+{
+  "etiqueta": "despues",
+  "fecha": "2026-08-27T11:35:53",
+  "top_k": 5,
+  "genero_respuestas": true,
+  "advertencia_version": true,
+  "config": {
+    "collection": "legal_docs",
+    "embedding_model": "BAAI/bge-m3",
+    "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "candidates_per_branch": 20,
+    "rrf_k": 60,
+    "rerank_candidates": 20,
+    "chunk_strategy": "articulo",
+    "chunk_size": 800,
+    "chunk_overlap": 150,
+    "chunk_max_chars": 1200,
+    "chunk_min_chars": 250
+  },
+  "consultas": [
+    {
+      "id": "cp-art-72",
+      "texto": "Que dice el articulo 72 de la ley 11179?",
+      "por_que": "Número de ley escrito sin punto. El tokenizador parte '11.179' en '11'/'179' y la consulta dice '11179', así que BM25 no puede matchear nunca. Además ningún chunk lleva el número de ley: vive en el encabezado del documento, en otro chunk. Resultado medido: híbrida+rerank cita el art. 72 de la ley 11.723 como si fuera el de la 11.179.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.303,
+          "respuesta_llm": "El artículo 72 de la Ley 11.179 - Código Penal de la Nación establece que son acciones dependientes de instancia privada aquellas que nacen de los delitos de violación, estupro, rapto y ultrajes al pudor, siempre que no resulte la muerte de la persona ofendida o lesiones mencionadas en el artículo 91. En estos casos, no se procederá a formar causa sino por acusación o denuncia del agraviado, su tutor, guardador o representantes legales. Sin embargo, se procederá de oficio cuando el delito sea cometido contra un menor que no tenga padres, tutor ni guardador, o que lo sea por uno de sus ascendientes, tutor o guardador [Ley 11.179 - Código Penal de la Nación · texto original · Art. 72].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 510,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.518451,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 72]\nArt. 72. - Son acciones dependientes de instancia privada, las que nacieren de los delitos de violación,\nestupro, rapto y ultrajes al pudor, cuando no rsultare la muerte de la persona ofendida o leisones de las\nmencionadas en el artículo 91.\nEn los casos de este artículo, no se procederá a formar causa sino por acusación o denuncia del\nagraviado, o de su tutor, guardador o representantes legales. Sin embargo, se procederá de oficio cuando\nel delito fuere cometido contra un menor que no tenga padres, tutor, ni guardador, o que lo fuere por uno\nde sus ascendientes, tutor o guardador.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 457,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.517348,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Carátula]\nInfoLEG - Ministerio de Economía y Finanzas Públicas\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/15000-19999/16546/norma.htm\nIr a texto actualizado y otros datos\nLEY N° 11.179\nCODIGO PENAL DE LA NACION\nBuenos Aires, 29 de octubre de 1921\nEl Senado y Cámara de Diputados de la Nación Argentina, reunidos en Congreso, etc., sancionan con\nfuerza de\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nAplicación de la ley penal",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 3,
+              "id": 489,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.46253,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 42]\nArt. 42. - El que con el fin de cometer un delito determinado comienza su ejecución, pero no lo consuma\npor circunstancias ajenas a su voluntad, sufrirá las penas determinadas en el artículo 44.\nArt. 43. - El autor de tentativa no estará sujeto a pena cuando desistiere voluntariamente del delito.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 4,
+              "id": 587,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.461977,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 174]\nArt. 174. - Sufrirá prisión de dos a seis años:\n1.º El que para procurarse a sí mismo o procurar a otro un provecho ilegal en perjuicio de un asegurador o\nde un dador de préstamo a la gruesa, incendiare o destruyere una cosa asegurada o una nave asegurada\no cuya carga o flete estén asegurados o sobre la cual se haya efectuado un préstamo a la gruesa;\n2.º El que abusare de las necesidades, pasiones o inexperiencia de un menor o de un incapaz, declarado\no no declarado tal, para hacerle firmar un documento que importe cualquier efecto jurídico, en daño de él\no de otro, aunque el acto sea civilmente nulo.\n3.º El que defraudare usando de pesas o medidas falsas;\n4.º El empresario o constructor de una obra cualquiera o el vendedor de materiales de construcción que\ncometiere, en la ejecución de la obra o en la entrega de los materiales, un acto fraudulento capaz de\nponer en peligro la seguridad de las personas, de los bienes o del Estado;\n5.º El que cometiere fraude en perjuicio de alguna administración pública.\nEn los casos de los dos números precendentes, el culpable, si fuere empleado público, sufrirá además\ninhabilitación especial perpetua.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 592,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.459603,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 179]\nArt. 179. - Será reprimido con prisión de uno a cuatro años, el deudor no comerciante concursado\ncivilmente que, para defraudar a sus acreedores, hubiere cometido o cometiere alguno de los actos\nmencionados en el artículo 176.\nArt. 180. - Será reprimido con prisión de un mes a un año, el acreedor que consintiere en un concordato,\nconvenio o transacción judicial, en virtud de una connivencia con el deudor o con un tercero, por la cual\nhubiere estipulado ventajas especiales para el caso de aceptación del concordato, convenio o\ntransacción.\nLa misma pena sufrirá, en su caso, todo deudor o director, gerente o administrador de una sociedad\nanónima o cooperativa o de una persona jurídica de otra índole, en estado de quiebra o de concurso\njudicial de bienes, que concluyere un convenio de este género.\nCAPITULO VI\nUsurpación\nUsurpación",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.007,
+          "respuesta_llm": "El artículo 72 de la Ley 11.179 establece que son acciones dependientes de instancia privada aquellas que nacen de los delitos de violación, estupro, rapto y ultrajes al pudor, siempre que no resulte la muerte de la persona ofendida o lesiones mencionadas en el artículo 91. En estos casos, no se procederá a formar causa sino por acusación o denuncia del agraviado, su tutor, guardador o representantes legales. Sin embargo, se procederá de oficio cuando el delito sea cometido contra un menor que no tenga padres, tutor, ni guardador, o que lo sea por uno de sus ascendientes, tutor o guardador [Ley 11.179 - Código Penal de la Nación · texto original · Art. 72].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 510,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 12.140615,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 72]\nArt. 72. - Son acciones dependientes de instancia privada, las que nacieren de los delitos de violación,\nestupro, rapto y ultrajes al pudor, cuando no rsultare la muerte de la persona ofendida o leisones de las\nmencionadas en el artículo 91.\nEn los casos de este artículo, no se procederá a formar causa sino por acusación o denuncia del\nagraviado, o de su tutor, guardador o representantes legales. Sin embargo, se procederá de oficio cuando\nel delito fuere cometido contra un menor que no tenga padres, tutor, ni guardador, o que lo fuere por uno\nde sus ascendientes, tutor o guardador.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 954,
+              "source": "11_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 10.635986,
+              "text": "[Ley 24.156 - Administración Financiera y de los Sistemas de Control del Sector Público Nacional · texto actualizado · Art. 72]\nARTICULO\n72.- El\nsistema de tesorería está compuesto por el conjunto de órganos, normas\ny\nprocedimientos que intervienen en la recaudación de los ingresos y en\nlos pagos\nque configuran el flujo de fondos del sector público nacional, así como\nen la\ncustodia de las disponibilidades que se generen.",
+              "titulo": "Ley 24.156 - Administración Financiera y de los Sistemas de Control del Sector Público Nacional",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 3,
+              "id": 241,
+              "source": "06_infoleg.pdf",
+              "score": 9.245208,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 72]\nArt. 72. — El empleador podrá aplicar medidas disciplinarias proporcionadas a las faltas o incumplimiento\ndemostrados por el trabajador. Para que ello sea procedente deberá oírse previamente al trabajador. Este\npodrá cuestionar ante los organismos competentes la procedencia, el tipo o extensión de la medida\naplicada, para que se la suprima, sustituya por otra o limite, según los casos.\nModalidades de su ejercicio",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 4,
+              "id": 395,
+              "source": "06_infoleg.pdf",
+              "score": 8.052471,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 237]\nArt. 237. — Las suspensiones fundadas en razones disciplinarias o debidas a falta o disminución de\ntrabajo no imputables al empleador, no podrán exceder de treinta (30) días en un año, contados a partir\nde la primera suspensión.\nLas suspensiones fundadas en razones disciplinarias deberán ajustarse a lo dispuesto por el artículo 72,\nsin perjuicio de las condiciones que se fijaren en función de lo previsto en el artículo 73.\nFuerza mayor",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 2097,
+              "source": "Texto-Ordenado---Reglamento-General-de-Alumnos---OHCS-283-04-y-modificatorias.pdf",
+              "score": 7.807624,
+              "text": "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 72]\nArtículo 72º.- Las Actas de exámenes deberán ser firmadas por los alumnos examinados, y\n \n \n \n \n \n \n \n \n \n \n \n \n  \nal final de la nómina de alumnos inscriptos para rendir, por la máxima autoridad titular o\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n  \nformalmente Delegada de la Secretaría de Asuntos Académicos del Rectorado o de la\n \n \n \n \n \n \n \n \n \n  \n \n \nSede.",
+              "titulo": "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado)",
+              "version": "texto_ordenado"
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.249,
+          "respuesta_llm": "El artículo 72 de la Ley 11.179 - Código Penal de la Nación establece que son acciones dependientes de instancia privada aquellas que nacen de los delitos de violación, estupro, rapto y ultrajes al pudor, siempre que no resulte la muerte de la persona ofendida o lesiones mencionadas en el artículo 91. Además, indica que no se procederá a formar causa sino por acusación o denuncia del agraviado, su tutor, guardador o representantes legales, aunque se procederá de oficio si el delito fue cometido contra un menor que no tenga padres, tutor o guardador, o que lo fuera por uno de sus ascendientes, tutor o guardador [Ley 11.179 - Código Penal de la Nación · texto original · Art. 72].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 510,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.032787,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 72]\nArt. 72. - Son acciones dependientes de instancia privada, las que nacieren de los delitos de violación,\nestupro, rapto y ultrajes al pudor, cuando no rsultare la muerte de la persona ofendida o leisones de las\nmencionadas en el artículo 91.\nEn los casos de este artículo, no se procederá a formar causa sino por acusación o denuncia del\nagraviado, o de su tutor, guardador o representantes legales. Sin embargo, se procederá de oficio cuando\nel delito fuere cometido contra un menor que no tenga padres, tutor, ni guardador, o que lo fuere por uno\nde sus ascendientes, tutor o guardador.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 524,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.026334,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 92]\nArt. 92. - Si concurriere alguna de las circunstancias enumeradas en el artículo 80, la pena será: en el\ncaso del artículo 89, de seis meses a dos años; en el caso del artículo 90, de tres a diez años; y en el\ncaso del artículo 91, de tres a quince años.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 3,
+              "id": 457,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.016129,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Carátula]\nInfoLEG - Ministerio de Economía y Finanzas Públicas\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/15000-19999/16546/norma.htm\nIr a texto actualizado y otros datos\nLEY N° 11.179\nCODIGO PENAL DE LA NACION\nBuenos Aires, 29 de octubre de 1921\nEl Senado y Cámara de Diputados de la Nación Argentina, reunidos en Congreso, etc., sancionan con\nfuerza de\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nAplicación de la ley penal",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 4,
+              "id": 954,
+              "source": "11_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.016129,
+              "text": "[Ley 24.156 - Administración Financiera y de los Sistemas de Control del Sector Público Nacional · texto actualizado · Art. 72]\nARTICULO\n72.- El\nsistema de tesorería está compuesto por el conjunto de órganos, normas\ny\nprocedimientos que intervienen en la recaudación de los ingresos y en\nlos pagos\nque configuran el flujo de fondos del sector público nacional, así como\nen la\ncustodia de las disponibilidades que se generen.",
+              "titulo": "Ley 24.156 - Administración Financiera y de los Sistemas de Control del Sector Público Nacional",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 5,
+              "id": 489,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.015873,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 42]\nArt. 42. - El que con el fin de cometer un delito determinado comienza su ejecución, pero no lo consuma\npor circunstancias ajenas a su voluntad, sufrirá las penas determinadas en el artículo 44.\nArt. 43. - El autor de tentativa no estará sujeto a pena cuando desistiere voluntariamente del delito.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 3.637,
+          "respuesta_llm": "El artículo 72 de la Ley 11.179 - Código Penal de la Nación establece que son acciones dependientes de instancia privada aquellas que nacen de los delitos de violación, estupro, rapto y ultrajes al pudor, siempre que no resulte la muerte de la persona ofendida o lesiones mencionadas en el artículo 91. Además, indica que no se procederá a formar causa sino por acusación o denuncia del agraviado, su tutor, guardador o representantes legales, aunque se procederá de oficio si el delito fue cometido contra un menor que no tenga padres, tutor o guardador, o por uno de sus ascendientes, tutor o guardador [Ley 11.179 - Código Penal de la Nación · texto original · Art. 72].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 510,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.999808,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 72]\nArt. 72. - Son acciones dependientes de instancia privada, las que nacieren de los delitos de violación,\nestupro, rapto y ultrajes al pudor, cuando no rsultare la muerte de la persona ofendida o leisones de las\nmencionadas en el artículo 91.\nEn los casos de este artículo, no se procederá a formar causa sino por acusación o denuncia del\nagraviado, o de su tutor, guardador o representantes legales. Sin embargo, se procederá de oficio cuando\nel delito fuere cometido contra un menor que no tenga padres, tutor, ni guardador, o que lo fuere por uno\nde sus ascendientes, tutor o guardador.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 509,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.823149,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 70]\nArt. 70. - Las indemnizaciones pecuniarias inherentes a las penas, podrán hacerse efectivas sobre los\nbienes propios del condenado, aun después de muerto.\nTITULO XI\nDel ejercicio de las acciones\nDel ejercicio de las acciones\nArt. 71. - Deberán iniciarse de oficio todas las acciones penales, con excepción de las siguientes:\n1.º Las que dependieren de instancia privada;\n2.º Las acciones privadas.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 3,
+              "id": 954,
+              "source": "11_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.81451,
+              "text": "[Ley 24.156 - Administración Financiera y de los Sistemas de Control del Sector Público Nacional · texto actualizado · Art. 72]\nARTICULO\n72.- El\nsistema de tesorería está compuesto por el conjunto de órganos, normas\ny\nprocedimientos que intervienen en la recaudación de los ingresos y en\nlos pagos\nque configuran el flujo de fondos del sector público nacional, así como\nen la\ncustodia de las disponibilidades que se generen.",
+              "titulo": "Ley 24.156 - Administración Financiera y de los Sistemas de Control del Sector Público Nacional",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 4,
+              "id": 592,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.787075,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 179]\nArt. 179. - Será reprimido con prisión de uno a cuatro años, el deudor no comerciante concursado\ncivilmente que, para defraudar a sus acreedores, hubiere cometido o cometiere alguno de los actos\nmencionados en el artículo 176.\nArt. 180. - Será reprimido con prisión de un mes a un año, el acreedor que consintiere en un concordato,\nconvenio o transacción judicial, en virtud de una connivencia con el deudor o con un tercero, por la cual\nhubiere estipulado ventajas especiales para el caso de aceptación del concordato, convenio o\ntransacción.\nLa misma pena sufrirá, en su caso, todo deudor o director, gerente o administrador de una sociedad\nanónima o cooperativa o de una persona jurídica de otra índole, en estado de quiebra o de concurso\njudicial de bienes, que concluyere un convenio de este género.\nCAPITULO VI\nUsurpación\nUsurpación",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 513,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.764893,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 77]\nArt. 77. - Para la inteligencia del texto de este código se tendrán presentes las siguientes reglas:\nLos plazos a que este código se refiere serán contados con arreglo a las disposiciones del código civil.\nSin embargo, la liberación de los condenados a penas privativas de libertad se efectuará al mediodía del\ndía correspondiente.\nLa expresión \"reglamentos\" u \"ordenanzas\", comprende todas las disposiciones de carácter general\ndictadas por la autoridad competente en la materia de que traten.\nPor los términos \"funcionario público\" y \"empleado público\", usados en este código, se designa a todo el\nque participa accidental o permanentemente del ejercicio de funciones públicas sea por elección popular\no por nombramiento de autoridad competente.\nCon la palabra \"mercadería\", se designa toda clase de efectos susceptibles de expendio.\nEl término \"capitán\" comprende a todo comandante de embarcación o al que le sustituye.\nEl término \"tripulación\" comprende a todos los que se hallan abordo como oficiales o marineros.",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "lct-art-208",
+      "texto": "¿Qué dice el artículo 208 de la Ley de Contrato de Trabajo?",
+      "por_que": "El corpus tiene la LCT en su texto ORIGINAL de 1974, no el texto ordenado vigente. El art. 208 indexado habla de menores; el 208 que espera cualquier abogado (enfermedades inculpables) está en el art. 225 de este PDF. La recuperación no falla: falla el corpus, y sin metadato de versión nadie se entera.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.304,
+          "respuesta_llm": "El artículo 208 de la Ley de Contrato de Trabajo establece que, en relación a los menores de dieciocho (18) años de uno u otro sexo que trabajen en horas de la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 367,
+              "source": "06_infoleg.pdf",
+              "score": 0.590109,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208]\nArt. 208. — Con relación a los menores de dieciocho (18) años de uno u otro sexo, que trabajen en horas\nde la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley.\nAhorro\nArt. 209. — El empleador, dentro de los treinta (30) días de la ocupación de un menor comprendido entre\nlos catorce (14) y dieciocho (18) años, deberá gestionar la obtención de una libreta de ahorro, de la\ninstitución de ahorro oficial, la cual permanecerá en su poder y custodia mientras el menor trabaje a sus\nórdenes, debiendo ser devuelta a éste o a sus padres o tutores al extinguirse el contrato de trabajo, o\ncuando el menor cumpla los dieciocho (18) años de edad.\nImporte a depositar - Comprobación",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 176,
+              "source": "06_infoleg.pdf",
+              "score": 0.581464,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 2]\nARTICULO 2º — La ley de contrato de trabajo entrará en vigor a partir de la promulgación de la presente\ny se aplicará aun a las consecuencias de las relaciones y situaciones jurídicas existentes.\nARTICULO 3º — Las disposiciones de los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párrafo, 272 con relación a las\nindemnizaciones que correspondieran a la fecha del despido, 281, 282, 290, 291, 300 y 301, serán de\naplicación a las causas judiciales pendientes.",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 3,
+              "id": 364,
+              "source": "06_infoleg.pdf",
+              "score": 0.579807,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 205]\nArt. 205. — El empleador, al contratar trabajadores de uno u otro sexo, menores de dieciocho (18) años,\ndeberá exigir de los mismos o de sus representantes legales, un certificado médico que acredite su\naptitud para el trabajo, y someterlos a los reconocimientos médicos periódicos que prevean las\nreglamentaciones respectivas.\nMenores de 14 años - Prohibición de su empleo",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 4,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 0.569834,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 6]\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Ley 2.446/56, salvo en su artículo 1º (Ley 14.467); artículo 7º del\nDecreto Ley 17.258/67, y toda otra disposición legal o reglamentaria que se oponga a la misma.",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 0.550815,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 10]\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.006,
+          "respuesta_llm": "El artículo 208 de la Ley de Contrato de Trabajo establece que, en relación a los menores de dieciocho (18) años que trabajen en horas de la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 367,
+              "source": "06_infoleg.pdf",
+              "score": 13.586572,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208]\nArt. 208. — Con relación a los menores de dieciocho (18) años de uno u otro sexo, que trabajen en horas\nde la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley.\nAhorro\nArt. 209. — El empleador, dentro de los treinta (30) días de la ocupación de un menor comprendido entre\nlos catorce (14) y dieciocho (18) años, deberá gestionar la obtención de una libreta de ahorro, de la\ninstitución de ahorro oficial, la cual permanecerá en su poder y custodia mientras el menor trabaje a sus\nórdenes, debiendo ser devuelta a éste o a sus padres o tutores al extinguirse el contrato de trabajo, o\ncuando el menor cumpla los dieciocho (18) años de edad.\nImporte a depositar - Comprobación",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 1917,
+              "source": "EstatutoUNLAR.pdf",
+              "score": 10.26071,
+              "text": "[Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 208]\nArtículo 208°: Todo caso o situación no prevista en el presente Estatuto será resuelta por el Consejo Superior,\nateniéndose a los principios en él expuestos.\nArtículo 209°: Hasta tanto se dicten las disposiciones orgánicas, reglamentarias y de procedimiento que este\nEstatuto establece y permite, se aplicarán las ordenanzas, resoluciones y toda otra norma vigente en esta\nUniversidad a la fecha de sanción del presente Estatuto, en todo aquello compatible con este y con la materia.",
+              "titulo": "Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado)",
+              "version": "texto_ordenado"
+            },
+            {
+              "posicion": 3,
+              "id": 1979,
+              "source": "riesgos-del-trabajo-UNLAR.pdf",
+              "score": 10.10013,
+              "text": "[Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación]\nles. Esta incapaci-\ndad comienza el día siguiente de la primera manifestación invalidante y finaliza \ncuando el trabajador recibe el alta médica, o se le declara una Incapacidad Labo-\nral Permanente, si se cumplió 1 año desde la primera manifestación invalidante, \no bien si fallece el damnificado.\n¿Qué cobra el trabajador durante la ILT?\nLa prestación dineraria durante una Incapacidad Laboral Temporaria se calcula \nconforme a las pautas dispuestas por el artículo 208 de la Ley de Contrato de Tra-\nbajo Nº 20.744 (t.o. 1976) y sus modificatorias, incluye la totalidad de los concep-\ntos que debió percibir el damnificado al momento de la primera manifestación \ninvalidante, sin tener en cuenta el tope máximo de remuneraciones sujetas a \naportes que estipula la ley previsional.\n\nSi el salario es",
+              "titulo": "Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 4,
+              "id": 619,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 9.113057,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 208]\nArt. 208. - Será reprimido con prisión de quince días a un año:\n1.º El que, sin título ni autorización para el ejercicio de un arte de curar o excediendo los límites de su\nautorización, anunciare, prescribiere, administrare o aplicare habitualmente medicamentos, aguas,\nelectricidad, hipnotismo o cualquier medio destinado al tratamiento de las enfermedades de las personas,\naun a título gratuito;\n2.º El que con título o autorización para el ejercicio de un arte de curar, anunciare o prometiere la curación\nde enfermedades a término fijo o por medios secretos o infalibles;\n3.º El que con título o autorización para el ejercicio de un arte de curar, prestare su nombre a otro que no\ntuviere título o autorización, para que ejerza los actos a que se refiere el inciso 1.º de este artículo.\nTITULO VIII\nDelitos contra el orden público\nCAPITULO I\nInstigación a cometer delitos\nDelitos contra el orden público\nInstigación a cometer delitos",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 8.468461,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 10]\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.318,
+          "respuesta_llm": "El artículo 208 de la Ley de Contrato de Trabajo establece que, en relación a los menores de dieciocho (18) años de uno u otro sexo que trabajen en horas de la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 367,
+              "source": "06_infoleg.pdf",
+              "score": 0.032787,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208]\nArt. 208. — Con relación a los menores de dieciocho (18) años de uno u otro sexo, que trabajen en horas\nde la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley.\nAhorro\nArt. 209. — El empleador, dentro de los treinta (30) días de la ocupación de un menor comprendido entre\nlos catorce (14) y dieciocho (18) años, deberá gestionar la obtención de una libreta de ahorro, de la\ninstitución de ahorro oficial, la cual permanecerá en su poder y custodia mientras el menor trabaje a sus\nórdenes, debiendo ser devuelta a éste o a sus padres o tutores al extinguirse el contrato de trabajo, o\ncuando el menor cumpla los dieciocho (18) años de edad.\nImporte a depositar - Comprobación",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 0.030769,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 10]\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 3,
+              "id": 175,
+              "source": "06_infoleg.pdf",
+              "score": 0.027651,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Carátula]\ninfoleg\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/norma.htm\nIr a texto actualizado y otros datos\nCONTRATOS DE TRABAJO\nLEY Nº 20.744\nRégimen.\nSancionada: setiembre 11 de 1974.\nPromulgada: setiembre 20 de 1974.\nARTICULO 1º — Apruébase el régimen del contrato de trabajo (L.C.T.), cuyas disposiciones se\nconsiderarán incorporadas a la presente y se observarán como ley de la Nación.",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 4,
+              "id": 180,
+              "source": "06_infoleg.pdf",
+              "score": 0.02748,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 9]\nARTICULO 9º — El Ministerio de Trabajo de la Nación será autoridad de aplicación de la presente ley.\nEllo no implica enervar el derecho de ejercer las acciones pertinentes por parte de los interesados para\nobtener su cumplimiento.\nLas infracciones a las disposiciones de la ley de contrato de trabajo serán sancionadas por el régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 424,
+              "source": "06_infoleg.pdf",
+              "score": 0.026357,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 267]\nArt. 267. — Cuando el trabajador hiciese denuncia del contrato de trabajo fundado en justa causa, tendrá\nderecho a las indemnizaciones previstas en los artículos 253, 254 y 266.\nDe la extinción del contrato de trabajo por fuerza mayor o por falta o disminución de trabajo\nMonto de la indemnización",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 3.142,
+          "respuesta_llm": "El artículo 208 de la Ley de Contrato de Trabajo establece que, en relación a los menores de dieciocho (18) años que trabajen en horas de la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de la misma ley. [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208]",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 367,
+              "source": "06_infoleg.pdf",
+              "score": 0.997214,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208]\nArt. 208. — Con relación a los menores de dieciocho (18) años de uno u otro sexo, que trabajen en horas\nde la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley.\nAhorro\nArt. 209. — El empleador, dentro de los treinta (30) días de la ocupación de un menor comprendido entre\nlos catorce (14) y dieciocho (18) años, deberá gestionar la obtención de una libreta de ahorro, de la\ninstitución de ahorro oficial, la cual permanecerá en su poder y custodia mientras el menor trabaje a sus\nórdenes, debiendo ser devuelta a éste o a sus padres o tutores al extinguirse el contrato de trabajo, o\ncuando el menor cumpla los dieciocho (18) años de edad.\nImporte a depositar - Comprobación",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 1979,
+              "source": "riesgos-del-trabajo-UNLAR.pdf",
+              "score": 0.314356,
+              "text": "[Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación]\nles. Esta incapaci-\ndad comienza el día siguiente de la primera manifestación invalidante y finaliza \ncuando el trabajador recibe el alta médica, o se le declara una Incapacidad Labo-\nral Permanente, si se cumplió 1 año desde la primera manifestación invalidante, \no bien si fallece el damnificado.\n¿Qué cobra el trabajador durante la ILT?\nLa prestación dineraria durante una Incapacidad Laboral Temporaria se calcula \nconforme a las pautas dispuestas por el artículo 208 de la Ley de Contrato de Tra-\nbajo Nº 20.744 (t.o. 1976) y sus modificatorias, incluye la totalidad de los concep-\ntos que debió percibir el damnificado al momento de la primera manifestación \ninvalidante, sin tener en cuenta el tope máximo de remuneraciones sujetas a \naportes que estipula la ley previsional.\n\nSi el salario es",
+              "titulo": "Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 3,
+              "id": 619,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.305204,
+              "text": "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 208]\nArt. 208. - Será reprimido con prisión de quince días a un año:\n1.º El que, sin título ni autorización para el ejercicio de un arte de curar o excediendo los límites de su\nautorización, anunciare, prescribiere, administrare o aplicare habitualmente medicamentos, aguas,\nelectricidad, hipnotismo o cualquier medio destinado al tratamiento de las enfermedades de las personas,\naun a título gratuito;\n2.º El que con título o autorización para el ejercicio de un arte de curar, anunciare o prometiere la curación\nde enfermedades a término fijo o por medios secretos o infalibles;\n3.º El que con título o autorización para el ejercicio de un arte de curar, prestare su nombre a otro que no\ntuviere título o autorización, para que ejerza los actos a que se refiere el inciso 1.º de este artículo.\nTITULO VIII\nDelitos contra el orden público\nCAPITULO I\nInstigación a cometer delitos\nDelitos contra el orden público\nInstigación a cometer delitos",
+              "titulo": "Ley 11.179 - Código Penal de la Nación",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 4,
+              "id": 199,
+              "source": "06_infoleg.pdf",
+              "score": 0.278899,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 23]\nArt. 23. — Habrá contrato de trabajo, cualquiera sea su forma o denominación, siempre que una persona\nfísica se obligue a realizar actos, ejecutar obras o prestar servicios en favor de la otra y bajo la\ndependencia de ésta, durante un período determinado o indeterminado de tiempo, mediante el pago de\nuna remuneración. Sus cláusulas, en cuanto a la forma y condiciones de la prestación, quedan sometidas\na las disposiciones de orden público, los estatutos, las convenciones colectivas o los laudos con fuerza de\ntales y los usos y costumbres.\nRelación de trabajo",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 364,
+              "source": "06_infoleg.pdf",
+              "score": 0.233488,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 205]\nArt. 205. — El empleador, al contratar trabajadores de uno u otro sexo, menores de dieciocho (18) años,\ndeberá exigir de los mismos o de sus representantes legales, un certificado médico que acredite su\naptitud para el trabajo, y someterlos a los reconocimientos médicos periódicos que prevean las\nreglamentaciones respectivas.\nMenores de 14 años - Prohibición de su empleo",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "lct-art-57",
+      "texto": "¿Qué dice el artículo 57 de la Ley de Contrato de Trabajo?",
+      "por_que": "Mismo problema, caso extremo: el contenido del art. 57 vigente (presunción en contra del empleador por su silencio) directamente NO existe en el texto de 1974. Cualquier respuesta afirmativa es falsa.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.305,
+          "respuesta_llm": "El artículo 57 de la Ley de Contrato de Trabajo establece que los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que tengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no servirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de la seguridad social [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 0.591672,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 6]\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Ley 2.446/56, salvo en su artículo 1º (Ley 14.467); artículo 7º del\nDecreto Ley 17.258/67, y toda otra disposición legal o reglamentaria que se oponga a la misma.",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 228,
+              "source": "06_infoleg.pdf",
+              "score": 0.59031,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57]\nArt. 57. — Los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que\ntengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no\nservirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de\nla seguridad social.\nAplicación a los registros, planillas u otros elementos de contralor",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 3,
+              "id": 223,
+              "source": "06_infoleg.pdf",
+              "score": 0.582048,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 51]\nArt. 51. — El empleador, en el caso del artículo 50 de esta ley, estará obligado a incorporar al trabajador\no, en su defecto, al resarcimiento de daños.\nSi la asignación del trabajador se hiciere para prestar servicios durante un plazo cierto y el empleador no\nlo incorporase, cargará con la obligación de pagar una suma equivalente a los salarios que aquél hubiere\npercibido de haberse operado su incorporación.\nCAPITULO VI\nDe la forma y prueba del contrato de trabajo\nForma",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 4,
+              "id": 254,
+              "source": "06_infoleg.pdf",
+              "score": 0.573886,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 87]\nArt. 87. — El empleador deberá cumplir con las obligaciones que resulten de esta ley, de los estatutos\nprofesionales, convenciones colectivas de trabajo y de los sistemas de seguridad social, de modo de\nposibilitar al trabajador el goce íntegro y oportuno de los beneficios que tales disposiciones le acuerdan.\nNo podrá invocar en ningún caso el incumplimiento de parte del trabajador de las obligaciones que le\nestán asignadas y del que se derive la pérdida total o parcial de aquellos beneficios, si la observancia de\nlas obligaciones dependiese de la iniciativa del empleador y no probase el haber cumplido oportunamente\nde su parte las que estuviese en su cargo como agente de retención, contribuyente u otra condición\nsimilar.\nDeber de observar las obligaciones frente a los organismos sindicales y de la seguridad social -\nCertificado de trabajo",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 226,
+              "source": "06_infoleg.pdf",
+              "score": 0.571031,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 56 (cont. 1/2)]\nArt. 56. — Los empleadores deberán llevar un libro especial, registrado y rubricado, en las mismas\ncondiciones que se exigen para los libros principales de comercio, en el que se consignará:\na) Individualización íntegra y actualizada del empleador;\nb) Nombre del trabajador;\nc) Estado civil;\nd) Fecha de ingreso y egreso;\n\ne) Remuneraciones asignadas y percibidas;\nf) Individualización de personas que generen derecho a la percepción de asignaciones familiares;\ng) Demás datos que permitan una exacta evaluación de las obligaciones a su cargo;\nh) Los que establezca la reglamentación.\nSe prohíbe:\n1. Alterar los registros correspondientes a cada persona empleada.\n2. Dejar blancos o espacios.\n3. Hacer interlineaciones, raspaduras o enmiendas, las que deberán ser salvadas en el cuadro o espacio\nrespectivo, con firma del trabajador a que se refiere el asiento y control de la autoridad administrativa.\n4. Tachar anotaciones, suprimir fojas o alterar su foliatura o registro. Tratándose de registro de hojas\nmóviles, su habilitación se hará por la autoridad administrativa, debiendo estar precedido cada conjunto\nde hojas, por una constancia extendida por dicha autoridad, de la que resulte su número",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.018,
+          "respuesta_llm": "El artículo 57 de la Ley de Contrato de Trabajo establece que los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que tengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no servirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de la seguridad social [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 228,
+              "source": "06_infoleg.pdf",
+              "score": 14.59481,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57]\nArt. 57. — Los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que\ntengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no\nservirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de\nla seguridad social.\nAplicación a los registros, planillas u otros elementos de contralor",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 9.789421,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 6]\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Ley 2.446/56, salvo en su artículo 1º (Ley 14.467); artículo 7º del\nDecreto Ley 17.258/67, y toda otra disposición legal o reglamentaria que se oponga a la misma.",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 3,
+              "id": 82,
+              "source": "01_argentinagobar.pdf",
+              "score": 9.012719,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 57]\nARTICULO 57. — Requisitos para Obtener el Reconocimiento. Para ser reconocidas como\norganizaciones de consumidores, las asociaciones civiles deberán acreditar, además de los requisitos\ngenerales, las siguientes condiciones especiales:\na) No podrán participar en actividades políticas partidarias;\nb) Deberán ser independientes de toda forma de actividad profesional, comercial y productiva;\nc) No podrán recibir donaciones, aportes o contribuciones de empresas comerciales, industriales o\nproveedoras de servicios, privadas o estatales, nacionales o extranjeras;\nd) Sus publicaciones no podrán contener avisos publicitarios.",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 4,
+              "id": 873,
+              "source": "10_ley-de-bien-de-familia-edad-de-matrimonio.pdf",
+              "score": 8.814646,
+              "text": "[Ley 14.394 - Modificaciones al régimen de los menores y de la familia (bien de familia, edad de matrimonio) · texto actualizado · Art. 57]\nARTICULO 57. – La presente ley comenzará a regir a los noventa días de su publicación, quedando a\npartir de entonces derogados los artículos 36, 37, 38 y 39 del Código Penal y todas las disposiciones que\ny en cuanto se opusieron a ella.\nARTICULO 58. – Comuníquese al Poder Ejecutivo.\nDada en la Sala de Sesiones del Congreso Argentino, en Buenos Aires, a 14 de diciembre de 1954.\nA. TEISAIRE – A.J.BENITEZ – Alberto H. Reales – Eduardo T. Oliver\n– Registrada bajo el N° 14.394 –\nBuenos Aires, 22 de diciembre de 1954\nPOR TANTO:\nTéngase por Ley de la Nación, cúmplase, comuníquese, publíquese, dése a la Dirección General del\nRegistro Nacional y archívese.\nPERON – Angel G. Borlenghi\nDECRETO N° 21.802\nAntecedentes normativo:",
+              "titulo": "Ley 14.394 - Modificaciones al régimen de los menores y de la familia (bien de familia, edad de matrimonio)",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 5,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 8.468461,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 10]\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.286,
+          "respuesta_llm": "El artículo 57 de la Ley de Contrato de Trabajo establece que los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que tengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no servirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de la seguridad social [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 0.032522,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 6]\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Ley 2.446/56, salvo en su artículo 1º (Ley 14.467); artículo 7º del\nDecreto Ley 17.258/67, y toda otra disposición legal o reglamentaria que se oponga a la misma.",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 228,
+              "source": "06_infoleg.pdf",
+              "score": 0.032522,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57]\nArt. 57. — Los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que\ntengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no\nservirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de\nla seguridad social.\nAplicación a los registros, planillas u otros elementos de contralor",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 3,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 0.02967,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 10]\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 4,
+              "id": 223,
+              "source": "06_infoleg.pdf",
+              "score": 0.015873,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 51]\nArt. 51. — El empleador, en el caso del artículo 50 de esta ley, estará obligado a incorporar al trabajador\no, en su defecto, al resarcimiento de daños.\nSi la asignación del trabajador se hiciere para prestar servicios durante un plazo cierto y el empleador no\nlo incorporase, cargará con la obligación de pagar una suma equivalente a los salarios que aquél hubiere\npercibido de haberse operado su incorporación.\nCAPITULO VI\nDe la forma y prueba del contrato de trabajo\nForma",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 82,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.015873,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 57]\nARTICULO 57. — Requisitos para Obtener el Reconocimiento. Para ser reconocidas como\norganizaciones de consumidores, las asociaciones civiles deberán acreditar, además de los requisitos\ngenerales, las siguientes condiciones especiales:\na) No podrán participar en actividades políticas partidarias;\nb) Deberán ser independientes de toda forma de actividad profesional, comercial y productiva;\nc) No podrán recibir donaciones, aportes o contribuciones de empresas comerciales, industriales o\nproveedoras de servicios, privadas o estatales, nacionales o extranjeras;\nd) Sus publicaciones no podrán contener avisos publicitarios.",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 3.086,
+          "respuesta_llm": "El artículo 57 de la Ley de Contrato de Trabajo establece que los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que tengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no servirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de la seguridad social [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 228,
+              "source": "06_infoleg.pdf",
+              "score": 0.992582,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57]\nArt. 57. — Los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que\ntengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no\nservirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de\nla seguridad social.\nAplicación a los registros, planillas u otros elementos de contralor",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 2,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 0.935878,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 6]\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Ley 2.446/56, salvo en su artículo 1º (Ley 14.467); artículo 7º del\nDecreto Ley 17.258/67, y toda otra disposición legal o reglamentaria que se oponga a la misma.",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 3,
+              "id": 226,
+              "source": "06_infoleg.pdf",
+              "score": 0.609812,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 56 (cont. 1/2)]\nArt. 56. — Los empleadores deberán llevar un libro especial, registrado y rubricado, en las mismas\ncondiciones que se exigen para los libros principales de comercio, en el que se consignará:\na) Individualización íntegra y actualizada del empleador;\nb) Nombre del trabajador;\nc) Estado civil;\nd) Fecha de ingreso y egreso;\n\ne) Remuneraciones asignadas y percibidas;\nf) Individualización de personas que generen derecho a la percepción de asignaciones familiares;\ng) Demás datos que permitan una exacta evaluación de las obligaciones a su cargo;\nh) Los que establezca la reglamentación.\nSe prohíbe:\n1. Alterar los registros correspondientes a cada persona empleada.\n2. Dejar blancos o espacios.\n3. Hacer interlineaciones, raspaduras o enmiendas, las que deberán ser salvadas en el cuadro o espacio\nrespectivo, con firma del trabajador a que se refiere el asiento y control de la autoridad administrativa.\n4. Tachar anotaciones, suprimir fojas o alterar su foliatura o registro. Tratándose de registro de hojas\nmóviles, su habilitación se hará por la autoridad administrativa, debiendo estar precedido cada conjunto\nde hojas, por una constancia extendida por dicha autoridad, de la que resulte su número",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 4,
+              "id": 199,
+              "source": "06_infoleg.pdf",
+              "score": 0.36676,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 23]\nArt. 23. — Habrá contrato de trabajo, cualquiera sea su forma o denominación, siempre que una persona\nfísica se obligue a realizar actos, ejecutar obras o prestar servicios en favor de la otra y bajo la\ndependencia de ésta, durante un período determinado o indeterminado de tiempo, mediante el pago de\nuna remuneración. Sus cláusulas, en cuanto a la forma y condiciones de la prestación, quedan sometidas\na las disposiciones de orden público, los estatutos, las convenciones colectivas o los laudos con fuerza de\ntales y los usos y costumbres.\nRelación de trabajo",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            },
+            {
+              "posicion": 5,
+              "id": 254,
+              "source": "06_infoleg.pdf",
+              "score": 0.302353,
+              "text": "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 87]\nArt. 87. — El empleador deberá cumplir con las obligaciones que resulten de esta ley, de los estatutos\nprofesionales, convenciones colectivas de trabajo y de los sistemas de seguridad social, de modo de\nposibilitar al trabajador el goce íntegro y oportuno de los beneficios que tales disposiciones le acuerdan.\nNo podrá invocar en ningún caso el incumplimiento de parte del trabajador de las obligaciones que le\nestán asignadas y del que se derive la pérdida total o parcial de aquellos beneficios, si la observancia de\nlas obligaciones dependiese de la iniciativa del empleador y no probase el haber cumplido oportunamente\nde su parte las que estuviese en su cargo como agente de retención, contribuyente u otra condición\nsimilar.\nDeber de observar las obligaciones frente a los organismos sindicales y de la seguridad social -\nCertificado de trabajo",
+              "titulo": "Ley 20.744 - Régimen de Contrato de Trabajo (LCT)",
+              "version": "texto_original"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "consumidor-revocacion",
+      "texto": "¿Qué plazo tiene el consumidor para revocar la aceptación en una venta domiciliaria?",
+      "por_que": "Consulta sana, sin trampa: la Ley 24.240 está en el corpus en su texto actualizado. Sirve de control — si esta también se rompe después de reindexar, el problema es el chunking nuevo y no el corpus.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.301,
+          "respuesta_llm": "El consumidor tiene un plazo de DIEZ (10) días corridos para revocar la aceptación en una venta domiciliaria, contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo que ocurra último, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 41,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.742352,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34]\nARTICULO 34. — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 2,
+              "id": 33,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.642144,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 30]\nARTICULO 30. — Interrupción de la Prestación del Servicio. Cuando la prestación del servicio público\ndomiciliario se interrumpa o sufra alteraciones, se presume que es por causa imputable a la empresa\nprestadora. Efectuado el reclamo por el usuario, la empresa dispone de un plazo máximo de treinta (30)\ndías para demostrar que la interrupción o alteración no le es imputable. En caso contrario, la empresa\ndeberá reintegrar el importe total del servicio no prestado dentro del plazo establecido precedentemente.\nEsta disposición no es aplicable cuando el valor del servicio no prestado sea deducido de la factura\ncorrespondiente. El usuario puede interponer el reclamo desde la interrupción o alteración del servicio y\nhasta los quince (15) días posteriores al vencimiento de la factura.",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 3,
+              "id": 14,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.627256,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 10 ter]\nARTICULO 10 ter: Modos de Rescisión. Cuando la contratación de un servicio, incluidos los servicios\npúblicos domiciliarios, haya sido realizada en forma telefónica, electrónica o similar, podrá ser rescindida\na elección del consumidor o usuario mediante el mismo medio utilizado en la contratación.\nLa empresa receptora del pedido de rescisión del servicio deberá enviar sin cargo al domicilio del\nconsumidor o usuario una constancia fehaciente dentro de las SETENTA Y DOS (72) horas posteriores a\nla recepción del pedido de rescisión. Esta disposición debe ser publicada en la factura o documento\nequivalente que la empresa enviare regularmente al domicilio del consumidor o usuario.\n(Artículo incorporado por art. 8° de la Ley N° 26.361 B.O. 7/4/2008)",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 4,
+              "id": 39,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.607889,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 32]\nARTICULO 32. — Venta domiciliaria. Es la oferta o propuesta de venta de un bien o prestación de un\nservicio efectuada al consumidor fuera del establecimiento del proveedor. También se entenderá\ncomprendida dentro de la venta domiciliaria o directa aquella contratación que resulte de una\nconvocatoria al consumidor o usuario al establecimiento del proveedor o a otro sitio, cuando el objetivo de\ndicha convocatoria sea total o parcialmente distinto al de la contratación, o se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la presente ley.\nLo dispuesto precedentemente no es aplicable a la compraventa de bienes perecederos recibidos por el\nconsumidor y abonados al contado.\n(Artículo sustituido por art. 13 de la Ley N° 26.361 B.O. 7/4/2008)",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 5,
+              "id": 1505,
+              "source": "21_resolución-75-modelo-de-convenio.pdf",
+              "score": 0.589011,
+              "text": "[Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor) · texto actualizado · Art. 2 (cont. 13/24)]\nacitación y soporte que resulten necesarias.\nCLÁUSULA DÉCIMA PRIMERA: CONTROVERSIAS.\nLas PARTES observarán en sus relaciones el mayor espíritu de colaboración y las mismas se basarán en\nlos principios de buena fe y cordialidad en atención a los fines perseguidos con la celebración del\npresente CONVENIO.\nEn caso de suscitarse controversia en la interpretación, aplicación y/o ejecución del CONVENIO,\nintentarán resolverlo en términos cordiales de común acuerdo.\nDe no poder resolver la controversia de común acuerdo, las PARTES las someterán a consideración de\nlos tribunales con competencia en razón de la materia con asiento en la Ciudad Autónoma de Buenos\nAires.\n\nCLÁUSULA DÉCIMA SEGUNDA: DOMICILIOS.\nPara todos los efectos derivados del presente CONVENIO, las PARTES fijan sus domicilios en los\nindicados en el encabezamiento, donde se tendrán por válidas todas las notificaciones.\nCualquier modificación en los domicilios deberá notificarse con al menos CINCO (5) días hábiles de\nantelación a efectivizarse, para que sea oponible a la contraparte.\nEn prueba de conformidad se firman DOS (2) ejemplares de un mismo tenor y a un solo efecto, el día\n______ del mes de ___________ de 2022.\nLINEAMIE",
+              "titulo": "Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor)",
+              "version": "texto_actualizado"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.028,
+          "respuesta_llm": "El consumidor tiene un plazo de DIEZ (10) días corridos para revocar la aceptación en una venta domiciliaria, contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo que ocurra último, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 41,
+              "source": "01_argentinagobar.pdf",
+              "score": 25.622568,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34]\nARTICULO 34. — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 2,
+              "id": 39,
+              "source": "01_argentinagobar.pdf",
+              "score": 20.226667,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 32]\nARTICULO 32. — Venta domiciliaria. Es la oferta o propuesta de venta de un bien o prestación de un\nservicio efectuada al consumidor fuera del establecimiento del proveedor. También se entenderá\ncomprendida dentro de la venta domiciliaria o directa aquella contratación que resulte de una\nconvocatoria al consumidor o usuario al establecimiento del proveedor o a otro sitio, cuando el objetivo de\ndicha convocatoria sea total o parcialmente distinto al de la contratación, o se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la presente ley.\nLo dispuesto precedentemente no es aplicable a la compraventa de bienes perecederos recibidos por el\nconsumidor y abonados al contado.\n(Artículo sustituido por art. 13 de la Ley N° 26.361 B.O. 7/4/2008)",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 3,
+              "id": 1487,
+              "source": "21_resolución-75-modelo-de-convenio.pdf",
+              "score": 13.383576,
+              "text": "[Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor) · texto actualizado · Carátula (cont. 3/7)]\ncas que\nbuscan estabilizar los precios de los productos a favor del consumidor, generando compromisos de\nmantenimiento de precios de venta al mismo y estableciendo, a su vez, un equilibrio que, por un lado,\nasegure una rentabilidad razonable a las empresas y, al mismo tiempo, permita sostener el poder\nadquisitivo de la población y el acceso de todos los sectores a determinados productos básicos para la\nvida cotidiana de los argentinos y las argentinas.\nQue en dicho marco, por la Resolución N° 823/22 del MINISTERIO DE ECONOMÍA se creó el Programa\n“Precios Justos” en la órbita de la SUBSECRETARÍA DE POLÍTICAS PARA EL MERCADO INTERNO\ndependiente de esta Secretaría, con el objeto de garantizar la venta al consumidor final de ciertos\nproductos a un precio fijo o con una variación constante y previamente acordada por un plazo\ndeterminado que le otorgue previsibilidad, conforme a los términos previstos en dicha medida.\n\nQue, conforme a lo previsto en el Decreto N° 50/19 y sus modificatorios, esta Secretaría tiene entre sus\nobjetivos el de entender en la formulación y ejecución de la política comercial, supervisar y entender en\nlas actividades vinculadas al seguimiento y verificación de lo",
+              "titulo": "Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor)",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 4,
+              "id": 1496,
+              "source": "21_resolución-75-modelo-de-convenio.pdf",
+              "score": 13.383576,
+              "text": "[Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor) · texto actualizado · Art. 2 (cont. 4/24)]\necios de los productos a favor del consumidor, generando compromisos de\nmantenimiento de precios de venta al mismo y estableciendo, a su vez, un equilibrio que, por un lado,\nasegure una rentabilidad razonable a las empresas y, al mismo tiempo, permita sostener el poder\nadquisitivo de la población y el acceso de todos los sectores a determinados productos básicos para la\nvida cotidiana de los argentinos y las argentinas.\nQue en dicho marco, por la Resolución N° 823/22 del MINISTERIO DE ECONOMÍA se creó el Programa\n\"Precios Justos” en la órbita de la SUBSECRETARÍA DE POLÍTICAS PARA EL MERCADO INTERNO\ndependiente de la SECRETARÍA, con el objeto de garantizar la venta al consumidor final de ciertos\nproductos a un precio fijo o con una variación constante y previamente acordada por un plazo\ndeterminado que le otorgue previsibilidad, conforme a los términos previstos en dicha medida.\nQue, conforme a lo previsto en el Decreto N° 50/19 y sus modificatorios, la SECRETARÍA de este\nMinisterio tiene entre sus objetivos el de entender en la formulación y ejecución de la política comercial,\nsupervisar y entender en las actividades vinculadas al seguimiento y verificación de lo relacionado con la",
+              "titulo": "Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor)",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 5,
+              "id": 38,
+              "source": "01_argentinagobar.pdf",
+              "score": 12.781479,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 31 (cont. 3/3)]\nctivo pago.\nLa tasa de interés por mora en facturas de servicios públicos no podrá exceder en más del CINCUENTA\nPOR CIENTO (50%) la tasa pasiva para depósitos a TREINTA (30) días del Banco de la Nación\nArgentina, correspondiente al último día del mes anterior a la efectivización del pago.\nLa relación entre el prestador de servicios públicos y el usuario tendrá como base la integración normativa\ndispuesta en los artículos 3º y 25 de la presente ley.\nLas facultades conferidas al usuario en este artículo se conceden sin perjuicio de las previsiones del\nartículo 50 del presente cuerpo legal.\n(Artículo sustituido por art. 12 de la Ley N° 26.361 B.O. 7/4/2008)\nCAPITULO VII\nDE LA VENTA DOMICILIARIA, POR CORRESPONDENCIA Y OTRAS",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.307,
+          "respuesta_llm": "El consumidor tiene un plazo de DIEZ (10) días corridos para revocar la aceptación en una venta domiciliaria, contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo que ocurra último, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 41,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.032787,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34]\nARTICULO 34. — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 2,
+              "id": 39,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.031754,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 32]\nARTICULO 32. — Venta domiciliaria. Es la oferta o propuesta de venta de un bien o prestación de un\nservicio efectuada al consumidor fuera del establecimiento del proveedor. También se entenderá\ncomprendida dentro de la venta domiciliaria o directa aquella contratación que resulte de una\nconvocatoria al consumidor o usuario al establecimiento del proveedor o a otro sitio, cuando el objetivo de\ndicha convocatoria sea total o parcialmente distinto al de la contratación, o se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la presente ley.\nLo dispuesto precedentemente no es aplicable a la compraventa de bienes perecederos recibidos por el\nconsumidor y abonados al contado.\n(Artículo sustituido por art. 13 de la Ley N° 26.361 B.O. 7/4/2008)",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 3,
+              "id": 20,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.027984,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 16]\nARTICULO 16. — Prolongación del Plazo de Garantía. El tiempo durante el cual el consumidor está\nprivado del uso de la cosa en garantía, por cualquier causa relacionada con su reparación, debe\ncomputarse como prolongación del plazo de garantía legal.\nARTICULO 17. — Reparación no Satisfactoria. En los supuestos en que la reparación efectuada no\nresulte satisfactoria por no reunir la cosa reparada, las condiciones óptimas para cumplir con el uso al que\nestá destinada, el consumidor puede:\na) Pedir la sustitución de la cosa adquirida por otra de idénticas características. En tal caso el plazo de la\ngarantía legal se computa a partir de la fecha de la entrega de la nueva cosa;\nb) Devolver la cosa en el estado en que se encuentre a cambio de recibir el importe equivalente a las\nsumas pagadas, conforme el precio actual en plaza de la cosa, al momento de abonarse dicha suma o\nparte proporcional, si hubiere efectuado pagos parciales;\nc) Obtener una quita proporcional del precio.\nEn todos los casos, la opción por parte del consumidor no impide la reclamación de los eventuales daños\ny perjuicios que pudieren corresponder.",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 4,
+              "id": 42,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.027313,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 35]\nARTICULO 35. — Prohibición. Queda prohibida la realización de propuesta al consumidor, por cualquier\ntipo de medio, sobre una cosa o servicio que no haya sido requerido previamente y que genere un cargo\nautomático en cualquier sistema de débito, que obligue al consumidor a manifestarse por la negativa para\nque dicho cargo no se efectivice.\nSi con la oferta se envió una cosa, el receptor no está obligado a conservarla ni a restituirla al remitente\naunque la restitución pueda ser realizada libre de gastos.\nCAPITULO VIII\nDE LAS OPERACIONES DE VENTA DE CREDITO",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 5,
+              "id": 33,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.016129,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 30]\nARTICULO 30. — Interrupción de la Prestación del Servicio. Cuando la prestación del servicio público\ndomiciliario se interrumpa o sufra alteraciones, se presume que es por causa imputable a la empresa\nprestadora. Efectuado el reclamo por el usuario, la empresa dispone de un plazo máximo de treinta (30)\ndías para demostrar que la interrupción o alteración no le es imputable. En caso contrario, la empresa\ndeberá reintegrar el importe total del servicio no prestado dentro del plazo establecido precedentemente.\nEsta disposición no es aplicable cuando el valor del servicio no prestado sea deducido de la factura\ncorrespondiente. El usuario puede interponer el reclamo desde la interrupción o alteración del servicio y\nhasta los quince (15) días posteriores al vencimiento de la factura.",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 2.987,
+          "respuesta_llm": "El consumidor tiene un plazo de DIEZ (10) días corridos para revocar la aceptación en una venta domiciliaria, contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo que ocurra último, sin responsabilidad alguna [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 41,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.998746,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34]\nARTICULO 34. — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 2,
+              "id": 33,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.460979,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 30]\nARTICULO 30. — Interrupción de la Prestación del Servicio. Cuando la prestación del servicio público\ndomiciliario se interrumpa o sufra alteraciones, se presume que es por causa imputable a la empresa\nprestadora. Efectuado el reclamo por el usuario, la empresa dispone de un plazo máximo de treinta (30)\ndías para demostrar que la interrupción o alteración no le es imputable. En caso contrario, la empresa\ndeberá reintegrar el importe total del servicio no prestado dentro del plazo establecido precedentemente.\nEsta disposición no es aplicable cuando el valor del servicio no prestado sea deducido de la factura\ncorrespondiente. El usuario puede interponer el reclamo desde la interrupción o alteración del servicio y\nhasta los quince (15) días posteriores al vencimiento de la factura.",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 3,
+              "id": 36,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.300719,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 31 (cont. 1/3)]\nARTICULO 31. — Cuando una empresa de servicio público domiciliario con variaciones regulares\nestacionales facture en un período consumos que exceden en un SETENTA Y CINCO POR CIENTO\n(75%) el promedio de los consumos correspondientes al mismo período de los DOS (2) años anteriores\nse presume que existe error en la facturación.\nPara el caso de servicios de consumos no estacionales se tomará en cuenta el consumo promedio de los\núltimos DOCE (12) meses anteriores a la facturación. En ambos casos, el usuario abonará únicamente el\nvalor de dicho consumo promedio.\nEn los casos en que un prestador de servicios públicos facturase sumas o conceptos indebidos o\nreclamare el pago de facturas ya abonadas el usuario podrá presentar reclamo, abonando únicamente los\nconceptos no reclamados.\n\nEl prestador dispondrá de un plazo de TREINTA (30) días a partir del reclamo del usuario para acreditar\nen forma fehaciente que el consumo facturado fue efectivamente realizado.\nSi el usuario no considerara satisfecho su reclamo o el prestador no le contestara en los plazos indicados,\npodrá requerir la intervención del organismo de control correspondiente dentro de los TREINTA (30) días\ncontados a partir de la",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 4,
+              "id": 59,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.165808,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 2/5)]\nsunto responsable la infracción verificada, intimándolo para que en el plazo de\ncinco (5) días hábiles presente por escrito su descargo.\nEn su primera presentación, el presunto infractor deberá constituir domicilio y acreditar personería.\nCuando no se acredite personería se intimará para que en el término de cinco (5) días hábiles subsane la\nomisión bajo apercibimiento de tenerlo por no presentado.\n\nLas constancias del expediente labrado conforme a lo previsto en este artículo, así como las\ncomprobaciones técnicas que se dispusieren, constituirán prueba suficiente de los hechos así\ncomprobados, salvo en los casos en que resulten desvirtuados por otras pruebas.\nLas pruebas se admitirán solamente en caso de existir hechos controvertidos, siempre que no resulten\nmanifiestamente inconducentes o meramente dilatorias. Contra la resolución que deniegue medidas de\nprueba sólo se podrá interponer el recurso de reconsideración previsto en el Reglamento de\nProcedimientos Administrativos, decreto 1759/72 t.o. 1991. La prueba deberá producirse en el término de\ndiez (10) días hábiles, prorrogables cuando haya causas justificadas, teniéndose por desistida aquella no\nproducida dentro de dicho plaz",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            },
+            {
+              "posicion": 5,
+              "id": 14,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.158863,
+              "text": "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 10 ter]\nARTICULO 10 ter: Modos de Rescisión. Cuando la contratación de un servicio, incluidos los servicios\npúblicos domiciliarios, haya sido realizada en forma telefónica, electrónica o similar, podrá ser rescindida\na elección del consumidor o usuario mediante el mismo medio utilizado en la contratación.\nLa empresa receptora del pedido de rescisión del servicio deberá enviar sin cargo al domicilio del\nconsumidor o usuario una constancia fehaciente dentro de las SETENTA Y DOS (72) horas posteriores a\nla recepción del pedido de rescisión. Esta disposición debe ser publicada en la factura o documento\nequivalente que la empresa enviare regularmente al domicilio del consumidor o usuario.\n(Artículo incorporado por art. 8° de la Ley N° 26.361 B.O. 7/4/2008)",
+              "titulo": "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores",
+              "version": "texto_actualizado"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "siri-amparo",
+      "texto": "¿Qué resolvió la Corte en el caso Siri sobre la acción de amparo?",
+      "por_que": "Fallo, no ley: no tiene artículos numerados. Es el caso que justifica el fallback del chunking por estructura, y el control de que cortar por artículo no rompa los documentos que no los tienen.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.313,
+          "respuesta_llm": "En el caso \"Siri\", la Corte Suprema de Justicia de la Nación Argentina declaró la existencia de una acción o recurso de amparo destinado a tutelar las \"garantías constitucionales\". La doctrina establecida en esa oportunidad fundamentó que dichas garantías existen y protegen al hombre por el solo hecho de estar consagradas en la Constitución, debiendo hacerse efectivas en cada caso, aun sin leyes reglamentarias. Para que los principios expuestos sean aplicables, es necesario que se produzca la restricción o vulneración de una \"garantía constitucional\" [CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Considerando: (cont. 1/17)].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 1096,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.613411,
+              "text": "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los ",
+              "titulo": "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 2,
+              "id": 1111,
+              "source": "14_outón-1967.pdf",
+              "score": 0.593847,
+              "text": "[CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Considerando: (cont. 1/17)]\nConsiderando:\n1°) Que hasta el 27 de diciembre de 1957, fecha en que se resolvió el caso \"Siri\" (Fallos, 239:459), el\nrecurso de amparo sólo se admitió, en el orden nacional, para proteger la libertad cuando mediase\ndetención, arresto o prisión ilegal de las personas (arts. 20, ley 48 y 617 y sigts., Cód. de Proced.\nCriminal).\n\n2°) Que, sin embargo, a partir de entonces el amparo no se circunscribió a los tradicionales casos de\nhábeas corpus sino que se extendió a otras situaciones que pudieran comportar ataques flagrantes,\nevidentes e insusceptibles de una reparación ulterior adecuada contra las garantías individuales que\nconsagra la Constitución, porque dichas garantías integran -como lo dijo este tribunal con palabras de\nJoaquín V. González- \"el patrimonio inalterable que hace de cada hombre, ciudadano o no, un ser libre e\nindependiente dentro de la Nación Argentina\".\n3°) Que, de este modo, por medio de la interpretación de los textos constitucionales se ha venido a\nreconocer la necesidad del remedio excepcional del amparo judicial no solamente cuando se halla en\njuego la libertad de las personas sino también cualquiera de las otras garantías individuales que consagra\nla Ley Sup",
+              "titulo": "CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 3,
+              "id": 1063,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.590789,
+              "text": "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)]\nDICTAMEN DEL PROCURADOR GENERAL\nSuprema Corte:\nEl presente recurso de amparo se funda en los mismos hechos que han dado lugar a la instrucción de la\ncausa \"Houssay, Abel F. A. representando a Kot, Samuel S.R.L. , denuncia Kot, Juan\" en la que dictamino\ntambién el día de la fecha.\nAquí, sin embargo, se hace especial hincapié en lo resuelto en Fallos: 239, 459 para fundar de ese modo\nla intervención de los tribunales del crimen en la cuestión de que se trata, aun al margen del proceso\npenal antes mencionado.\nY bien, lo decidido en el recurso planteado por Angel Siri no es, a mi juicio, de aplicación al sub iudice.\nAllí, lo mismo que en los casos jurisprudenciales a que expresamente se refirió V. E. para destacar su\napartamiento de la doctrina tradicional hasta entonces observada (Fallos, 168, 15; 169, 103), se pedía\namparo, no contra un hecho realizado por particulares, sino contra un acto arbitrario de la autoridad para\nel que no existía remedio expreso en la legislación a pesar de que comportaba la violación de garantías\nindividuales aseguradas por la Constitución Nacional.\nComo se observa, pues, la situación es fundamentalmente distinta: en primer lugar, porque aquí no se\ntrata de",
+              "titulo": "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 4,
+              "id": 1068,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.587454,
+              "text": "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Por ello, y sin perjuicio de señalar la confusión que derivaría de la admisión (cont. 4/20)]\niene por objeto el despojo de la posesión de esa cosa\ninmueble, con ánimo “de someterla al ejercicio de un derecho de propiedad” (art. 2351, Cód. Civil), sino\nque lo ha sido en función de la existencia de ese conflicto laboral\" (fs.54/56). Apelada esta resolución por\nel apoderado de la empresa, y luego de diligenciarse algunas medidas para mejor proveer dispuestas por\nla Cámara 3ª de Apelaciones en lo Penal de La Plata, ésta \"Por sus fundamentos\" confirmó el\nsobreseimiento definitivo que había sido objeto del recurso (auto de fecha 8 de julio, fs.88).\nContra esta sentencia, el interesado dedujo recurso extraordinario el que, concedido por el tribunal a quo,\nha sido declarado improcedente por esta Corte en el día de la fecha.\nEl mismo día de la sentencia de la Cámara, pero antes de dictarse (fs.4), el apoderado de la empresa se\npresentó ante la misma Cámara deduciendo \"recurso de amparo\" a fin de obtener la desocupación del\ninmueble: invocó la sentencia de esta Corte, de fecha 27 de diciembre de 1957, recaída en el \"caso Siri\",\n\n\"las garantías a la libertad de trabajo -art. 14-; a la propiedad -art 17-; a la libre actividad -art. 19-, de la\nConstitución Nacional\", que estarían afect",
+              "titulo": "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 5,
+              "id": 1089,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.580954,
+              "text": "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 1/18)]\nConsiderando:\n1) Que en el caso de \"Angel Siri\", el Tribunal declaró la existencia, en el derecho público argentino, de una\nacción o recurso de amparo destinado a tutelar las llamadas \"garantías constitucionales\". La doctrina que\nen tal oportunidad quedó establecida, tuvo por fundamento la afirmación de que dichas \"garantías\nconstitucionales\" existen y protegen al hombre por el solo hecho de hallarse consagradas en la Ley\nFundamental, de modo que deben hacerse efectivas, en cada caso ocurrente, aun cuando no medien\nleyes reglamentarias.Por lo tanto, para que los principios entonces expuestos sean aplicables, es\nnecesario que se produzca la restricción o vulneración de una \"garantía constitucional\". Si esta primaria\nexigencia no se cumple, ninguna razón autoriza a poner en funcionamiento los mecanismos defensivos\nque aquella doctrina presupone.\n2) Que no todos los derechos de que una persona puede ser titular están incluídos en el concepto jurídico\nde \"garantía constitucional\". Para que un derecho individual revista este carácter, es preciso, en principio,\nque se trate de un derecho público subjetivo reconocido al hombre frente al poder público. En términos\ngenerales, únicamente los",
+              "titulo": "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares",
+              "version": "no_aplica"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.019,
+          "respuesta_llm": "En el caso \"Siri\", la Corte Suprema de Justicia de la Nación Argentina resolvió que el amparo es procedente para proteger la libertad y las garantías individuales cuando se producen actos de autoridad que las vulneran. En este caso específico, el actor, director y propietario del diario \"Mercedes\", había interpuesto un habeas corpus debido a la clausura de su periódico por la policía de la provincia de Buenos Aires. La Corte, al comprobar que la medida se había dictado sin justificación, admitió la acción de amparo, afirmando que los preceptos constitucionales y la experiencia institucional del país exigen el goce y ejercicio pleno de las garantías individuales, imponiendo a los jueces el deber de asegurarlas [CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 1096,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 18.957314,
+              "text": "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los ",
+              "titulo": "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 2,
+              "id": 1026,
+              "source": "12_siri-angel-1957.pdf",
+              "score": 14.661666,
+              "text": "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)]\nSiri, Angel (1957)\nFuente: https://falloscsn.blogspot.com/2005/08/siri-angel-1957.html\n27 de Diciembre de 1957\nFallos 239:459\n(Amparo contra actos del Estado)\nEl actor era director y propietario del diario «Mercedes», que había sido clausurado por la policía de la\nprovincia de Buenos Aires. Ante ello interpuso un habeas corpus para que la justicia dispusiera su\nreapertura. Habiendo comprobado la base fáctica de que la medida se había dictado sin justificación, la\nmayoría de la Corte (votó en disidencia el juez Herrera) afirmó que “Los preceptos constitucionales tanto\ncomo la experiencia institucional del país reclaman de consuno el goce y ejercicio pleno de las garantías\nindividuales para la efectiva vigencia del Estado de derecho e imponen a los jueces el deber de\nasegurarlas”; y basándose en ese principio admitió la acción. De esta forma surgió el instituto procesal del\namparo, aunque ese nombre no fue formulado por el actor ni se alude a él en este fallo.\nOpinión del procurador general de la Nación (I).\nDe lo informado a fs. 37 y vta. así como de las propias manifestaciones formuladas por el interesado en\nsu escrito de fs. 35, surge que la clausura del periódico \"Mercedes\", que ",
+              "titulo": "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 3,
+              "id": 1111,
+              "source": "14_outón-1967.pdf",
+              "score": 12.967744,
+              "text": "[CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Considerando: (cont. 1/17)]\nConsiderando:\n1°) Que hasta el 27 de diciembre de 1957, fecha en que se resolvió el caso \"Siri\" (Fallos, 239:459), el\nrecurso de amparo sólo se admitió, en el orden nacional, para proteger la libertad cuando mediase\ndetención, arresto o prisión ilegal de las personas (arts. 20, ley 48 y 617 y sigts., Cód. de Proced.\nCriminal).\n\n2°) Que, sin embargo, a partir de entonces el amparo no se circunscribió a los tradicionales casos de\nhábeas corpus sino que se extendió a otras situaciones que pudieran comportar ataques flagrantes,\nevidentes e insusceptibles de una reparación ulterior adecuada contra las garantías individuales que\nconsagra la Constitución, porque dichas garantías integran -como lo dijo este tribunal con palabras de\nJoaquín V. González- \"el patrimonio inalterable que hace de cada hombre, ciudadano o no, un ser libre e\nindependiente dentro de la Nación Argentina\".\n3°) Que, de este modo, por medio de la interpretación de los textos constitucionales se ha venido a\nreconocer la necesidad del remedio excepcional del amparo judicial no solamente cuando se halla en\njuego la libertad de las personas sino también cualquiera de las otras garantías individuales que consagra\nla Ley Sup",
+              "titulo": "CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 4,
+              "id": 1059,
+              "source": "12_siri-angel-1957.pdf",
+              "score": 12.48177,
+              "text": "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Disidencia del Dr. Carlos Herrera. (cont. 8/8)]\nnte extremas, entre las que las circunstancias relatadas del caso,\nimpiden encuadrar a éste.",
+              "titulo": "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 5,
+              "id": 1043,
+              "source": "12_siri-angel-1957.pdf",
+              "score": 12.48177,
+              "text": "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Disidencia del Dr. Carlos Herrera. (cont. 8/8)]\nnte extremas, entre las que las circunstancias relatadas del caso,\nimpiden encuadrar a éste.",
+              "titulo": "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado",
+              "version": "no_aplica"
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.303,
+          "respuesta_llm": "En el caso \"Siri\", la Corte Suprema de Justicia de la Nación Argentina resolvió que existe en el derecho público argentino una acción o recurso de amparo destinado a tutelar las \"garantías constitucionales\". La Corte afirmó que estas garantías protegen al individuo por el solo hecho de estar consagradas en la Constitución, y deben hacerse efectivas en cada caso, aun sin leyes reglamentarias que las respalden. Para que se pueda activar esta acción, es necesario que se produzca una restricción o vulneración de una \"garantía constitucional\" [CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 1096,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.032787,
+              "text": "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los ",
+              "titulo": "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 2,
+              "id": 1111,
+              "source": "14_outón-1967.pdf",
+              "score": 0.032002,
+              "text": "[CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Considerando: (cont. 1/17)]\nConsiderando:\n1°) Que hasta el 27 de diciembre de 1957, fecha en que se resolvió el caso \"Siri\" (Fallos, 239:459), el\nrecurso de amparo sólo se admitió, en el orden nacional, para proteger la libertad cuando mediase\ndetención, arresto o prisión ilegal de las personas (arts. 20, ley 48 y 617 y sigts., Cód. de Proced.\nCriminal).\n\n2°) Que, sin embargo, a partir de entonces el amparo no se circunscribió a los tradicionales casos de\nhábeas corpus sino que se extendió a otras situaciones que pudieran comportar ataques flagrantes,\nevidentes e insusceptibles de una reparación ulterior adecuada contra las garantías individuales que\nconsagra la Constitución, porque dichas garantías integran -como lo dijo este tribunal con palabras de\nJoaquín V. González- \"el patrimonio inalterable que hace de cada hombre, ciudadano o no, un ser libre e\nindependiente dentro de la Nación Argentina\".\n3°) Que, de este modo, por medio de la interpretación de los textos constitucionales se ha venido a\nreconocer la necesidad del remedio excepcional del amparo judicial no solamente cuando se halla en\njuego la libertad de las personas sino también cualquiera de las otras garantías individuales que consagra\nla Ley Sup",
+              "titulo": "CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 3,
+              "id": 1026,
+              "source": "12_siri-angel-1957.pdf",
+              "score": 0.030835,
+              "text": "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)]\nSiri, Angel (1957)\nFuente: https://falloscsn.blogspot.com/2005/08/siri-angel-1957.html\n27 de Diciembre de 1957\nFallos 239:459\n(Amparo contra actos del Estado)\nEl actor era director y propietario del diario «Mercedes», que había sido clausurado por la policía de la\nprovincia de Buenos Aires. Ante ello interpuso un habeas corpus para que la justicia dispusiera su\nreapertura. Habiendo comprobado la base fáctica de que la medida se había dictado sin justificación, la\nmayoría de la Corte (votó en disidencia el juez Herrera) afirmó que “Los preceptos constitucionales tanto\ncomo la experiencia institucional del país reclaman de consuno el goce y ejercicio pleno de las garantías\nindividuales para la efectiva vigencia del Estado de derecho e imponen a los jueces el deber de\nasegurarlas”; y basándose en ese principio admitió la acción. De esta forma surgió el instituto procesal del\namparo, aunque ese nombre no fue formulado por el actor ni se alude a él en este fallo.\nOpinión del procurador general de la Nación (I).\nDe lo informado a fs. 37 y vta. así como de las propias manifestaciones formuladas por el interesado en\nsu escrito de fs. 35, surge que la clausura del periódico \"Mercedes\", que ",
+              "titulo": "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 4,
+              "id": 1089,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.029274,
+              "text": "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 1/18)]\nConsiderando:\n1) Que en el caso de \"Angel Siri\", el Tribunal declaró la existencia, en el derecho público argentino, de una\nacción o recurso de amparo destinado a tutelar las llamadas \"garantías constitucionales\". La doctrina que\nen tal oportunidad quedó establecida, tuvo por fundamento la afirmación de que dichas \"garantías\nconstitucionales\" existen y protegen al hombre por el solo hecho de hallarse consagradas en la Ley\nFundamental, de modo que deben hacerse efectivas, en cada caso ocurrente, aun cuando no medien\nleyes reglamentarias.Por lo tanto, para que los principios entonces expuestos sean aplicables, es\nnecesario que se produzca la restricción o vulneración de una \"garantía constitucional\". Si esta primaria\nexigencia no se cumple, ninguna razón autoriza a poner en funcionamiento los mecanismos defensivos\nque aquella doctrina presupone.\n2) Que no todos los derechos de que una persona puede ser titular están incluídos en el concepto jurídico\nde \"garantía constitucional\". Para que un derecho individual revista este carácter, es preciso, en principio,\nque se trate de un derecho público subjetivo reconocido al hombre frente al poder público. En términos\ngenerales, únicamente los",
+              "titulo": "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 5,
+              "id": 1103,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.029236,
+              "text": "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 15/18)]\no que el recurrente intenta no es demanda ni recurso de amparo. Por su naturaleza y sus fines,\nes una especie de interdicto sumarísimo que el juzgador debería instituir y tramitar, sin audiencia de la\ncontraparte, en reemplazo de los procedimientos ordenados por la ley. En el caso \"Siri\", tantas veces\ncitado, el amparo vino a suplir la omisión del legislador con respecto a ciertas \"garantías constitucionales\".\nPor el contrario, la sentencia a dictarse en el sub lite, si acogiera las pretensiones de \"Samuel Kot SRL\" ,\nno sería supletoria sino sustitutiva, en el plano de la reglamentación procesal de los derechos privados:\ntendría contenido normativo y desplazaría normas expresas sancionadas por una legislatura provincial.\n12) Que la decisión que otorgara amparo en casos como este, introduciría una absoluta inseguridad\njurídica. Sin que se encuentren comprometidos los bienes de suprema jerarquía constitucional que dieron\nsentido a la doctrina del caso \"Siri\", al hacerse lugar al recurso interpuesto estaría creándose una facultad\nabsolutamente discrecional, no reglada, reconocida a todos los jueces del país, incluso a los jueces de\npaz legos que en muchas provincias existen; y esa fac",
+              "titulo": "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares",
+              "version": "no_aplica"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 3.177,
+          "respuesta_llm": "En el caso \"Siri\", la Corte Suprema de Justicia de la Nación Argentina resolvió que el recurso de amparo se admitía para proteger la libertad de imprenta y de trabajo, en el contexto de la clausura del diario \"Mercedes\" por parte de la autoridad policial. La Corte afirmó que los preceptos constitucionales exigen el goce y ejercicio pleno de las garantías individuales, lo que impone a los jueces el deber de asegurarlas. Así, se estableció que el amparo no se limitaba solo a casos de hábeas corpus, sino que se extendía a situaciones que pudieran comportar ataques a las garantías individuales consagradas por la Constitución [CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 1096,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.998826,
+              "text": "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los ",
+              "titulo": "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 2,
+              "id": 1052,
+              "source": "12_siri-angel-1957.pdf",
+              "score": 0.992929,
+              "text": "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Disidencia del Dr. Carlos Herrera. (cont. 1/8)]\nDisidencia del Dr. Carlos Herrera.\nConsiderando:\nQue según resulta de las constancias de autos, la autoridad policial de la Prov. de Buenos Aires mantiene\nclausurado el diario \"Mercedes\", que se publicaba en la ciudad del mismo nombre de dicha provincia; y\nque Angel Siri, invocando la calidad de director y administrador del periódico y la libertad de imprenta y de\ntrabajo consagradas por la Constitución nacional, se presentó a fs. 1 ante el juez del crimen local\nsolicitando se requiriera informe a la policía sobre los motivos de la clausura y con su resultado se\n\nproveyera de acuerdo con - las cláusulas constitucionales que citó; solicitud reiterada a fs. 32, después de\nlos diversos informes producidos, con los cuales no se pudo aclarar debidamente quién había ordenado la\nclausura y por qué razones.\nQue el juez resolvió a fs. 33 desestimar la presentación del recurrente en razón de que el recurso de\nhábeas corpus ha sido instituído solamente para la protección de la libertad personal; decisión de la que\nSiri pidió revocatoria a fs. 35 manifestando que no obstante no existir ya consigna policial en el local del\ndiario y haber sido sacados los precintos de las puertas del mismo, no s",
+              "titulo": "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 3,
+              "id": 1036,
+              "source": "12_siri-angel-1957.pdf",
+              "score": 0.992797,
+              "text": "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Disidencia del Dr. Carlos Herrera. (cont. 1/8)]\nDisidencia del Dr. Carlos Herrera.\nConsiderando:\nQue según resulta de las constancias de autos, la autoridad policial de la Prov. de Buenos Aires mantiene\nclausurado el diario \"Mercedes\", que se publicaba en la ciudad del mismo nombre de dicha provincia; y\nque Angel Siri, invocando la calidad de director y administrador del periódico y la libertad de imprenta y de\ntrabajo consagradas por la Constitución nacional, se presentó a fs. 1 ante el juez del crimen local\nsolicitando se requiriera informe a la policía sobre los motivos de la clausura y con su resultado se\nproveyera de acuerdo con - las cláusulas constitucionales que citó; solicitud reiterada a fs. 32, después de\nlos diversos informes producidos, con los cuales no se pudo aclarar debidamente quién había ordenado la\nclausura y por qué razones.\nQue el juez resolvió a fs. 33 desestimar la presentación del recurrente en razón de que el recurso de\nhábeas corpus ha sido instituído solamente para la protección de la libertad personal; decisión de la que\nSiri pidió revocatoria a fs. 35 manifestando que no obstante no existir ya consigna policial en el local del\ndiario y haber sido sacados los precintos de las puertas del mismo, no se",
+              "titulo": "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 4,
+              "id": 1026,
+              "source": "12_siri-angel-1957.pdf",
+              "score": 0.989985,
+              "text": "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)]\nSiri, Angel (1957)\nFuente: https://falloscsn.blogspot.com/2005/08/siri-angel-1957.html\n27 de Diciembre de 1957\nFallos 239:459\n(Amparo contra actos del Estado)\nEl actor era director y propietario del diario «Mercedes», que había sido clausurado por la policía de la\nprovincia de Buenos Aires. Ante ello interpuso un habeas corpus para que la justicia dispusiera su\nreapertura. Habiendo comprobado la base fáctica de que la medida se había dictado sin justificación, la\nmayoría de la Corte (votó en disidencia el juez Herrera) afirmó que “Los preceptos constitucionales tanto\ncomo la experiencia institucional del país reclaman de consuno el goce y ejercicio pleno de las garantías\nindividuales para la efectiva vigencia del Estado de derecho e imponen a los jueces el deber de\nasegurarlas”; y basándose en ese principio admitió la acción. De esta forma surgió el instituto procesal del\namparo, aunque ese nombre no fue formulado por el actor ni se alude a él en este fallo.\nOpinión del procurador general de la Nación (I).\nDe lo informado a fs. 37 y vta. así como de las propias manifestaciones formuladas por el interesado en\nsu escrito de fs. 35, surge que la clausura del periódico \"Mercedes\", que ",
+              "titulo": "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado",
+              "version": "no_aplica"
+            },
+            {
+              "posicion": 5,
+              "id": 1111,
+              "source": "14_outón-1967.pdf",
+              "score": 0.984979,
+              "text": "[CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Considerando: (cont. 1/17)]\nConsiderando:\n1°) Que hasta el 27 de diciembre de 1957, fecha en que se resolvió el caso \"Siri\" (Fallos, 239:459), el\nrecurso de amparo sólo se admitió, en el orden nacional, para proteger la libertad cuando mediase\ndetención, arresto o prisión ilegal de las personas (arts. 20, ley 48 y 617 y sigts., Cód. de Proced.\nCriminal).\n\n2°) Que, sin embargo, a partir de entonces el amparo no se circunscribió a los tradicionales casos de\nhábeas corpus sino que se extendió a otras situaciones que pudieran comportar ataques flagrantes,\nevidentes e insusceptibles de una reparación ulterior adecuada contra las garantías individuales que\nconsagra la Constitución, porque dichas garantías integran -como lo dijo este tribunal con palabras de\nJoaquín V. González- \"el patrimonio inalterable que hace de cada hombre, ciudadano o no, un ser libre e\nindependiente dentro de la Nación Argentina\".\n3°) Que, de este modo, por medio de la interpretación de los textos constitucionales se ha venido a\nreconocer la necesidad del remedio excepcional del amparo judicial no solamente cuando se halla en\njuego la libertad de las personas sino también cualquiera de las otras garantías individuales que consagra\nla Ley Sup",
+              "titulo": "CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación",
+              "version": "no_aplica"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -5,8 +5,8 @@ grupo pueda levantarlo y explicarlo en la exposición sin haber escrito el
 código.
 
 Estado actual: **las tres configuraciones de recuperación implementadas**
-(naive, híbrida con RRF, híbrida + reranking), de punta a punta, con 4
-documentos de ejemplo. Falta la evaluación con Ragas y el corpus real.
+(naive, híbrida con RRF, híbrida + reranking), de punta a punta, sobre el
+corpus real de 36 PDFs. Falta la evaluación con Ragas.
 
 ---
 
@@ -25,11 +25,14 @@ El paso 2 solo hace falta la primera vez, o cuando agregues o cambies
 documentos en `data/raw/` — el índice queda persistido en el volumen de Docker.
 
 Abrí http://localhost:8501, escribí una consulta y apretá "Consultar".
-Consultas de prueba que funcionan con los documentos de ejemplo:
+Consultas de prueba. Las tres primeras son las que exponen un modo de falla
+concreto y están explicadas en `evals/snapshot_retrieval.py`:
 
-- *¿Cuántos días hábiles hay para presentar el recurso jerárquico?*
-- *¿Cuál es el porcentaje mínimo de asistencia para regularizar?*
-- *¿Qué interés se aplica en el fallo de la Cámara Civil?*
+- *Que dice el articulo 72 de la ley 11179?* — número de ley sin punto
+- *¿Qué dice el artículo 208 de la Ley de Contrato de Trabajo?* — versión
+- *¿Qué resolvió la Corte en el caso Siri sobre la acción de amparo?* — fallo
+- *¿Qué plazo tiene el consumidor para revocar la aceptación en una venta
+  domiciliaria?* — consulta sana, sirve de control
 
 Vas a ver la respuesta arriba y, abajo, un desplegable por cada chunk
 recuperado con el nombre del documento y el score de similitud. Eso último es
@@ -109,9 +112,12 @@ CUDA (~2 GB) que sin GPU no sirve. Ver el README para el comando.
 
 ### `data/raw/`
 
-Los documentos del corpus. Ahora hay 4 `.txt` de ejemplo generados para probar
-la cadena (una ley de procedimiento administrativo, un fallo, un contrato de
-locación, un reglamento académico). Acá van los ~35 reales.
+Los 36 PDFs del corpus, ~1.48M caracteres: 12 leyes, 15 resoluciones y
+disposiciones de 2022, 5 fallos de la CSJN, 2 contratos modelo, y normativa y
+material de la UNLAR. Los 36 tienen texto nativo — no hace falta OCR.
+
+Su identidad (título, número de ley, versión) NO sale del nombre de archivo,
+que es inservible: vive en `data/manifest.csv`.
 
 ### `data/golden_set.csv`
 
@@ -122,28 +128,91 @@ Ragas.
 ### `src/ingest.py` — parsing + chunking + indexado
 
 El pipeline de carga. Corre una vez, offline; no interviene durante la
-consulta. Hace cuatro cosas en orden:
+consulta.
 
-1. **`read_document()`** — extrae texto plano. `.txt` lo lee directo, `.pdf` lo
+1. **`load_manifest()` + `validar_cobertura()`** — lee `data/manifest.csv` y
+   **falla antes de indexar nada** si algún PDF de `data/raw/` no está ahí o no
+   tiene título. Que reviente es a propósito: un chunk sin identidad es el bug
+   que este manifiesto vino a arreglar, y enterarse después de media hora de
+   embeddings —con la colección ya borrada— es el peor momento posible.
+2. **`read_document()`** — extrae texto plano. `.txt` lo lee directo, `.pdf` lo
    pasa por PyMuPDF.
-2. **`chunk_text()`** — parte el texto en ventanas de 800 caracteres con 150 de
-   solapamiento. El solapamiento existe para que una oración con la respuesta
-   no quede cortada justo en el borde entre dos chunks.
-3. **`build_sparse_vectors()`** — calcula el vector BM25 de cada chunk. Hace
+3. **`chunk_document()`** — despacha según `CHUNK_STRATEGY` (ver más abajo).
+4. **`encabezado()`** — prepende a cada chunk su línea de identidad.
+5. **`build_sparse_vectors()`** — calcula el vector BM25 de cada chunk. Hace
    dos pasadas sobre el corpus: la primera mide la longitud promedio de
    documento, la segunda calcula los pesos, porque BM25 normaliza cada
    documento contra ese promedio.
-4. **`build_collection()`** — borra y recrea la colección en Qdrant, con los
+6. **`build_collection()`** — borra y recrea la colección en Qdrant, con los
    **dos vectores nombrados**: `dense` (coseno) y `bm25` (sparse, con
    `Modifier.IDF`). Borra a propósito: cada ingesta parte de un estado limpio
    y reproducible.
-5. **`main()`** — embebe todos los chunks con BGE-M3 (local, en CPU) y sube
-   cada punto con sus dos vectores y su payload: `source`, `chunk_index`,
-   `text`. Ese `source` es lo que después permite citar la fuente.
+7. **`main()`** — imprime el recuento de chunks **antes** de embeber (son ~30
+   min de CPU: si el chunking produjo un número disparatado, conviene saberlo
+   antes de pagarlos), embebe con BGE-M3 y sube cada punto con sus dos
+   vectores y su payload: `source`, `chunk_index`, `text`, `titulo`,
+   `numero_ley`, `version`, `seccion`.
 
 Los dos vectores viven en **el mismo punto de la misma colección**. Las tres
 configuraciones leen de ahí; no hay que reingestar para cambiar de
 configuración, y eso es lo que hace comparable la ablación.
+
+#### El encabezado de identidad
+
+Cada chunk arranca con una línea que dice de qué documento y de qué versión
+sale:
+
+```
+[Ley 11.179 - Código Penal de la Nación · texto original · Art. 72]
+Art. 72. - Son acciones dependientes de instancia privada...
+```
+
+Va **dentro del texto que se embebe y que tokeniza BM25**, no solo en el
+payload, porque el problema que resuelve es de recuperación y no de
+presentación. Sin esto, el chunk del art. 72 del Código Penal no contiene en
+ningún lado la cadena "11.179" —vive en la carátula, que es otro chunk— así que
+ninguna de las dos ramas puede conectarlo con la consulta *"artículo 72 de la
+ley 11179"*. Medido antes del cambio: el pipeline devolvía el art. 72 de la
+**ley 11.723** y el LLM lo citaba como si fuera el de la 11.179.
+
+La **versión** va en el encabezado y no solo en el payload por el hallazgo de
+la LCT (ver "Lo que el manifiesto destapó"), y `numero_ley` queda en el payload
+para poder filtrar por ley desde Qdrant.
+
+#### Chunking por estructura (`CHUNK_STRATEGY`)
+
+| valor | qué hace |
+|---|---|
+| `articulo` (default) | corta en límites de artículo; en los fallos, que no tienen artículos, corta por voto (`Dictamen del Procurador`, `Considerando`, `Disidencia`). Si el documento no tiene ninguna de las dos estructuras —los contratos modelo, el folleto de la SRT— cae al chunking fijo. |
+| `fijo` | ventanas solapadas de 800 caracteres. Es el chunking del walking skeleton, y queda accesible para poder correr la fila "chunking fijo vs. por artículo" de la ablación. |
+
+Un artículo **es** la unidad de respuesta de una consulta jurídica. Cortando
+cada 800 caracteres, la mitad de los chunks empiezan a mitad de un inciso y
+terminan a mitad del siguiente artículo, así que el chunk que "contiene la
+respuesta" contiene también media respuesta a otra pregunta, y el reranker
+tiene que elegir con esa mezcla.
+
+Dos topes, porque los artículos varían muchísimo de largo:
+
+- **`CHUNK_MAX_CHARS = 1200`** — lo que se pasa vuelve a partirse en ventanas
+  solapadas, pero cada pedazo conserva el encabezado y suma una marca
+  `(cont. 2/8)`.
+- **`CHUNK_MIN_CHARS = 250`** — lo que no llega se pega al pedazo anterior.
+  Sirve para dos cosas distintas: evitar miles de chunks de una línea
+  (*"Art. 5 — Derogado"*), y absorber los cortes falsos, porque el regex
+  también matchea una **referencia** a un artículo que arranca renglón. Medido:
+  el Código Penal da 306 cortes para 285 artículos reales.
+
+Recuento sobre el corpus de 36 PDFs: **2126 chunks** con `articulo` contra
+**2264** con `fijo`, −6%. El 94% de los chunks queda con sección identificada.
+
+> **Trampa del regex de artículos.** El cierre del patrón es `(?!\d)` y no
+> `\b`, y eso fue un bug real: en `ARTICULO 1º` el indicador ordinal `º`
+> (U+00BA) es **letra** para Unicode, así que entre `1` y `º` no hay borde de
+> palabra y el match fallaba. Se perdían justo los artículos 1 a 9 de cada ley
+> —los que más se consultan— mientras que `ARTICULO 10` matcheaba sin
+> problemas, con lo cual el recuento total apenas cambiaba y el error pasaba
+> desapercibido.
 
 ### `src/bm25.py` — la mitad léxica
 
@@ -386,21 +455,61 @@ no a otra cosa.
 
 ---
 
+## Lo que el manifiesto destapó
+
+`data/manifest.csv` (36 filas: archivo, título, número de ley, versión) lo
+genera `evals/build_manifest.py`. La columna `version` **no se adivina**: sale
+de la URL de origen que infoleg y argentina.gob.ar imprimen en la primera
+página (`norma.htm` = texto como se publicó, `texact.htm` = texto actualizado;
+`/texto` vs `/actualizacion` en argentina.gob.ar). Tres documentos se clasifican
+por su propia parte dispositiva ("Apruébase el texto ordenado..."). Los fallos,
+los contratos modelo y el folleto de la SRT quedan en `no_aplica`, porque ahí
+la distinción no existe.
+
+Hacer el manifiesto sacó a la luz dos problemas de corpus que ninguna mejora
+de recuperación podía arreglar:
+
+**1. La LCT está indexada en su texto original de 1974, no en el texto ordenado
+vigente.** La numeración está corrida. El art. 208 del corpus habla de menores
+que trabajan en horas de la mañana y de la tarde; el art. 208 que espera
+cualquier abogado —enfermedades inculpables y plazos de licencia paga— está en
+el **art. 225** de ese PDF. Y el contenido del art. 57 vigente (presunción en
+contra del empleador por su silencio) directamente **no existe** en ese texto.
+
+Esto no es una alucinación ni una falla de recuperación: el chunk es correcto,
+la cita es literal y exacta, y la respuesta es inútil. Es el mejor argumento
+del trabajo a favor de que el RAG de segunda generación necesita **metadatos**,
+y no solo mejores recuperadores. La mitigación acá es doble: la versión viaja
+en el encabezado de cada chunk, y el system prompt le pide al LLM que advierta
+cuando el contexto es un texto original y la consulta parece referirse al
+régimen vigente.
+
+Esa segunda mitad es un interruptor, no una constante: `ADVERTIR_VERSION`
+(env), `generate.system_prompt(advertir_version)`, el checkbox de la app y
+`--sin-advertencia-version` en `snapshot_retrieval.py`. Existe porque la
+demostración necesita **las dos** ramas: con la advertencia prendida desde el
+arranque no hay antes que mostrar. Y apagarla deja intactos los otros dos
+cambios —el encabezado de identidad y la cita por etiqueta—, con lo cual lo que
+se ve es el efecto del prompt **aislado** del efecto de los metadatos. Los dos
+prompts son idénticos salvo esa frase; no hay ninguna otra diferencia entre las
+ramas.
+
+**2. El nombre de archivo no identifica nada.** Cinco documentos se llaman
+`0N_argentinagobar.pdf` y `08_ley-15.pdf` no es la ley 15 sino el Decreto-Ley
+15.348/46. Por eso los títulos del manifiesto están curados a mano leyendo la
+primera página de cada PDF, y por eso la app y las citas del LLM muestran
+`Chunk.etiqueta()` en vez de `source`.
+
 ## Pendientes conocidos
 
-- **El corpus de ejemplo es demasiado chico para que la híbrida muestre algo.**
-  Con 8 chunks, las dos ramas devuelven prácticamente los mismos documentos en
-  el mismo orden, así que RRF no tiene nada que rescatar y las tres columnas se
-  ven casi iguales. No es un bug: la ventaja de la fusión aparece cuando hay
-  suficientes documentos como para que una rama falle donde la otra acierta.
-  **Hasta cargar el corpus real no se puede sacar ninguna conclusión de la
-  comparación.**
-- **Chunking**: 800 caracteres es genérico. Con el corpus real conviene
-  revisarlo antes de armar el set dorado, porque el tamaño de chunk afecta
-  directo el recall y la context precision que se comparan en la ablación.
-  Para textos jurídicos con artículos numerados, cortar en límites de artículo
-  probablemente rinda mejor que una ventana fija.
-- **OCR**: `ingest.py` soporta `.pdf` con texto nativo. Los 4 escaneados
-  necesitan Tesseract, todavía no implementado.
 - **Ragas**: no implementado. Es el módulo que falta para la tabla de
-  ablación.
+  ablación, y el que va a poner número a si el chunking por artículo y el
+  encabezado de identidad efectivamente mejoran el recall, en vez de saberlo
+  solo por las consultas de prueba.
+- **Cobertura del corpus**: hay 12 leyes y 15 resoluciones de 2022 muy
+  parecidas entre sí (AABE, dumping). Para el set dorado conviene chequear que
+  las 30 preguntas no caigan todas sobre los mismos tres documentos.
+- **La versión de las normas**: el manifiesto la registra pero no la corrige.
+  Reemplazar el PDF de la LCT por su texto ordenado sería la solución de fondo;
+  como el caso es didáctico, conviene decidir si conviene más **mostrarlo** en
+  la exposición que arreglarlo.

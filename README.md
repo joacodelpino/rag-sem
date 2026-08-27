@@ -6,8 +6,8 @@ base vectorial y **Ragas** como framework de evaluación.
 
 Estado actual: **las tres configuraciones de recuperación implementadas** —
 naive (densa), híbrida (densa + BM25 fusionadas con RRF) e híbrida + reranking
-con cross-encoder, comparables lado a lado en la app. Falta el módulo de
-evaluación con Ragas y el corpus real.
+con cross-encoder, comparables lado a lado en la app, sobre el corpus real de
+36 PDFs. Falta el módulo de evaluación con Ragas.
 
 ## Cómo levantarlo
 
@@ -26,8 +26,8 @@ pip install -r requirements.txt
 > por defecto traen CUDA (~2 GB extra) que no sirve sin GPU. BGE-M3 y el
 > reranker corren en CPU, así que la versión liviana alcanza.
 
-Después, indexá los documentos (la primera corrida descarga BGE-M3, ~2 GB,
-tarda unos minutos):
+Después, indexá los documentos (la primera corrida descarga BGE-M3, ~2 GB;
+la ingesta completa del corpus tarda **~30 minutos** en CPU):
 
 ```bash
 python src/ingest.py
@@ -81,12 +81,15 @@ python src/ingest.py
 > **Reindexa todo, no incrementalmente.** `ingest.py` borra la colección y la
 > vuelve a crear en cada corrida, a propósito: cada ingesta parte de un estado
 > limpio y reproducible. Agregar un PDF nuevo significa volver a correr esto
-> entero, no hay un "agregar solo el nuevo". Con este corpus tarda unos
-> minutos en CPU. Es intencional para la demo — el objetivo es que el índice
-> sea reproducible, no que la ingesta sea rápida.
+> entero, no hay un "agregar solo el nuevo". Con el corpus de 36 PDFs tarda
+> **~30 minutos** en CPU, casi todo en generar los 2126 embeddings. Es
+> intencional para la demo — el objetivo es que el índice sea reproducible, no
+> que la ingesta sea rápida.
 
 Cuándo hay que correrla: se agregan/quitan/editan documentos de `data/raw/`,
-o se cambia `EMBEDDING_MODEL`, `CHUNK_SIZE` o `CHUNK_OVERLAP`.
+o se cambia `EMBEDDING_MODEL`, `CHUNK_STRATEGY`, `CHUNK_SIZE` o
+`CHUNK_OVERLAP`, o se edita `data/manifest.csv` (los títulos y las versiones
+van dentro de cada chunk, no solo en el payload).
 Cuándo **no** hace falta: al cambiar `RERANKER_MODEL`, `RERANK_CANDIDATES`,
 `OPENAI_MODEL` o cualquier cosa de `retrieval.py` — todo eso actúa sobre
 candidatos ya indexados.
@@ -124,10 +127,11 @@ rag-legal-demo/
 ├── .env.example
 ├── requirements.txt
 ├── data/
-│   ├── raw/                  # documentos del corpus (4 .txt de ejemplo por ahora)
+│   ├── raw/                  # documentos del corpus (36 PDFs)
+│   ├── manifest.csv          # identidad de cada PDF: título, ley, versión
 │   └── golden_set.csv        # 30 preguntas del set dorado (a completar)
 ├── src/
-│   ├── ingest.py             # parsing + chunking + indexado (denso + sparse)
+│   ├── ingest.py             # manifiesto + chunking + indexado (denso + sparse)
 │   ├── chunk.py              # el tipo que viaja por todo el pipeline
 │   ├── bm25.py               # BM25 a mano: la mitad léxica de la híbrida
 │   ├── rerank.py             # cross-encoder: la segunda etapa
@@ -135,9 +139,36 @@ rag-legal-demo/
 │   ├── generate.py           # prompt + llamada a OpenAI (único punto de contacto con el LLM)
 │   └── app.py                # Streamlit, configuraciones en columnas
 ├── evals/
+│   ├── build_manifest.py     # genera data/manifest.csv a partir de data/raw/
+│   ├── snapshot_retrieval.py # congela las consultas de prueba antes de reingestar
 │   ├── bench_rerank.py       # latencia de cada reranker (calidad/latencia)
-│   └── results/              # CSV de cada corrida (Ragas todavía sin implementar)
+│   └── results/              # CSV y JSON de cada corrida (Ragas todavía sin implementar)
+├── tests/
+│   └── test_bm25.py          # tokenizador (se corre sin pytest)
 └── notebooks/                # exploración, no se presenta
+```
+
+## Cuando agregás PDFs al corpus
+
+`ingest.py` **falla a propósito** si un archivo de `data/raw/` no está en el
+manifiesto. El orden es:
+
+```powershell
+.venv\Scripts\python.exe evals\build_manifest.py    # regenera data/manifest.csv
+# revisá a mano el título y la versión del documento nuevo
+.venv\Scripts\python.exe src\ingest.py              # reindexa TODO (~30 min)
+```
+
+Los títulos del manifiesto están curados a mano: el nombre de archivo no
+identifica nada (cinco documentos se llaman `0N_argentinagobar.pdf`, y
+`08_ley-15.pdf` no es la ley 15 sino el Decreto-Ley 15.348). Si dejás un título
+en `indeterminado`, la ingesta se niega a correr.
+
+Antes de reindexar, si querés conservar el comportamiento actual para
+compararlo después:
+
+```powershell
+.venv\Scripts\python.exe evals\snapshot_retrieval.py --etiqueta antes
 ```
 
 ## Notas
@@ -145,8 +176,23 @@ rag-legal-demo/
 - **Qdrant en Docker, todo lo demás local.** Así el modelo de embeddings se
   cachea una vez en el host y no hay que rebuildear una imagen por cada cambio
   de código. El dashboard de Qdrant queda en http://localhost:6333/dashboard.
+- **El tab Graph del dashboard tira `Bad Request`** si no le decís qué vector
+  usar: la colección tiene DOS vectores nombrados por punto y la petición por
+  defecto no especifica ninguno. Agregale `"using": "dense"` al JSON y anda:
+  `{ "limit": 5, "sample": 100, "using": "dense" }`. No es un problema de
+  límite.
 - **`ingest.py` recrea la colección en cada corrida**, a propósito: cada
   ingesta parte de un estado limpio y reproducible.
+- **Cada chunk lleva un encabezado con la identidad de su documento** —
+  `[Ley 11.179 - Código Penal de la Nación · texto original · Art. 72]`—
+  dentro del texto que se embebe y que tokeniza BM25. Sin eso, el chunk del
+  art. 72 no contiene en ningún lado la cadena "11.179" (vive en la carátula,
+  que es otro chunk) y ninguna rama puede conectarlo con la consulta.
+- **Chunking por límites de artículo** (`CHUNK_STRATEGY=articulo`, default);
+  en los fallos corta por voto, y en los documentos sin estructura numerada
+  cae a ventanas fijas. `CHUNK_STRATEGY=fijo` recupera el chunking anterior
+  para poder comparar las dos estrategias en la ablación. **Cambiar esta
+  variable obliga a reingestar**, a diferencia de `RERANKER_MODEL`.
 - **Dos rerankers configurables** por `RERANKER_MODEL`, sin reingestar:
   `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1` (~118M) para la demo en vivo y
   `BAAI/bge-reranker-v2-m3` (~568M) para la corrida de evaluación. El
@@ -156,6 +202,18 @@ rag-legal-demo/
 - **Los modelos se precargan al arrancar Streamlit**, no en la primera
   consulta. Es por la exposición: la carga de pesos desde disco tardaba ~46s
   y se la comía quien preguntara primero.
-- **Corpus real**: los ~35 documentos van en `data/raw/`. `ingest.py` ya
-  soporta `.pdf` con texto nativo (PyMuPDF); los 4 escaneados necesitan
-  OCR con Tesseract, que todavía no está implementado.
+- **Corpus real**: 36 PDFs en `data/raw/`, ~1.48M caracteres. Verificado que
+  **los 36 tienen texto nativo**: no hace falta OCR, que estaba fuera de
+  alcance de todos modos.
+- **La advertencia de versión del system prompt se puede apagar**
+  (`ADVERTIR_VERSION=0`, o el checkbox "Advertir sobre la versión" en la app).
+  Está para poder mostrar el antes y el después de la misma consulta en vivo:
+  con la advertencia apagada, el modelo responde el art. 208 de la LCT del
+  texto de 1974 sin pestañear. Apagarla **no** desarma los metadatos —la
+  versión sigue en el encabezado de cada chunk y en la cita—, así que aísla el
+  efecto del prompt del efecto del manifiesto.
+- **El corpus tiene la Ley de Contrato de Trabajo en su texto original de
+  1974**, no en el texto ordenado vigente, y la numeración está corrida ~17
+  artículos. No es un bug del pipeline y no se arregla recuperando mejor; está
+  documentado en ARQUITECTURA.md porque es el caso que justifica todo el
+  manifiesto.

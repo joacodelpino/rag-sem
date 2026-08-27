@@ -48,6 +48,7 @@ cambiar de modelo. Por eso abajo se fija la activación explícitamente en vez
 de confiar en el default de cada modelo.
 """
 import os
+from dataclasses import replace
 
 import torch
 from dotenv import load_dotenv
@@ -133,13 +134,10 @@ def rerank(query: str, chunks: list[Chunk], top_k: int) -> list[Chunk]:
     pairs = [(query, chunk.text) for chunk in chunks]
     scores = _get_reranker().predict(pairs)
 
+    # replace() conserva los campos de identidad documental (título, versión,
+    # sección) sin listarlos uno por uno. Ver la misma nota en retrieval.py.
     rescored = [
-        Chunk(
-            id=chunk.id,
-            text=chunk.text,
-            source=chunk.source,
-            score=float(score),
-        )
+        replace(chunk, score=float(score))
         for chunk, score in zip(chunks, scores)
     ]
     rescored.sort(key=lambda c: c.score, reverse=True)

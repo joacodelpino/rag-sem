@@ -43,13 +43,33 @@ STOPWORDS = {
 }
 
 
+# Separador de miles adentro de un número. Los documentos escriben "Ley N°
+# 11.179" y la gente consulta "ley 11179": sin esto el tokenizador produce
+# ["11", "179"] contra ["11179"], que son term_ids distintos, y BM25 no puede
+# matchear NUNCA un número de ley — justo el caso donde la rama léxica tendría
+# que ser imbatible. Fue un bug real, medido sobre la consulta del art. 72.
+#
+# El lookahead exige exactamente tres dígitos que no sigan con más dígitos,
+# que es la forma del separador de miles en castellano. Así "11.179" colapsa a
+# "11179" pero "art. 39" no se toca (hay un espacio) ni "2.5" (no son tres
+# dígitos). No incluye el espacio común como separador a propósito: colapsaría
+# números vecinos que no tienen nada que ver.
+SEPARADOR_MILES = re.compile(r"(?<=\d)[.  ](?=\d{3}(?!\d))")
+
+
 def tokenize(text: str) -> list[str]:
     """Texto -> lista de términos normalizados.
 
     Saca acentos y mayúsculas para que "jerárquico" y "JERARQUICO" sean el
     mismo término: en las consultas de la demo la gente casi nunca acentúa, y
     sin normalizar el match léxico fallaría justo donde debería brillar.
+
+    Y normaliza los separadores de miles, para que el número de una ley sea un
+    solo término se escriba como se escriba (ver SEPARADOR_MILES).
     """
+    # Antes del NFKD: esa normalización convierte el espacio duro en un espacio
+    # común y el patrón dejaría de reconocerlo.
+    text = SEPARADOR_MILES.sub("", text)
     text = unicodedata.normalize("NFKD", text.lower())
     text = "".join(c for c in text if not unicodedata.combining(c))
     tokens = re.findall(r"[a-z0-9]+", text)

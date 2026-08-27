@@ -9,6 +9,7 @@ La tercera columna (híbrida + reranking) se suma cuando exista esa ruta.
 """
 import streamlit as st
 
+import generate
 from generate import generate_answer
 from retrieval import (
     config_snapshot,
@@ -80,17 +81,36 @@ with st.sidebar:
         "las corridas de evaluación."
     )
     st.json(CONFIG)
+    st.caption(
+        "La advertencia de versión no figura acá porque no es configuración de "
+        "recuperación: se prende y se apaga por consulta, con el control que "
+        "está sobre las columnas."
+    )
 
 query = st.text_input(
     "Consulta",
     placeholder="¿Cuántos días hábiles hay para presentar el recurso jerárquico?",
 )
 
-col_a, col_b = st.columns(2)
+col_a, col_b, col_c = st.columns(3)
 top_k = col_a.slider("Chunks recuperados (top_k)", 1, 10, 5)
 generar = col_b.checkbox(
     "Generar respuesta con el LLM", value=True,
     help="Desactivalo para comparar solo la recuperación, sin gastar llamadas a la API.",
+)
+# Interruptor para la exposición: permite mostrar la MISMA consulta con y sin
+# la advertencia, en vivo, sin reiniciar nada. Apagarlo solo saca esa frase del
+# system prompt — la versión sigue estando en el encabezado de cada chunk y en
+# la cita, así que lo que se ve es el efecto del prompt aislado del efecto de
+# los metadatos.
+advertir_version = col_c.checkbox(
+    "Advertir sobre la versión", value=generate.ADVERTIR_VERSION,
+    help=(
+        "Agrega al system prompt la instrucción de avisar cuando el contexto es "
+        "un 'texto original' y la consulta parece referirse al régimen vigente. "
+        "Apagalo para reproducir el comportamiento anterior (probá con el "
+        "artículo 208 de la LCT)."
+    ),
 )
 
 if st.button("Consultar", type="primary") and query:
@@ -105,7 +125,7 @@ if st.button("Consultar", type="primary") and query:
 
             if generar:
                 with st.spinner("Generando..."):
-                    st.write(generate_answer(query, chunks))
+                    st.write(generate_answer(query, chunks, advertir_version))
 
             st.markdown("**Chunks recuperados**")
             if not chunks:
@@ -113,6 +133,11 @@ if st.button("Consultar", type="primary") and query:
             # La posición importa tanto como el contenido: es lo que cambia
             # entre configuraciones y lo que mide MRR/NDCG en la evaluación.
             for posicion, chunk in enumerate(chunks, start=1):
-                with st.expander(f"{posicion}. {chunk.source} — {chunk.score:.3f}"):
-                    st.caption(f"chunk id: {chunk.id}")
+                # Se muestra el título del manifiesto y no el nombre de
+                # archivo: cinco documentos del corpus se llaman
+                # "0N_argentinagobar.pdf" y no hay forma de saber cuál es cuál.
+                # La versión va al lado del título porque es lo que evita leer
+                # el texto de la LCT de 1974 creyendo que es el vigente.
+                with st.expander(f"{posicion}. {chunk.etiqueta()} — {chunk.score:.3f}"):
+                    st.caption(f"archivo: {chunk.source}  ·  chunk id: {chunk.id}")
                     st.text(chunk.text)

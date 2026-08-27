@@ -1,0 +1,874 @@
+{
+  "etiqueta": "antes-chunking-fijo",
+  "fecha": "2026-08-27T08:59:31",
+  "top_k": 5,
+  "genero_respuestas": true,
+  "advertencia_version": false,
+  "config": {
+    "collection": "legal_docs",
+    "embedding_model": "BAAI/bge-m3",
+    "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "candidates_per_branch": 20,
+    "rrf_k": 60,
+    "rerank_candidates": 20,
+    "chunk_size": 800,
+    "chunk_overlap": 150
+  },
+  "consultas": [
+    {
+      "id": "cp-art-72",
+      "texto": "Que dice el articulo 72 de la ley 11179?",
+      "por_que": "Número de ley escrito sin punto. El tokenizador parte '11.179' en '11'/'179' y la consulta dice '11179', así que BM25 no puede matchear nunca. Además ningún chunk lleva el número de ley: vive en el encabezado del documento, en otro chunk. Resultado medido: híbrida+rerank cita el art. 72 de la ley 11.723 como si fuera el de la 11.179.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.378,
+          "respuesta_llm": "No tengo información sobre el artículo 72 de la Ley N° 11.179 en el contexto proporcionado. Para obtener esa información, sería necesario consultar el texto completo de la ley.",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 426,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.481641,
+              "text": "InfoLEG - Ministerio de Economía y Finanzas Públicas\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/15000-19999/16546/norma.htm\nIr a texto actualizado y otros datos\nLEY N° 11.179\nCODIGO PENAL DE LA NACION\nBuenos Aires, 29 de octubre de 1921\nEl Senado y Cámara de Diputados de la Nación Argentina, reunidos en Congreso, etc., sancionan con\nfuerza de\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nAplicación de la ley penal\nArtículo 1.° - Este código se aplicará:\n1.º Por delitos cometidos o cuyos efectos deban producirse en el territorio de la Nación Argentina, o en los\nlugares sometidos a su jurisdicción;\n2.º Por delitos cometidos en el extranjero por agentes o empleados de autoridades argentinas en\ndesempeño de su cargo"
+            },
+            {
+              "posicion": 2,
+              "id": 1746,
+              "source": "26_resolución-5289-informe-o-estado-de-situacion.pdf",
+              "score": 0.471884,
+              "text": "Resolución 5289 - INFORME O ESTADO DE SITUACION\nFuente: http://servicios.infoleg.gob.ar/infolegInternet/anexos/375000-379999/375440/norma.htm\nINSPECCIÓN\nGENERAL DE JUSTICIA\nY\nADMINISTRACIÓN FEDERAL DE INGRESOS PÚBLICOS\nResolución General Conjunta 5289/2022\nRESGC-2022-5289-E-AFIP-AFIP - Asociaciones Civiles Categoría I.\nCiudad de Buenos Aires, 22/11/2022\nVISTO el Expediente Electrónico N° EX-2022-02090397- -AFIP-SDGFIS, y\nCONSIDERANDO:\nQue el artículo 174 del Código Civil y Comercial de la Nación, aprobado por la Ley N° 26.994 y sus\nmodificaciones, consagra un régimen de contralor estatal permanente sobre las asociaciones civiles, en lo\nque refiere a su constitución, funcionamiento, disolución y liquidación.\nQue la INSPECCIÓN GENERAL DE JUSTICIA es el organismo público competente para ejerc"
+            },
+            {
+              "posicion": 3,
+              "id": 1569,
+              "source": "21_resolución-75-modelo-de-convenio.pdf",
+              "score": 0.463364,
+              "text": "Resolución 75 - MODELO DE CONVENIO\nFuente: http://servicios.infoleg.gob.ar/infolegInternet/anexos/370000-374999/374672/texact.htm\nMINISTERIO DE ECONOMÍA\nSECRETARÍA DE COMERCIO\nResolución 75/2022\nRESOL-2022-75-APN-SC#MEC\nCiudad de Buenos Aires, 10/11/2022\nVer Antecedentes Normativos\nVISTO el Expediente N° EX-2022-121447691- -APN-DGD#MDP, la Constitución Nacional, la Ley N°\n24.240 y sus modificatorias y la Resolución N° 823 del 10 de noviembre de 2022 del MINISTERIO DE\nECONOMÍA, y\nCONSIDERANDO:\nQue el artículo 42 de la Constitución Nacional establece que los consumidores y usuarios de bienes y\nservicios tienen derecho, en la relación de consumo, a la protección de su salud, seguridad e intereses\neconómicos, a una información adecuada y veraz, a la libertad de elección, y a condiciones de tra"
+            },
+            {
+              "posicion": 4,
+              "id": 657,
+              "source": "09_ley-n-11.pdf",
+              "score": 0.462804,
+              "text": "LEY N° 11\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/40000-44999/42755/norma.htm\nIr a texto actualizado y otros datos\nLEY 11.723 - REGIMEN LEGAL DE LA PROPIEDAD INTELECTUAL\nEl Senado y Cámara de Diputados de la Nación Argentina, Reunidos en Congreso, etc., sancionan con\nfuerza de\nLey:\nArtículo 1° - A los efectos de la presente ley, las obras científicas, literarias y artísticas comprenden los\nescritos de toda naturaleza y extensión; las obras dramáticas, composiciones musicales,\ndramático-musicales; las cinematográficas, coreográficas y pantomímicas; las obras de dibujos, pintura,\nescultura, arquitectura; modelos y obras de arte o ciencia aplicadas al comercio o a la industria; los\nimpresos, planos y mapas; los plásticos, fotografías, grabados y discos fonográficos, en"
+            },
+            {
+              "posicion": 5,
+              "id": 1770,
+              "source": "27_resolución-99-reunion-invitase.pdf",
+              "score": 0.459598,
+              "text": "Resolución 99 - REUNION - INVITASE\nFuente: http://servicios.infoleg.gob.ar/infolegInternet/anexos/375000-379999/375130/norma.htm\nMINISTERIO DE ECONOMÍA\nSECRETARÍA DE COMERCIO\nResolución 99/2022\nRESOL-2022-99-APN-SC#MEC\nCiudad de Buenos Aires, 16/11/2022\nVISTO el Expediente N° EX-2022-123400801- -APN-DGD#MDP, la Constitución Nacional, la Ley N°\n24.240 y sus modificatorias, la Ley N° 26.992 y el Decreto N° 41 del 13 de enero de 2015, y\nCONSIDERANDO:\nQue el artículo 42 de la Constitución Nacional establece que los consumidores y usuarios de bienes y\nservicios tienen derecho, en la relación de consumo, a la protección de su salud, seguridad e intereses\neconómicos, a una información adecuada y veraz, a la libertad de elección, y a condiciones de trato\nequitativo y digno, agregando que las autor"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.07,
+          "respuesta_llm": "El contexto proporcionado no incluye información específica sobre el artículo 72 de la ley 11.179. Por lo tanto, no puedo responder a tu consulta.",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 822,
+              "source": "11_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 8.154638,
+              "text": "amente.\nARTICULO\n71.- Se\nexceptúan de las disposiciones de esta ley las operaciones de crédito\n\nque\nrealice el Banco Central de la República Argentina con instituciones\nfinancieras internacionales para garantizar la estabilidad monetaria y\ncambiaria.\n(Nota\nInfoleg: Por art. 60\nde la Ley\nN° 25.565 B.O.\n21/03/2002 se establece que el Instituto Nacional de\nServicios Sociales para Jubilados y Pensionados queda comprendido en\nlos\nalcances del presente Título III.)\nTITULO IV\nDel sistema\nde tesorería\nARTICULO\n72.- El\nsistema de tesorería está compuesto por el conjunto de órganos, normas\ny\nprocedimientos que intervienen en la recaudación de los ingresos y en\nlos pagos\nque configuran el flujo de fondos del sector público nacional, así como\nen la\ncustodia de las disponibilidades que se generen.\nARTI"
+            },
+            {
+              "posicion": 2,
+              "id": 700,
+              "source": "09_ley-n-11.pdf",
+              "score": 7.852788,
+              "text": "entina de Letras; por el presidente de la Comisión Nacional de Bellas Artes; por el\nDirector del Registro Nacional de Propiedad Intelectual; por el presidente de la Sociedad Científica\nArgentina; por un representante de la Sociedad de Escritores; por un representante de las sociedades de\n\nautores teatrales; por un representante de la sociedad de compositores de música popular y de cámara y\npor dos representantes del Congreso Nacional.\nDE LAS PENAS\nArt. 71. - Será reprimido con la pena establecida por el artículo 172 del Código Penal, el que de cualquier\nmanera y en cualquier forma defraude los derechos de propiedad intelectual que reconoce esta ley.\nArt. 72. - Sin perjuicio de la disposición general del artículo precedente, se consideran casos especiales\nde defraudación y sufrirán la pena "
+            },
+            {
+              "posicion": 3,
+              "id": 16,
+              "source": "01_argentinagobar.pdf",
+              "score": 7.525557,
+              "text": "tratación.\nLa empresa receptora del pedido de rescisión del servicio deberá enviar sin cargo al domicilio del\nconsumidor o usuario una constancia fehaciente dentro de las SETENTA Y DOS (72) horas posteriores a\nla recepción del pedido de rescisión. Esta disposición debe ser publicada en la factura o documento\nequivalente que la empresa enviare regularmente al domicilio del consumidor o usuario.\n(Artículo incorporado por art. 8° de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 10 quáter: Prohibición de cobro. Prohíbase el cobro de preaviso, mes adelantado y/o\ncualquier otro concepto, por parte de los prestadores de servicios, incluidos los servicios públicos\ndomiciliarios, en los casos de solicitud de baja del mismo realizado por el consumidor ya sea en forma\npersonal, telefónica, electrónica o s"
+            },
+            {
+              "posicion": 4,
+              "id": 701,
+              "source": "09_ley-n-11.pdf",
+              "score": 7.251798,
+              "text": "ta ley.\nArt. 72. - Sin perjuicio de la disposición general del artículo precedente, se consideran casos especiales\nde defraudación y sufrirán la pena que él establece, además del secuestro de la edición ilícita:\na) El que edite, venda o reproduzca por cualquier medio o instrumento, una obra inédita o publicada sin\nautorización de su autor o derechohabientes;\nb) El que falsifique obras intelectuales, entendiéndose como tal la edición de una obra ya editada,\nostentando falsamente el nombre del editor autorizado al efecto;\nc) El que edite, venda o reproduzca una obra suprimiendo o cambiando el nombre del autor, el título de la\nmisma o alterando dolosamente su texto;\nd) El que edite o reproduzca mayor número de los ejemplares debidamente autorizados.\nArt. 73. - Será reprimido con prisión de un"
+            },
+            {
+              "posicion": 5,
+              "id": 959,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 7.246482,
+              "text": " la del orden jurídico fundamental del país. Evidentemente, eso no es así. La\nConstitución no desampara a los ciudadanos ante tales peligros ni les impone necesariamente recurrir a\nla defensa lenta y costosa de los procedimientos ordinarios. Las leyes no pueden ser interpretadas sólo\nhistóricamente, sin consideración a las nuevas condiciones y necesidades de la comunidad, porque toda\nley, por naturaleza, tiene una visión de futuro, está predestinada a recoger y regir hechos posteriores a su\nsanción: \"Las leyes disponen para lo futuro\", dice el art. 3° del Código Civil, con un significado\ntrascendente que no se agota, por cierto, en la consecuencia particular que el precepto extrae a\ncontinuación. Con mayor fundamento, la Constitución, que es la ley de las leyes y se halla en el cimiento\nde"
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.417,
+          "respuesta_llm": "El artículo 72 de la Ley N° 11.179 no está disponible en el contexto proporcionado. Solo se menciona el artículo 1 y se hace referencia a la aplicación de la ley penal. Para obtener información específica sobre el artículo 72, se necesitaría consultar el texto completo del Código Penal de la Nación Argentina.",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 426,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.016393,
+              "text": "InfoLEG - Ministerio de Economía y Finanzas Públicas\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/15000-19999/16546/norma.htm\nIr a texto actualizado y otros datos\nLEY N° 11.179\nCODIGO PENAL DE LA NACION\nBuenos Aires, 29 de octubre de 1921\nEl Senado y Cámara de Diputados de la Nación Argentina, reunidos en Congreso, etc., sancionan con\nfuerza de\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nAplicación de la ley penal\nArtículo 1.° - Este código se aplicará:\n1.º Por delitos cometidos o cuyos efectos deban producirse en el territorio de la Nación Argentina, o en los\nlugares sometidos a su jurisdicción;\n2.º Por delitos cometidos en el extranjero por agentes o empleados de autoridades argentinas en\ndesempeño de su cargo"
+            },
+            {
+              "posicion": 2,
+              "id": 822,
+              "source": "11_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.016393,
+              "text": "amente.\nARTICULO\n71.- Se\nexceptúan de las disposiciones de esta ley las operaciones de crédito\n\nque\nrealice el Banco Central de la República Argentina con instituciones\nfinancieras internacionales para garantizar la estabilidad monetaria y\ncambiaria.\n(Nota\nInfoleg: Por art. 60\nde la Ley\nN° 25.565 B.O.\n21/03/2002 se establece que el Instituto Nacional de\nServicios Sociales para Jubilados y Pensionados queda comprendido en\nlos\nalcances del presente Título III.)\nTITULO IV\nDel sistema\nde tesorería\nARTICULO\n72.- El\nsistema de tesorería está compuesto por el conjunto de órganos, normas\ny\nprocedimientos que intervienen en la recaudación de los ingresos y en\nlos pagos\nque configuran el flujo de fondos del sector público nacional, así como\nen la\ncustodia de las disponibilidades que se generen.\nARTI"
+            },
+            {
+              "posicion": 3,
+              "id": 1746,
+              "source": "26_resolución-5289-informe-o-estado-de-situacion.pdf",
+              "score": 0.016129,
+              "text": "Resolución 5289 - INFORME O ESTADO DE SITUACION\nFuente: http://servicios.infoleg.gob.ar/infolegInternet/anexos/375000-379999/375440/norma.htm\nINSPECCIÓN\nGENERAL DE JUSTICIA\nY\nADMINISTRACIÓN FEDERAL DE INGRESOS PÚBLICOS\nResolución General Conjunta 5289/2022\nRESGC-2022-5289-E-AFIP-AFIP - Asociaciones Civiles Categoría I.\nCiudad de Buenos Aires, 22/11/2022\nVISTO el Expediente Electrónico N° EX-2022-02090397- -AFIP-SDGFIS, y\nCONSIDERANDO:\nQue el artículo 174 del Código Civil y Comercial de la Nación, aprobado por la Ley N° 26.994 y sus\nmodificaciones, consagra un régimen de contralor estatal permanente sobre las asociaciones civiles, en lo\nque refiere a su constitución, funcionamiento, disolución y liquidación.\nQue la INSPECCIÓN GENERAL DE JUSTICIA es el organismo público competente para ejerc"
+            },
+            {
+              "posicion": 4,
+              "id": 700,
+              "source": "09_ley-n-11.pdf",
+              "score": 0.016129,
+              "text": "entina de Letras; por el presidente de la Comisión Nacional de Bellas Artes; por el\nDirector del Registro Nacional de Propiedad Intelectual; por el presidente de la Sociedad Científica\nArgentina; por un representante de la Sociedad de Escritores; por un representante de las sociedades de\n\nautores teatrales; por un representante de la sociedad de compositores de música popular y de cámara y\npor dos representantes del Congreso Nacional.\nDE LAS PENAS\nArt. 71. - Será reprimido con la pena establecida por el artículo 172 del Código Penal, el que de cualquier\nmanera y en cualquier forma defraude los derechos de propiedad intelectual que reconoce esta ley.\nArt. 72. - Sin perjuicio de la disposición general del artículo precedente, se consideran casos especiales\nde defraudación y sufrirán la pena "
+            },
+            {
+              "posicion": 5,
+              "id": 1569,
+              "source": "21_resolución-75-modelo-de-convenio.pdf",
+              "score": 0.015873,
+              "text": "Resolución 75 - MODELO DE CONVENIO\nFuente: http://servicios.infoleg.gob.ar/infolegInternet/anexos/370000-374999/374672/texact.htm\nMINISTERIO DE ECONOMÍA\nSECRETARÍA DE COMERCIO\nResolución 75/2022\nRESOL-2022-75-APN-SC#MEC\nCiudad de Buenos Aires, 10/11/2022\nVer Antecedentes Normativos\nVISTO el Expediente N° EX-2022-121447691- -APN-DGD#MDP, la Constitución Nacional, la Ley N°\n24.240 y sus modificatorias y la Resolución N° 823 del 10 de noviembre de 2022 del MINISTERIO DE\nECONOMÍA, y\nCONSIDERANDO:\nQue el artículo 42 de la Constitución Nacional establece que los consumidores y usuarios de bienes y\nservicios tienen derecho, en la relación de consumo, a la protección de su salud, seguridad e intereses\neconómicos, a una información adecuada y veraz, a la libertad de elección, y a condiciones de tra"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 3.263,
+          "respuesta_llm": "El artículo 72 de la Ley N° 11.179 establece que se consideran casos especiales de defraudación y sufrirán la pena que se menciona en el artículo anterior, además del secuestro de la edición ilícita, las siguientes conductas:\n\na) El que edite, venda o reproduzca por cualquier medio o instrumento, una obra inédita o publicada sin autorización de su autor o derechohabientes;\nb) El que falsifique obras intelectuales, entendiendo como tal la edición de una obra ya editada, ostentando falsamente el nombre del editor autorizado al efecto;\nc) El que edite, venda o reproduzca una obra suprimiendo o cambiando el nombre del autor, el título de la misma o alterando dolosamente su texto;\nd) El que edite o reproduzca mayor número de los ejemplares debidamente autorizados [09_ley-n-11.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 701,
+              "source": "09_ley-n-11.pdf",
+              "score": 0.779576,
+              "text": "ta ley.\nArt. 72. - Sin perjuicio de la disposición general del artículo precedente, se consideran casos especiales\nde defraudación y sufrirán la pena que él establece, además del secuestro de la edición ilícita:\na) El que edite, venda o reproduzca por cualquier medio o instrumento, una obra inédita o publicada sin\nautorización de su autor o derechohabientes;\nb) El que falsifique obras intelectuales, entendiéndose como tal la edición de una obra ya editada,\nostentando falsamente el nombre del editor autorizado al efecto;\nc) El que edite, venda o reproduzca una obra suprimiendo o cambiando el nombre del autor, el título de la\nmisma o alterando dolosamente su texto;\nd) El que edite o reproduzca mayor número de los ejemplares debidamente autorizados.\nArt. 73. - Será reprimido con prisión de un"
+            },
+            {
+              "posicion": 2,
+              "id": 426,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.595945,
+              "text": "InfoLEG - Ministerio de Economía y Finanzas Públicas\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/15000-19999/16546/norma.htm\nIr a texto actualizado y otros datos\nLEY N° 11.179\nCODIGO PENAL DE LA NACION\nBuenos Aires, 29 de octubre de 1921\nEl Senado y Cámara de Diputados de la Nación Argentina, reunidos en Congreso, etc., sancionan con\nfuerza de\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nAplicación de la ley penal\nArtículo 1.° - Este código se aplicará:\n1.º Por delitos cometidos o cuyos efectos deban producirse en el territorio de la Nación Argentina, o en los\nlugares sometidos a su jurisdicción;\n2.º Por delitos cometidos en el extranjero por agentes o empleados de autoridades argentinas en\ndesempeño de su cargo"
+            },
+            {
+              "posicion": 3,
+              "id": 822,
+              "source": "11_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.315342,
+              "text": "amente.\nARTICULO\n71.- Se\nexceptúan de las disposiciones de esta ley las operaciones de crédito\n\nque\nrealice el Banco Central de la República Argentina con instituciones\nfinancieras internacionales para garantizar la estabilidad monetaria y\ncambiaria.\n(Nota\nInfoleg: Por art. 60\nde la Ley\nN° 25.565 B.O.\n21/03/2002 se establece que el Instituto Nacional de\nServicios Sociales para Jubilados y Pensionados queda comprendido en\nlos\nalcances del presente Título III.)\nTITULO IV\nDel sistema\nde tesorería\nARTICULO\n72.- El\nsistema de tesorería está compuesto por el conjunto de órganos, normas\ny\nprocedimientos que intervienen en la recaudación de los ingresos y en\nlos pagos\nque configuran el flujo de fondos del sector público nacional, así como\nen la\ncustodia de las disponibilidades que se generen.\nARTI"
+            },
+            {
+              "posicion": 4,
+              "id": 700,
+              "source": "09_ley-n-11.pdf",
+              "score": 0.058737,
+              "text": "entina de Letras; por el presidente de la Comisión Nacional de Bellas Artes; por el\nDirector del Registro Nacional de Propiedad Intelectual; por el presidente de la Sociedad Científica\nArgentina; por un representante de la Sociedad de Escritores; por un representante de las sociedades de\n\nautores teatrales; por un representante de la sociedad de compositores de música popular y de cámara y\npor dos representantes del Congreso Nacional.\nDE LAS PENAS\nArt. 71. - Será reprimido con la pena establecida por el artículo 172 del Código Penal, el que de cualquier\nmanera y en cualquier forma defraude los derechos de propiedad intelectual que reconoce esta ley.\nArt. 72. - Sin perjuicio de la disposición general del artículo precedente, se consideran casos especiales\nde defraudación y sufrirán la pena "
+            },
+            {
+              "posicion": 5,
+              "id": 467,
+              "source": "07_infoleg-ministerio-de-economía-y-finanzas-públicas.pdf",
+              "score": 0.03657,
+              "text": "vechará a los demás.\nArt. 70. - Las indemnizaciones pecuniarias inherentes a las penas, podrán hacerse efectivas sobre los\nbienes propios del condenado, aun después de muerto.\nTITULO XI\nDel ejercicio de las acciones\nDel ejercicio de las acciones\nArt. 71. - Deberán iniciarse de oficio todas las acciones penales, con excepción de las siguientes:\n1.º Las que dependieren de instancia privada;\n2.º Las acciones privadas.\nArt. 72. - Son acciones dependientes de instancia privada, las que nacieren de los delitos de violación,\nestupro, rapto y ultrajes al pudor, cuando no rsultare la muerte de la persona ofendida o leisones de las\nmencionadas en el artículo 91.\nEn los casos de este artículo, no se procederá a formar causa sino por acusación o denuncia del\nagraviado, o de su tutor, guardador o repre"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "lct-art-208",
+      "texto": "¿Qué dice el artículo 208 de la Ley de Contrato de Trabajo?",
+      "por_que": "El corpus tiene la LCT en su texto ORIGINAL de 1974, no el texto ordenado vigente. El art. 208 indexado habla de menores; el 208 que espera cualquier abogado (enfermedades inculpables) está en el art. 225 de este PDF. La recuperación no falla: falla el corpus, y sin metadato de versión nadie se entera.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.321,
+          "respuesta_llm": "El contexto proporcionado no incluye información sobre el contenido del artículo 208 de la Ley de Contrato de Trabajo. Por lo tanto, no puedo responder a tu consulta.",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 176,
+              "source": "06_infoleg.pdf",
+              "score": 0.558865,
+              "text": "infoleg\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/norma.htm\nIr a texto actualizado y otros datos\nCONTRATOS DE TRABAJO\nLEY Nº 20.744\nRégimen.\nSancionada: setiembre 11 de 1974.\nPromulgada: setiembre 20 de 1974.\nARTICULO 1º — Apruébase el régimen del contrato de trabajo (L.C.T.), cuyas disposiciones se\nconsiderarán incorporadas a la presente y se observarán como ley de la Nación.\nARTICULO 2º — La ley de contrato de trabajo entrará en vigor a partir de la promulgación de la presente\ny se aplicará aun a las consecuencias de las relaciones y situaciones jurídicas existentes.\nARTICULO 3º — Las disposiciones de los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párra"
+            },
+            {
+              "posicion": 2,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 0.55678,
+              "text": "ulos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Le"
+            },
+            {
+              "posicion": 3,
+              "id": 177,
+              "source": "06_infoleg.pdf",
+              "score": 0.542516,
+              "text": " los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párrafo, 272 con relación a las\nindemnizaciones que correspondieran a la fecha del despido, 281, 282, 290, 291, 300 y 301, serán de\naplicación a las causas judiciales pendientes.\nARTICULO 4º — Las prescripciones en curso en el momento de entrar en vigencia esta ley se entenderán\nampliadas a los plazos previstos en la misma.\nARTICULO 5º — Los plazos de caducidad establecidos en la ley de contrato de trabajo se computarán a\npartir de la fecha de su vigencia.\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de "
+            },
+            {
+              "posicion": 4,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 0.518473,
+              "text": "régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación\nArt. 2º — En los casos de actividades regladas por estatutos o regímenes particulares, leyes generales\ny/o especiales, las disposiciones de esta ley serán aplicables cuando contemplen "
+            },
+            {
+              "posicion": 5,
+              "id": 180,
+              "source": "06_infoleg.pdf",
+              "score": 0.518059,
+              "text": " vigencia.\nA falta de acuerdo, la fijación se hará por única vez por el Ministerio de Trabajo de la Nación y sustituirá a\nlas cláusulas respectivas de las convenciones colectivas de trabajo aplicables.\nDe idéntica forma se procederá en el caso previsto en el artículo 121, primer párrafo, de la ley de contrato\nde trabajo.\n\nARTICULO 9º — El Ministerio de Trabajo de la Nación será autoridad de aplicación de la presente ley.\nEllo no implica enervar el derecho de ejercer las acciones pertinentes por parte de los interesados para\nobtener su cumplimiento.\nLas infracciones a las disposiciones de la ley de contrato de trabajo serán sancionadas por el régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las le"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.042,
+          "respuesta_llm": "El artículo 208 de la Ley de Contrato de Trabajo establece que la prestación dineraria durante una Incapacidad Laboral Temporaria se calcula conforme a las pautas dispuestas por dicho artículo y sus modificatorias. Esta prestación incluye la totalidad de los conceptos que debió percibir el trabajador al momento de la primera manifestación invalidante, sin tener en cuenta el tope máximo de remuneraciones sujetas a aportes que estipula la ley previsional [riesgos-del-trabajo-UNLAR.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 180,
+              "source": "06_infoleg.pdf",
+              "score": 10.69514,
+              "text": " vigencia.\nA falta de acuerdo, la fijación se hará por única vez por el Ministerio de Trabajo de la Nación y sustituirá a\nlas cláusulas respectivas de las convenciones colectivas de trabajo aplicables.\nDe idéntica forma se procederá en el caso previsto en el artículo 121, primer párrafo, de la ley de contrato\nde trabajo.\n\nARTICULO 9º — El Ministerio de Trabajo de la Nación será autoridad de aplicación de la presente ley.\nEllo no implica enervar el derecho de ejercer las acciones pertinentes por parte de los interesados para\nobtener su cumplimiento.\nLas infracciones a las disposiciones de la ley de contrato de trabajo serán sancionadas por el régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las le"
+            },
+            {
+              "posicion": 2,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 10.477136,
+              "text": "régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación\nArt. 2º — En los casos de actividades regladas por estatutos o regímenes particulares, leyes generales\ny/o especiales, las disposiciones de esta ley serán aplicables cuando contemplen "
+            },
+            {
+              "posicion": 3,
+              "id": 2130,
+              "source": "riesgos-del-trabajo-UNLAR.pdf",
+              "score": 10.410601,
+              "text": "les. Esta incapaci-\ndad comienza el día siguiente de la primera manifestación invalidante y finaliza \ncuando el trabajador recibe el alta médica, o se le declara una Incapacidad Labo-\nral Permanente, si se cumplió 1 año desde la primera manifestación invalidante, \no bien si fallece el damnificado.\n¿Qué cobra el trabajador durante la ILT?\nLa prestación dineraria durante una Incapacidad Laboral Temporaria se calcula \nconforme a las pautas dispuestas por el artículo 208 de la Ley de Contrato de Tra-\nbajo Nº 20.744 (t.o. 1976) y sus modificatorias, incluye la totalidad de los concep-\ntos que debió percibir el damnificado al momento de la primera manifestación \ninvalidante, sin tener en cuenta el tope máximo de remuneraciones sujetas a \naportes que estipula la ley previsional.\n\nSi el salario es"
+            },
+            {
+              "posicion": 4,
+              "id": 400,
+              "source": "06_infoleg.pdf",
+              "score": 10.334443,
+              "text": "aboral y sin las cuales ésta no podría proseguir.\nEn este caso, el trabajador tendrá derecho a percibir la indemnización prevista en el artículo 268 de esta\nley.\nCAPITULO VIII\nDe la extinción del contrato de trabajo por vencimiento del plazo\nMonto de la indemnización - Remisión\nArt. 271. — Cuando la extinción del contrato se produjera por vencimiento del plazo asignado al mismo,\nmediando preaviso y estando el contrato íntegramente cumplido, se estará a lo dispuesto en el artículo\n104, segundo párrafo, de esta ley, siendo el trabajador acreedor a la indemnización prevista en el artículo\n268.\nCAPITULO IX\nDe la extinción del contrato de trabajo por quiebra o concurso del empleador\nCalificación de la conducta del empleador - Monto de la indemnización\nArt. 272. — Si la quiebra del empleador mot"
+            },
+            {
+              "posicion": 5,
+              "id": 343,
+              "source": "06_infoleg.pdf",
+              "score": 9.783422,
+              "text": "s nocturnos, entendiéndose como tales el\nintervalo comprendido entre las veinte (20) y las seis (6) horas del día siguiente. En los casos de\nestablecimientos fabriles que desarrollen tareas en tres turnos diarios que abarquen las veinticuatro (24)\nhoras del día, el período de prohibición absoluta en cuanto al empleo de menores, estará regido por este\ntítulo y lo dispuesto en el artículo 189, última parte, de esta ley, pero sólo para los menores varones de\nmás de dieciséis (16) años.\nDescanso al mediodía - Trabajo a domicilio - Tareas penosas, peligrosas o insalubres - Remisión\nArt. 208. — Con relación a los menores de dieciocho (18) años de uno u otro sexo, que trabajen en horas\nde la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley.\nAhorro\nArt. 209. — "
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.374,
+          "respuesta_llm": "El contexto proporcionado no incluye información sobre el artículo 208 de la Ley de Contrato de Trabajo. Por lo tanto, no puedo responder a tu consulta.",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 180,
+              "source": "06_infoleg.pdf",
+              "score": 0.031778,
+              "text": " vigencia.\nA falta de acuerdo, la fijación se hará por única vez por el Ministerio de Trabajo de la Nación y sustituirá a\nlas cláusulas respectivas de las convenciones colectivas de trabajo aplicables.\nDe idéntica forma se procederá en el caso previsto en el artículo 121, primer párrafo, de la ley de contrato\nde trabajo.\n\nARTICULO 9º — El Ministerio de Trabajo de la Nación será autoridad de aplicación de la presente ley.\nEllo no implica enervar el derecho de ejercer las acciones pertinentes por parte de los interesados para\nobtener su cumplimiento.\nLas infracciones a las disposiciones de la ley de contrato de trabajo serán sancionadas por el régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las le"
+            },
+            {
+              "posicion": 2,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 0.031754,
+              "text": "régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación\nArt. 2º — En los casos de actividades regladas por estatutos o regímenes particulares, leyes generales\ny/o especiales, las disposiciones de esta ley serán aplicables cuando contemplen "
+            },
+            {
+              "posicion": 3,
+              "id": 176,
+              "source": "06_infoleg.pdf",
+              "score": 0.030886,
+              "text": "infoleg\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/norma.htm\nIr a texto actualizado y otros datos\nCONTRATOS DE TRABAJO\nLEY Nº 20.744\nRégimen.\nSancionada: setiembre 11 de 1974.\nPromulgada: setiembre 20 de 1974.\nARTICULO 1º — Apruébase el régimen del contrato de trabajo (L.C.T.), cuyas disposiciones se\nconsiderarán incorporadas a la presente y se observarán como ley de la Nación.\nARTICULO 2º — La ley de contrato de trabajo entrará en vigor a partir de la promulgación de la presente\ny se aplicará aun a las consecuencias de las relaciones y situaciones jurídicas existentes.\nARTICULO 3º — Las disposiciones de los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párra"
+            },
+            {
+              "posicion": 4,
+              "id": 177,
+              "source": "06_infoleg.pdf",
+              "score": 0.029206,
+              "text": " los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párrafo, 272 con relación a las\nindemnizaciones que correspondieran a la fecha del despido, 281, 282, 290, 291, 300 y 301, serán de\naplicación a las causas judiciales pendientes.\nARTICULO 4º — Las prescripciones en curso en el momento de entrar en vigencia esta ley se entenderán\nampliadas a los plazos previstos en la misma.\nARTICULO 5º — Los plazos de caducidad establecidos en la ley de contrato de trabajo se computarán a\npartir de la fecha de su vigencia.\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de "
+            },
+            {
+              "posicion": 5,
+              "id": 196,
+              "source": "06_infoleg.pdf",
+              "score": 0.02885,
+              "text": "ara caracterizar el\ncontrato, y en tanto que por las circunstancias no sea dado calificar de empresario a quien presta el\nservicio.\nEfectos del contrato sin relación de trabajo\nArt. 26. — Los efectos del incumplimiento de un contrato de trabajo, antes de iniciarse la efectiva\nprestación de los servicios, se juzgarán por las disposiciones del derecho común, salvo lo que\nexpresamente se dispusiera en esta ley.\nDicho incumplimiento dará lugar a una indemnización que no podrá ser inferior al importe de un mes de la\nremuneración que se hubiere convenido, o la que resulte de la aplicación de la convención colectiva de\ntrabajo correspondiente.\nCAPITULO II\nDe los sujetos del contrato de trabajo\nTrabajador\nArt. 27. — Se considera \"trabajador\", a los fines de esta ley, a la persona física que se obl"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 2.62,
+          "respuesta_llm": "El artículo 208 de la Ley de Contrato de Trabajo Nº 20.744 (t.o. 1976) establece que la prestación dineraria durante una Incapacidad Laboral Temporaria se calcula conforme a las pautas dispuestas por este artículo, incluyendo la totalidad de los conceptos que debió percibir el damnificado al momento de la primera manifestación invalidante, sin tener en cuenta el tope máximo de remuneraciones sujetas a aportes que estipula la ley previsional [riesgos-del-trabajo-UNLAR.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 2130,
+              "source": "riesgos-del-trabajo-UNLAR.pdf",
+              "score": 0.342971,
+              "text": "les. Esta incapaci-\ndad comienza el día siguiente de la primera manifestación invalidante y finaliza \ncuando el trabajador recibe el alta médica, o se le declara una Incapacidad Labo-\nral Permanente, si se cumplió 1 año desde la primera manifestación invalidante, \no bien si fallece el damnificado.\n¿Qué cobra el trabajador durante la ILT?\nLa prestación dineraria durante una Incapacidad Laboral Temporaria se calcula \nconforme a las pautas dispuestas por el artículo 208 de la Ley de Contrato de Tra-\nbajo Nº 20.744 (t.o. 1976) y sus modificatorias, incluye la totalidad de los concep-\ntos que debió percibir el damnificado al momento de la primera manifestación \ninvalidante, sin tener en cuenta el tope máximo de remuneraciones sujetas a \naportes que estipula la ley previsional.\n\nSi el salario es"
+            },
+            {
+              "posicion": 2,
+              "id": 343,
+              "source": "06_infoleg.pdf",
+              "score": 0.139596,
+              "text": "s nocturnos, entendiéndose como tales el\nintervalo comprendido entre las veinte (20) y las seis (6) horas del día siguiente. En los casos de\nestablecimientos fabriles que desarrollen tareas en tres turnos diarios que abarquen las veinticuatro (24)\nhoras del día, el período de prohibición absoluta en cuanto al empleo de menores, estará regido por este\ntítulo y lo dispuesto en el artículo 189, última parte, de esta ley, pero sólo para los menores varones de\nmás de dieciséis (16) años.\nDescanso al mediodía - Trabajo a domicilio - Tareas penosas, peligrosas o insalubres - Remisión\nArt. 208. — Con relación a los menores de dieciocho (18) años de uno u otro sexo, que trabajen en horas\nde la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley.\nAhorro\nArt. 209. — "
+            },
+            {
+              "posicion": 3,
+              "id": 194,
+              "source": "06_infoleg.pdf",
+              "score": 0.136121,
+              "text": "adas por el profesional actuante.\nTITULO II\nDel contrato de trabajo en general\nCAPITULO I\nDel contrato y la relación de trabajo\nContrato de trabajo\nArt. 23. — Habrá contrato de trabajo, cualquiera sea su forma o denominación, siempre que una persona\nfísica se obligue a realizar actos, ejecutar obras o prestar servicios en favor de la otra y bajo la\ndependencia de ésta, durante un período determinado o indeterminado de tiempo, mediante el pago de\nuna remuneración. Sus cláusulas, en cuanto a la forma y condiciones de la prestación, quedan sometidas\na las disposiciones de orden público, los estatutos, las convenciones colectivas o los laudos con fuerza de\ntales y los usos y costumbres.\nRelación de trabajo\nArt. 24. — Habrá relación de trabajo cuando una persona realice actos, ejecute obras o p"
+            },
+            {
+              "posicion": 4,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 0.105347,
+              "text": "ulos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Le"
+            },
+            {
+              "posicion": 5,
+              "id": 384,
+              "source": "06_infoleg.pdf",
+              "score": 0.101494,
+              "text": "ta tanto se convengan estatutos o convenios particulares, los trabajadores\npodrán regirse por los estatutos o convenios de empresa del Estado similares.\nTITULO XII\nDe la extinción del contrato de trabajo\nDel preaviso\nPlazos\nArt. 252. — El contrato de trabajo no podrá ser disuelto por voluntad de una de las partes, sin previo\naviso, o en su defecto indemnización, además de la que corresponda al trabajador por su antigüedad en\nel empleo, cuando el contrato se disuelva por voluntad del empleador.\nEl preaviso, cuando las partes no lo fijen en un término mayor, deberá darse con la anticipación siguiente:\na) Por el trabajador, de un (1) mes;\nb) Por el empleador, de un (1) mes cuando el trabajador tuviese una antigüedad en el empleo que no\nexceda de cinco (5) años; de dos (2) meses cuando no fuer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "lct-art-57",
+      "texto": "¿Qué dice el artículo 57 de la Ley de Contrato de Trabajo?",
+      "por_que": "Mismo problema, caso extremo: el contenido del art. 57 vigente (presunción en contra del empleador por su silencio) directamente NO existe en el texto de 1974. Cualquier respuesta afirmativa es falsa.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.401,
+          "respuesta_llm": "El contexto proporcionado no incluye el texto del artículo 57 de la Ley de Contrato de Trabajo. Por lo tanto, no puedo responder a tu consulta sobre su contenido.",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 0.601392,
+              "text": "ulos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Le"
+            },
+            {
+              "posicion": 2,
+              "id": 213,
+              "source": "06_infoleg.pdf",
+              "score": 0.564105,
+              "text": "ncorporase, cargará con la obligación de pagar una suma equivalente a los salarios que aquél hubiere\npercibido de haberse operado su incorporación.\nCAPITULO VI\nDe la forma y prueba del contrato de trabajo\nForma\nArt. 52. — Las partes podrán escoger libremente sobre las formas a observar para la celebración del\ncontrato de trabajo, salvo lo que dispongan las leyes o convenciones colectivas en casos particulares.\nNulidad por omisión de la forma\nArt. 53. — Los actos del empleador para cuya validez esta ley, los estatutos profesionales o las\nconvenciones colectivas de trabajo exigieran una forma instrumental determinada se tendrán por no\nsucedidos cuando esa forma no se observare.\nNo obstante el vicio de forma, el acto no es oponible al trabajador.\nPrueba\nArt. 54. — El contrato de trabajo se pr"
+            },
+            {
+              "posicion": 3,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 0.55518,
+              "text": "régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación\nArt. 2º — En los casos de actividades regladas por estatutos o regímenes particulares, leyes generales\ny/o especiales, las disposiciones de esta ley serán aplicables cuando contemplen "
+            },
+            {
+              "posicion": 4,
+              "id": 176,
+              "source": "06_infoleg.pdf",
+              "score": 0.552162,
+              "text": "infoleg\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/norma.htm\nIr a texto actualizado y otros datos\nCONTRATOS DE TRABAJO\nLEY Nº 20.744\nRégimen.\nSancionada: setiembre 11 de 1974.\nPromulgada: setiembre 20 de 1974.\nARTICULO 1º — Apruébase el régimen del contrato de trabajo (L.C.T.), cuyas disposiciones se\nconsiderarán incorporadas a la presente y se observarán como ley de la Nación.\nARTICULO 2º — La ley de contrato de trabajo entrará en vigor a partir de la promulgación de la presente\ny se aplicará aun a las consecuencias de las relaciones y situaciones jurídicas existentes.\nARTICULO 3º — Las disposiciones de los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párra"
+            },
+            {
+              "posicion": 5,
+              "id": 214,
+              "source": "06_infoleg.pdf",
+              "score": 0.537054,
+              "text": " cuando esa forma no se observare.\nNo obstante el vicio de forma, el acto no es oponible al trabajador.\nPrueba\nArt. 54. — El contrato de trabajo se prueba por los modos autorizados por las leyes procesales y lo\nprevisto en el artículo 25 de esta ley.\nAplicación de estatutos profesionales o convenciones colectivas de trabajo\nArt. 55. — Cuando por las leyes, estatutos profesionales o convenciones colectivas de trabajo se exigiera\nalgún documento, licencia o carné para el ejercicio de una determinada actividad, su falta no excluirá la\naplicación del estatuto o régimen especial, salvo que se tratara de profesión que exija título expedido por\nla autoridad competente.\nEllo sin perjuicio que la falta ocasione la aplicación de las sanciones que puedan corresponder de acuerdo\ncon los respectivos re"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.02,
+          "respuesta_llm": "El artículo 57 de la Ley de Contrato de Trabajo establece los requisitos para que las asociaciones civiles sean reconocidas como organizaciones de consumidores. Estas deben cumplir con ciertas condiciones especiales, entre las cuales se destacan: no participar en actividades políticas partidarias, ser independientes de toda forma de actividad profesional, comercial y productiva, y no recibir donaciones [01_argentinagobar.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 177,
+              "source": "06_infoleg.pdf",
+              "score": 13.463289,
+              "text": " los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párrafo, 272 con relación a las\nindemnizaciones que correspondieran a la fecha del despido, 281, 282, 290, 291, 300 y 301, serán de\naplicación a las causas judiciales pendientes.\nARTICULO 4º — Las prescripciones en curso en el momento de entrar en vigencia esta ley se entenderán\nampliadas a los plazos previstos en la misma.\nARTICULO 5º — Los plazos de caducidad establecidos en la ley de contrato de trabajo se computarán a\npartir de la fecha de su vigencia.\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de "
+            },
+            {
+              "posicion": 2,
+              "id": 86,
+              "source": "01_argentinagobar.pdf",
+              "score": 11.478588,
+              "text": "e los intereses del consumidor.\n(La parte del inciso g) que dice: En los estudios sobre controles de calidad, previo a su divulgación, se\nrequerirá la certificación de los mismos por los organismos de contralor correspondientes, quienes se\nexpedirán en los plazos que establezca la reglamentación' fue observada por el Art. 10 del Decreto\nNacional Nº 2089/93 B.O. 15/10/1993)\nARTICULO 57. — Requisitos para Obtener el Reconocimiento. Para ser reconocidas como\norganizaciones de consumidores, las asociaciones civiles deberán acreditar, además de los requisitos\ngenerales, las siguientes condiciones especiales:\na) No podrán participar en actividades políticas partidarias;\nb) Deberán ser independientes de toda forma de actividad profesional, comercial y productiva;\nc) No podrán recibir donaciones, "
+            },
+            {
+              "posicion": 3,
+              "id": 180,
+              "source": "06_infoleg.pdf",
+              "score": 10.69514,
+              "text": " vigencia.\nA falta de acuerdo, la fijación se hará por única vez por el Ministerio de Trabajo de la Nación y sustituirá a\nlas cláusulas respectivas de las convenciones colectivas de trabajo aplicables.\nDe idéntica forma se procederá en el caso previsto en el artículo 121, primer párrafo, de la ley de contrato\nde trabajo.\n\nARTICULO 9º — El Ministerio de Trabajo de la Nación será autoridad de aplicación de la presente ley.\nEllo no implica enervar el derecho de ejercer las acciones pertinentes por parte de los interesados para\nobtener su cumplimiento.\nLas infracciones a las disposiciones de la ley de contrato de trabajo serán sancionadas por el régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las le"
+            },
+            {
+              "posicion": 4,
+              "id": 93,
+              "source": "01_argentinagobar.pdf",
+              "score": 10.628623,
+              "text": "uido por art. 31 de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 62. — Contribuciones Estatales. El Estado nacional podrá disponer el otorgamiento de\ncontribuciones financieras con cargo al presupuesto nacional a las asociaciones de consumidores para\ncumplimentar con los objetivos mencionados en los artículos anteriores.\nEn todos los casos estas asociaciones deberán acreditar el reconocimiento conforme a los artículos 56 y\n57 de la presente ley. La autoridad de aplicación seleccionará a las asociaciones en función de criterios\nde representatividad, autofinanciamiento, actividad y planes futuros de acción a cumplimentar por éstas.\nCAPITULO XVII\nDISPOSICIONES FINALES\nARTICULO 63. — Para el supuesto de contrato de transporte aéreo, se aplicarán las normas del Código\nAeronáutico, los tratados inte"
+            },
+            {
+              "posicion": 5,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 10.608377,
+              "text": "ulos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Le"
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.373,
+          "respuesta_llm": "El contexto proporcionado no incluye el texto del artículo 57 de la Ley de Contrato de Trabajo. Por lo tanto, no puedo responder a tu consulta sobre su contenido.",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 0.031778,
+              "text": "ulos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Le"
+            },
+            {
+              "posicion": 2,
+              "id": 177,
+              "source": "06_infoleg.pdf",
+              "score": 0.031319,
+              "text": " los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párrafo, 272 con relación a las\nindemnizaciones que correspondieran a la fecha del despido, 281, 282, 290, 291, 300 y 301, serán de\naplicación a las causas judiciales pendientes.\nARTICULO 4º — Las prescripciones en curso en el momento de entrar en vigencia esta ley se entenderán\nampliadas a los plazos previstos en la misma.\nARTICULO 5º — Los plazos de caducidad establecidos en la ley de contrato de trabajo se computarán a\npartir de la fecha de su vigencia.\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de "
+            },
+            {
+              "posicion": 3,
+              "id": 181,
+              "source": "06_infoleg.pdf",
+              "score": 0.031025,
+              "text": "régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación\nArt. 2º — En los casos de actividades regladas por estatutos o regímenes particulares, leyes generales\ny/o especiales, las disposiciones de esta ley serán aplicables cuando contemplen "
+            },
+            {
+              "posicion": 4,
+              "id": 180,
+              "source": "06_infoleg.pdf",
+              "score": 0.030366,
+              "text": " vigencia.\nA falta de acuerdo, la fijación se hará por única vez por el Ministerio de Trabajo de la Nación y sustituirá a\nlas cláusulas respectivas de las convenciones colectivas de trabajo aplicables.\nDe idéntica forma se procederá en el caso previsto en el artículo 121, primer párrafo, de la ley de contrato\nde trabajo.\n\nARTICULO 9º — El Ministerio de Trabajo de la Nación será autoridad de aplicación de la presente ley.\nEllo no implica enervar el derecho de ejercer las acciones pertinentes por parte de los interesados para\nobtener su cumplimiento.\nLas infracciones a las disposiciones de la ley de contrato de trabajo serán sancionadas por el régimen del\nDecreto Ley 18.694/70, hasta tanto se dicte un nuevo régimen de sanciones.\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las le"
+            },
+            {
+              "posicion": 5,
+              "id": 176,
+              "source": "06_infoleg.pdf",
+              "score": 0.02971,
+              "text": "infoleg\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25552/norma.htm\nIr a texto actualizado y otros datos\nCONTRATOS DE TRABAJO\nLEY Nº 20.744\nRégimen.\nSancionada: setiembre 11 de 1974.\nPromulgada: setiembre 20 de 1974.\nARTICULO 1º — Apruébase el régimen del contrato de trabajo (L.C.T.), cuyas disposiciones se\nconsiderarán incorporadas a la presente y se observarán como ley de la Nación.\nARTICULO 2º — La ley de contrato de trabajo entrará en vigor a partir de la promulgación de la presente\ny se aplicará aun a las consecuencias de las relaciones y situaciones jurídicas existentes.\nARTICULO 3º — Las disposiciones de los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párra"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 3.202,
+          "respuesta_llm": "El artículo 57 de la Ley de Contrato de Trabajo establece los requisitos para que las asociaciones civiles sean reconocidas como organizaciones de consumidores. Estas organizaciones no podrán participar en actividades políticas partidarias, deberán ser independientes de toda forma de actividad profesional, comercial y productiva, y no podrán recibir donaciones [01_argentinagobar.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 178,
+              "source": "06_infoleg.pdf",
+              "score": 0.931771,
+              "text": "ulos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Le"
+            },
+            {
+              "posicion": 2,
+              "id": 177,
+              "source": "06_infoleg.pdf",
+              "score": 0.409399,
+              "text": " los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párrafo, 272 con relación a las\nindemnizaciones que correspondieran a la fecha del despido, 281, 282, 290, 291, 300 y 301, serán de\naplicación a las causas judiciales pendientes.\nARTICULO 4º — Las prescripciones en curso en el momento de entrar en vigencia esta ley se entenderán\nampliadas a los plazos previstos en la misma.\nARTICULO 5º — Los plazos de caducidad establecidos en la ley de contrato de trabajo se computarán a\npartir de la fecha de su vigencia.\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de "
+            },
+            {
+              "posicion": 3,
+              "id": 86,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.263425,
+              "text": "e los intereses del consumidor.\n(La parte del inciso g) que dice: En los estudios sobre controles de calidad, previo a su divulgación, se\nrequerirá la certificación de los mismos por los organismos de contralor correspondientes, quienes se\nexpedirán en los plazos que establezca la reglamentación' fue observada por el Art. 10 del Decreto\nNacional Nº 2089/93 B.O. 15/10/1993)\nARTICULO 57. — Requisitos para Obtener el Reconocimiento. Para ser reconocidas como\norganizaciones de consumidores, las asociaciones civiles deberán acreditar, además de los requisitos\ngenerales, las siguientes condiciones especiales:\na) No podrán participar en actividades políticas partidarias;\nb) Deberán ser independientes de toda forma de actividad profesional, comercial y productiva;\nc) No podrán recibir donaciones, "
+            },
+            {
+              "posicion": 4,
+              "id": 194,
+              "source": "06_infoleg.pdf",
+              "score": 0.174737,
+              "text": "adas por el profesional actuante.\nTITULO II\nDel contrato de trabajo en general\nCAPITULO I\nDel contrato y la relación de trabajo\nContrato de trabajo\nArt. 23. — Habrá contrato de trabajo, cualquiera sea su forma o denominación, siempre que una persona\nfísica se obligue a realizar actos, ejecutar obras o prestar servicios en favor de la otra y bajo la\ndependencia de ésta, durante un período determinado o indeterminado de tiempo, mediante el pago de\nuna remuneración. Sus cláusulas, en cuanto a la forma y condiciones de la prestación, quedan sometidas\na las disposiciones de orden público, los estatutos, las convenciones colectivas o los laudos con fuerza de\ntales y los usos y costumbres.\nRelación de trabajo\nArt. 24. — Habrá relación de trabajo cuando una persona realice actos, ejecute obras o p"
+            },
+            {
+              "posicion": 5,
+              "id": 384,
+              "source": "06_infoleg.pdf",
+              "score": 0.11645,
+              "text": "ta tanto se convengan estatutos o convenios particulares, los trabajadores\npodrán regirse por los estatutos o convenios de empresa del Estado similares.\nTITULO XII\nDe la extinción del contrato de trabajo\nDel preaviso\nPlazos\nArt. 252. — El contrato de trabajo no podrá ser disuelto por voluntad de una de las partes, sin previo\naviso, o en su defecto indemnización, además de la que corresponda al trabajador por su antigüedad en\nel empleo, cuando el contrato se disuelva por voluntad del empleador.\nEl preaviso, cuando las partes no lo fijen en un término mayor, deberá darse con la anticipación siguiente:\na) Por el trabajador, de un (1) mes;\nb) Por el empleador, de un (1) mes cuando el trabajador tuviese una antigüedad en el empleo que no\nexceda de cinco (5) años; de dos (2) meses cuando no fuer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "consumidor-revocacion",
+      "texto": "¿Qué plazo tiene el consumidor para revocar la aceptación en una venta domiciliaria?",
+      "por_que": "Consulta sana, sin trampa: la Ley 24.240 está en el corpus en su texto actualizado. Sirve de control — si esta también se rompe después de reindexar, el problema es el chunking nuevo y no el corpus.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.34,
+          "respuesta_llm": "El consumidor tiene un plazo de DIEZ (10) días corridos para revocar la aceptación en una venta domiciliaria, contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo que ocurra último, sin responsabilidad alguna [01_argentinagobar.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 43,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.746211,
+              "text": " — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 35. — P"
+            },
+            {
+              "posicion": 2,
+              "id": 16,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.612908,
+              "text": "tratación.\nLa empresa receptora del pedido de rescisión del servicio deberá enviar sin cargo al domicilio del\nconsumidor o usuario una constancia fehaciente dentro de las SETENTA Y DOS (72) horas posteriores a\nla recepción del pedido de rescisión. Esta disposición debe ser publicada en la factura o documento\nequivalente que la empresa enviare regularmente al domicilio del consumidor o usuario.\n(Artículo incorporado por art. 8° de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 10 quáter: Prohibición de cobro. Prohíbase el cobro de preaviso, mes adelantado y/o\ncualquier otro concepto, por parte de los prestadores de servicios, incluidos los servicios públicos\ndomiciliarios, en los casos de solicitud de baja del mismo realizado por el consumidor ya sea en forma\npersonal, telefónica, electrónica o s"
+            },
+            {
+              "posicion": 3,
+              "id": 33,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.605629,
+              "text": " unidades de medición, deberán ser los reconocidos y legalmente\nautorizados. Las empresas prestatarias garantizarán a los usuarios el control individual de los consumos.\nLas facturas deberán ser entregadas al usuario con no menos de diez (10) días de anticipación a la fecha\nde su vencimiento.\nARTICULO 30. — Interrupción de la Prestación del Servicio. Cuando la prestación del servicio público\ndomiciliario se interrumpa o sufra alteraciones, se presume que es por causa imputable a la empresa\nprestadora. Efectuado el reclamo por el usuario, la empresa dispone de un plazo máximo de treinta (30)\ndías para demostrar que la interrupción o alteración no le es imputable. En caso contrario, la empresa\ndeberá reintegrar el importe total del servicio no prestado dentro del plazo establecido precedente"
+            },
+            {
+              "posicion": 4,
+              "id": 36,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.59597,
+              "text": "s prestatarias el detalle de las deudas que registren los usuarios, dentro\nde los ciento veinte (120) días contados a partir de la sanción de la presente.\nPara el supuesto que algún ente que sea titular del derecho, no comunicare al actual prestatario del\nservicio, el detalle de la deuda dentro del plazo fijado, quedará condonada la totalidad de la deuda que\npudiera existir, con anterioridad a la privatización.\n(Artículo incorporado por el art. 4º de la Ley Nº 24.787 B.O. 2/4/1997. Párrafos cuarto y quinto de este\núltimo artículo, observados por el Decreto Nacional Nº 270/97 B.O 2/4/1997)\nARTICULO 31. — Cuando una empresa de servicio público domiciliario con variaciones regulares\nestacionales facture en un período consumos que exceden en un SETENTA Y CINCO POR CIENTO\n(75%) el promedio de l"
+            },
+            {
+              "posicion": 5,
+              "id": 41,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.595056,
+              "text": "l\nartículo 50 del presente cuerpo legal.\n(Artículo sustituido por art. 12 de la Ley N° 26.361 B.O. 7/4/2008)\nCAPITULO VII\nDE LA VENTA DOMICILIARIA, POR CORRESPONDENCIA Y OTRAS\nARTICULO 32. — Venta domiciliaria. Es la oferta o propuesta de venta de un bien o prestación de un\nservicio efectuada al consumidor fuera del establecimiento del proveedor. También se entenderá\ncomprendida dentro de la venta domiciliaria o directa aquella contratación que resulte de una\nconvocatoria al consumidor o usuario al establecimiento del proveedor o a otro sitio, cuando el objetivo de\ndicha convocatoria sea total o parcialmente distinto al de la contratación, o se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la pre"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.028,
+          "respuesta_llm": "El consumidor tiene un plazo de DIEZ (10) días corridos para revocar la aceptación en una venta domiciliaria, contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo que ocurra último, sin responsabilidad alguna [01_argentinagobar.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 43,
+              "source": "01_argentinagobar.pdf",
+              "score": 26.592937,
+              "text": " — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 35. — P"
+            },
+            {
+              "posicion": 2,
+              "id": 42,
+              "source": "01_argentinagobar.pdf",
+              "score": 23.609169,
+              "text": "se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la presente ley.\nLo dispuesto precedentemente no es aplicable a la compraventa de bienes perecederos recibidos por el\nconsumidor y abonados al contado.\n(Artículo sustituido por art. 13 de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 33. — Venta por Correspondencia y Otras. Es aquella en que la propuesta se efectúa por\nmedio postal, telecomunicaciones, electrónico o similar y la respuesta a la misma se realiza por iguales\nmedios.\nNo se permitirá la publicación del número postal como domicilio.\nARTICULO 34. — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación d"
+            },
+            {
+              "posicion": 3,
+              "id": 41,
+              "source": "01_argentinagobar.pdf",
+              "score": 22.678787,
+              "text": "l\nartículo 50 del presente cuerpo legal.\n(Artículo sustituido por art. 12 de la Ley N° 26.361 B.O. 7/4/2008)\nCAPITULO VII\nDE LA VENTA DOMICILIARIA, POR CORRESPONDENCIA Y OTRAS\nARTICULO 32. — Venta domiciliaria. Es la oferta o propuesta de venta de un bien o prestación de un\nservicio efectuada al consumidor fuera del establecimiento del proveedor. También se entenderá\ncomprendida dentro de la venta domiciliaria o directa aquella contratación que resulte de una\nconvocatoria al consumidor o usuario al establecimiento del proveedor o a otro sitio, cuando el objetivo de\ndicha convocatoria sea total o parcialmente distinto al de la contratación, o se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la pre"
+            },
+            {
+              "posicion": 4,
+              "id": 1573,
+              "source": "21_resolución-75-modelo-de-convenio.pdf",
+              "score": 13.045209,
+              "text": "3/22 del MINISTERIO DE ECONOMÍA se creó el Programa\n“Precios Justos” en la órbita de la SUBSECRETARÍA DE POLÍTICAS PARA EL MERCADO INTERNO\ndependiente de esta Secretaría, con el objeto de garantizar la venta al consumidor final de ciertos\nproductos a un precio fijo o con una variación constante y previamente acordada por un plazo\ndeterminado que le otorgue previsibilidad, conforme a los términos previstos en dicha medida.\n\nQue, conforme a lo previsto en el Decreto N° 50/19 y sus modificatorios, esta Secretaría tiene entre sus\nobjetivos el de entender en la formulación y ejecución de la política comercial, supervisar y entender en\nlas actividades vinculadas al seguimiento y verificación de lo relacionado con la aplicación de la Ley N°\n24.240 y sus modificatorias y entender en la elaboración"
+            },
+            {
+              "posicion": 5,
+              "id": 26,
+              "source": "01_argentinagobar.pdf",
+              "score": 12.464878,
+              "text": "El tiempo en que se realizará el trabajo;\nf) Si otorga o no garantía y en su caso, el alcance y duración de ésta;\ng) El plazo para la aceptación del presupuesto;\nh) Los números de inscripción en la Dirección General Impositiva y en el Sistema Previsional.\nARTICULO 22. — Supuestos no Incluidos en el Presupuesto. Todo servicio, tarea o empleo material o\ncosto adicional, que se evidencie como necesario durante la prestación del servicio y que por su\nnaturaleza o características no pudo ser incluido en el presupuesto original, deberá ser comunicado al\nconsumidor antes de su realización o utilización. Queda exceptuado de esta obligación el prestador del\nservicio que, por la naturaleza del mismo, no pueda interrumpirlo sin afectar su calidad o sin daño para las\n\ncosas del consumidor.\nARTICULO 23"
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.361,
+          "respuesta_llm": "El consumidor tiene un plazo de DIEZ (10) días corridos para revocar la aceptación en una venta domiciliaria, contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que ocurra, sin responsabilidad alguna [01_argentinagobar.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 43,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.032787,
+              "text": " — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 35. — P"
+            },
+            {
+              "posicion": 2,
+              "id": 42,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.031281,
+              "text": "se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la presente ley.\nLo dispuesto precedentemente no es aplicable a la compraventa de bienes perecederos recibidos por el\nconsumidor y abonados al contado.\n(Artículo sustituido por art. 13 de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 33. — Venta por Correspondencia y Otras. Es aquella en que la propuesta se efectúa por\nmedio postal, telecomunicaciones, electrónico o similar y la respuesta a la misma se realiza por iguales\nmedios.\nNo se permitirá la publicación del número postal como domicilio.\nARTICULO 34. — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación d"
+            },
+            {
+              "posicion": 3,
+              "id": 41,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.031258,
+              "text": "l\nartículo 50 del presente cuerpo legal.\n(Artículo sustituido por art. 12 de la Ley N° 26.361 B.O. 7/4/2008)\nCAPITULO VII\nDE LA VENTA DOMICILIARIA, POR CORRESPONDENCIA Y OTRAS\nARTICULO 32. — Venta domiciliaria. Es la oferta o propuesta de venta de un bien o prestación de un\nservicio efectuada al consumidor fuera del establecimiento del proveedor. También se entenderá\ncomprendida dentro de la venta domiciliaria o directa aquella contratación que resulte de una\nconvocatoria al consumidor o usuario al establecimiento del proveedor o a otro sitio, cuando el objetivo de\ndicha convocatoria sea total o parcialmente distinto al de la contratación, o se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la pre"
+            },
+            {
+              "posicion": 4,
+              "id": 22,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.028219,
+              "text": ". — Prolongación del Plazo de Garantía. El tiempo durante el cual el consumidor está\nprivado del uso de la cosa en garantía, por cualquier causa relacionada con su reparación, debe\ncomputarse como prolongación del plazo de garantía legal.\n\nARTICULO 17. — Reparación no Satisfactoria. En los supuestos en que la reparación efectuada no\nresulte satisfactoria por no reunir la cosa reparada, las condiciones óptimas para cumplir con el uso al que\nestá destinada, el consumidor puede:\na) Pedir la sustitución de la cosa adquirida por otra de idénticas características. En tal caso el plazo de la\ngarantía legal se computa a partir de la fecha de la entrega de la nueva cosa;\nb) Devolver la cosa en el estado en que se encuentre a cambio de recibir el importe equivalente a las\nsumas pagadas, conforme el "
+            },
+            {
+              "posicion": 5,
+              "id": 44,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.028169,
+              "text": "endedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 35. — Prohibición. Queda prohibida la realización de propuesta al consumidor, por cualquier\ntipo de medio, sobre una cosa o servicio que no haya sido requerido previamente y que genere un cargo\nautomático en cualquier sistema de débito, que obligue al consumidor a manifestarse por la negativa para\nque dicho cargo no se efectivice.\nSi con la oferta se envió una cosa, el receptor no está obligado a conservarla ni a restituirla al remitente\naunque la restitución pueda ser realizada libre de gastos.\nCAPITULO VIII\nDE LAS OPERACIONES DE VENTA DE CREDITO\nARTICULO 36. — Requisitos. En las operaciones financieras para consumo y en las de crédito para el\ncons"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 2.257,
+          "respuesta_llm": "El consumidor tiene un plazo de DIEZ (10) días corridos para revocar la aceptación en una venta domiciliaria, contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo que ocurra primero, sin responsabilidad alguna [01_argentinagobar.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 43,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.998939,
+              "text": " — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 35. — P"
+            },
+            {
+              "posicion": 2,
+              "id": 33,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.150774,
+              "text": " unidades de medición, deberán ser los reconocidos y legalmente\nautorizados. Las empresas prestatarias garantizarán a los usuarios el control individual de los consumos.\nLas facturas deberán ser entregadas al usuario con no menos de diez (10) días de anticipación a la fecha\nde su vencimiento.\nARTICULO 30. — Interrupción de la Prestación del Servicio. Cuando la prestación del servicio público\ndomiciliario se interrumpa o sufra alteraciones, se presume que es por causa imputable a la empresa\nprestadora. Efectuado el reclamo por el usuario, la empresa dispone de un plazo máximo de treinta (30)\ndías para demostrar que la interrupción o alteración no le es imputable. En caso contrario, la empresa\ndeberá reintegrar el importe total del servicio no prestado dentro del plazo establecido precedente"
+            },
+            {
+              "posicion": 3,
+              "id": 42,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.142656,
+              "text": "se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la presente ley.\nLo dispuesto precedentemente no es aplicable a la compraventa de bienes perecederos recibidos por el\nconsumidor y abonados al contado.\n(Artículo sustituido por art. 13 de la Ley N° 26.361 B.O. 7/4/2008)\nARTICULO 33. — Venta por Correspondencia y Otras. Es aquella en que la propuesta se efectúa por\nmedio postal, telecomunicaciones, electrónico o similar y la respuesta a la misma se realiza por iguales\nmedios.\nNo se permitirá la publicación del número postal como domicilio.\nARTICULO 34. — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación d"
+            },
+            {
+              "posicion": 4,
+              "id": 17,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.127247,
+              "text": " públicos\ndomiciliarios, en los casos de solicitud de baja del mismo realizado por el consumidor ya sea en forma\npersonal, telefónica, electrónica o similar.\n(Artículo incorporado por art. 1° de la Ley N° 27.265 B.O. 17/8/2016.)\nCAPITULO IV\nCOSAS MUEBLES NO CONSUMIBLES\nARTICULO 11. — Garantías. Cuando se comercialicen cosas muebles no consumibles conforme lo\nestablece el artículo 2325 del Código Civil, el consumidor y los sucesivos adquirentes gozarán de garantía\nlegal por los defectos o vicios de cualquier índole, aunque hayan sido ostensibles o manifiestos al tiempo\n\ndel contrato, cuando afecten la identidad entre lo ofrecido y lo entregado, o su correcto funcionamiento.\nLa garantía legal tendrá vigencia por TRES (3) meses cuando se trate de bienes muebles usados y por\nSEIS (6) meses en "
+            },
+            {
+              "posicion": 5,
+              "id": 38,
+              "source": "01_argentinagobar.pdf",
+              "score": 0.091165,
+              "text": "usuario podrá presentar reclamo, abonando únicamente los\nconceptos no reclamados.\n\nEl prestador dispondrá de un plazo de TREINTA (30) días a partir del reclamo del usuario para acreditar\nen forma fehaciente que el consumo facturado fue efectivamente realizado.\nSi el usuario no considerara satisfecho su reclamo o el prestador no le contestara en los plazos indicados,\npodrá requerir la intervención del organismo de control correspondiente dentro de los TREINTA (30) días\ncontados a partir de la respuesta del prestador o de la fecha de vencimiento del plazo para contestar, si\néste no hubiera respondido.\nEn los casos en que el reclamo fuera resuelto a favor del usuario y si éste hubiera abonado un importe\nmayor al que finalmente se determine, el prestador deberá reintegrarle la diferencia corre"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "siri-amparo",
+      "texto": "¿Qué resolvió la Corte en el caso Siri sobre la acción de amparo?",
+      "por_que": "Fallo, no ley: no tiene artículos numerados. Es el caso que justifica el fallback del chunking por estructura, y el control de que cortar por artículo no rompa los documentos que no los tienen.",
+      "resultados": {
+        "naive": {
+          "latencia_recuperacion_s": 0.339,
+          "respuesta_llm": "En el caso \"Siri\", la Corte Suprema de Argentina declaró la existencia de una acción o recurso de amparo destinado a tutelar las \"garantías constitucionales\". Esta acción se fundamentó en la afirmación de que dichas garantías existen y protegen al individuo por el solo hecho de estar consagradas en la Constitución, lo que implica que deben ser defendidas judicialmente. A partir de este fallo, el recurso de amparo se extendió más allá de los tradicionales casos de hábeas corpus, abarcando otras situaciones que pudieran implicar ataques a las garantías constitucionales [14_outón-1967.pdf] y [13_samuel-kot-1958.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 1015,
+              "source": "14_outón-1967.pdf",
+              "score": 0.602905,
+              "text": "l art. 16, inc. b) del reglamento aprobado por decreto 280/64, y en su mérito estimo que\ncorresponde revocar el fallo de fs. 133 de estas actuaciones, y hacer lugar al amparo pedido por los\naccionantes.\nOctubre 6 de 1966. EDUARDO H. MARQUARDT\nFALLO DE LA CORTE SUPREMA\nConsiderando:\n1°) Que hasta el 27 de diciembre de 1957, fecha en que se resolvió el caso \"Siri\" (Fallos, 239:459), el\nrecurso de amparo sólo se admitió, en el orden nacional, para proteger la libertad cuando mediase\ndetención, arresto o prisión ilegal de las personas (arts. 20, ley 48 y 617 y sigts., Cód. de Proced.\nCriminal).\n\n2°) Que, sin embargo, a partir de entonces el amparo no se circunscribió a los tradicionales casos de\nhábeas corpus sino que se extendió a otras situaciones que pudieran comportar ataques flagrantes,\ne"
+            },
+            {
+              "posicion": 2,
+              "id": 982,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.601696,
+              "text": "ara mejor proveer dispuestas por\nla Cámara 3ª de Apelaciones en lo Penal de La Plata, ésta \"Por sus fundamentos\" confirmó el\nsobreseimiento definitivo que había sido objeto del recurso (auto de fecha 8 de julio, fs.88).\nContra esta sentencia, Samuel Kot SRL interpuso el recurso extraordinario sobre el que debe\npronunciarse esta Corte.\nConsiderando:\n1) Que en el caso de \"Angel Siri\", el Tribunal declaró la existencia, en el derecho público argentino, de una\nacción o recurso de amparo destinado a tutelar las llamadas \"garantías constitucionales\". La doctrina que\nen tal oportunidad quedó establecida, tuvo por fundamento la afirmación de que dichas \"garantías\nconstitucionales\" existen y protegen al hombre por el solo hecho de hallarse consagradas en la Ley\nFundamental, de modo que deben hacers"
+            },
+            {
+              "posicion": 3,
+              "id": 950,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.59787,
+              "text": " dedujo recurso extraordinario el que, concedido por el tribunal a quo,\nha sido declarado improcedente por esta Corte en el día de la fecha.\nEl mismo día de la sentencia de la Cámara, pero antes de dictarse (fs.4), el apoderado de la empresa se\npresentó ante la misma Cámara deduciendo \"recurso de amparo\" a fin de obtener la desocupación del\ninmueble: invocó la sentencia de esta Corte, de fecha 27 de diciembre de 1957, recaída en el \"caso Siri\",\n\n\"las garantías a la libertad de trabajo -art. 14-; a la propiedad -art 17-; a la libre actividad -art. 19-, de la\nConstitución Nacional\", que estarían afectadas, e hizo presente que la situación que planteaba era de\n\"una gravedad extraordinaria. Al acto delictuoso de la ocupación de una fábrica y la deposesión de sus\nlegítimos propietarios, se suma"
+            },
+            {
+              "posicion": 4,
+              "id": 994,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.582936,
+              "text": "xistentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturalez"
+            },
+            {
+              "posicion": 5,
+              "id": 942,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.571035,
+              "text": "de ese modo\nla intervención de los tribunales del crimen en la cuestión de que se trata, aun al margen del proceso\npenal antes mencionado.\nY bien, lo decidido en el recurso planteado por Angel Siri no es, a mi juicio, de aplicación al sub iudice.\nAllí, lo mismo que en los casos jurisprudenciales a que expresamente se refirió V. E. para destacar su\napartamiento de la doctrina tradicional hasta entonces observada (Fallos, 168, 15; 169, 103), se pedía\namparo, no contra un hecho realizado por particulares, sino contra un acto arbitrario de la autoridad para\nel que no existía remedio expreso en la legislación a pesar de que comportaba la violación de garantías\nindividuales aseguradas por la Constitución Nacional.\nComo se observa, pues, la situación es fundamentalmente distinta: en primer lugar,"
+            }
+          ]
+        },
+        "sparse": {
+          "latencia_recuperacion_s": 0.024,
+          "respuesta_llm": "En el caso \"Siri\", la Corte Suprema de Argentina declaró la existencia de una acción o recurso de amparo destinado a tutelar las \"garantías constitucionales\". Esta doctrina estableció que dichas garantías existen y protegen al individuo por el solo hecho de estar consagradas en la Ley Fundamental, lo que implica que deben ser respetadas y protegidas judicialmente [13_samuel-kot-1958.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 994,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 22.5694,
+              "text": "xistentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturalez"
+            },
+            {
+              "posicion": 2,
+              "id": 1015,
+              "source": "14_outón-1967.pdf",
+              "score": 18.91806,
+              "text": "l art. 16, inc. b) del reglamento aprobado por decreto 280/64, y en su mérito estimo que\ncorresponde revocar el fallo de fs. 133 de estas actuaciones, y hacer lugar al amparo pedido por los\naccionantes.\nOctubre 6 de 1966. EDUARDO H. MARQUARDT\nFALLO DE LA CORTE SUPREMA\nConsiderando:\n1°) Que hasta el 27 de diciembre de 1957, fecha en que se resolvió el caso \"Siri\" (Fallos, 239:459), el\nrecurso de amparo sólo se admitió, en el orden nacional, para proteger la libertad cuando mediase\ndetención, arresto o prisión ilegal de las personas (arts. 20, ley 48 y 617 y sigts., Cód. de Proced.\nCriminal).\n\n2°) Que, sin embargo, a partir de entonces el amparo no se circunscribió a los tradicionales casos de\nhábeas corpus sino que se extendió a otras situaciones que pudieran comportar ataques flagrantes,\ne"
+            },
+            {
+              "posicion": 3,
+              "id": 982,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 15.545571,
+              "text": "ara mejor proveer dispuestas por\nla Cámara 3ª de Apelaciones en lo Penal de La Plata, ésta \"Por sus fundamentos\" confirmó el\nsobreseimiento definitivo que había sido objeto del recurso (auto de fecha 8 de julio, fs.88).\nContra esta sentencia, Samuel Kot SRL interpuso el recurso extraordinario sobre el que debe\npronunciarse esta Corte.\nConsiderando:\n1) Que en el caso de \"Angel Siri\", el Tribunal declaró la existencia, en el derecho público argentino, de una\nacción o recurso de amparo destinado a tutelar las llamadas \"garantías constitucionales\". La doctrina que\nen tal oportunidad quedó establecida, tuvo por fundamento la afirmación de que dichas \"garantías\nconstitucionales\" existen y protegen al hombre por el solo hecho de hallarse consagradas en la Ley\nFundamental, de modo que deben hacers"
+            },
+            {
+              "posicion": 4,
+              "id": 1029,
+              "source": "14_outón-1967.pdf",
+              "score": 13.683495,
+              "text": "ndical a la asociación profesional con personería\ngremial reconocida, lo que supone -dicen- la agremiación forzosa a un determinado sindicato y la\nnegación del derecho de trabajar a quienes no se hayan sometido a tal exigencia.\n14) Que el juez nacional del trabajo, por sentencia de fs. 48/50, resolvió conceder el amparo y ordenar la\ninscripción de los peticionantes sin previa presentación del carnet sindical. En cambio, la cámara a quo,\nen su sentencia de fs. 133/134, resolvió revocar la decisión del inferior por el mérito de la jurisprudencia\nde esta Corte sentada en Fallos 258:227, sin perjuicio de admitir que pueda valorarse la contradicción de\nla norma cuestionada con el texto de la Ley Fundamental por la vía del recurso extraordinario a que se\n\nrefiere el art. 14 de la ley 48.\n15) Que"
+            },
+            {
+              "posicion": 5,
+              "id": 950,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 13.669896,
+              "text": " dedujo recurso extraordinario el que, concedido por el tribunal a quo,\nha sido declarado improcedente por esta Corte en el día de la fecha.\nEl mismo día de la sentencia de la Cámara, pero antes de dictarse (fs.4), el apoderado de la empresa se\npresentó ante la misma Cámara deduciendo \"recurso de amparo\" a fin de obtener la desocupación del\ninmueble: invocó la sentencia de esta Corte, de fecha 27 de diciembre de 1957, recaída en el \"caso Siri\",\n\n\"las garantías a la libertad de trabajo -art. 14-; a la propiedad -art 17-; a la libre actividad -art. 19-, de la\nConstitución Nacional\", que estarían afectadas, e hizo presente que la situación que planteaba era de\n\"una gravedad extraordinaria. Al acto delictuoso de la ocupación de una fábrica y la deposesión de sus\nlegítimos propietarios, se suma"
+            }
+          ]
+        },
+        "hibrida": {
+          "latencia_recuperacion_s": 0.333,
+          "respuesta_llm": "En el caso \"Siri\", la Corte Suprema de Argentina declaró la existencia de una acción o recurso de amparo destinado a tutelar las \"garantías constitucionales\". Esta acción se fundamentó en la afirmación de que dichas garantías existen y protegen al individuo por el solo hecho de estar consagradas en la Ley Fundamental, lo que implica que deben ser defendidas judicialmente [13_samuel-kot-1958.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 1015,
+              "source": "14_outón-1967.pdf",
+              "score": 0.032522,
+              "text": "l art. 16, inc. b) del reglamento aprobado por decreto 280/64, y en su mérito estimo que\ncorresponde revocar el fallo de fs. 133 de estas actuaciones, y hacer lugar al amparo pedido por los\naccionantes.\nOctubre 6 de 1966. EDUARDO H. MARQUARDT\nFALLO DE LA CORTE SUPREMA\nConsiderando:\n1°) Que hasta el 27 de diciembre de 1957, fecha en que se resolvió el caso \"Siri\" (Fallos, 239:459), el\nrecurso de amparo sólo se admitió, en el orden nacional, para proteger la libertad cuando mediase\ndetención, arresto o prisión ilegal de las personas (arts. 20, ley 48 y 617 y sigts., Cód. de Proced.\nCriminal).\n\n2°) Que, sin embargo, a partir de entonces el amparo no se circunscribió a los tradicionales casos de\nhábeas corpus sino que se extendió a otras situaciones que pudieran comportar ataques flagrantes,\ne"
+            },
+            {
+              "posicion": 2,
+              "id": 994,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.032018,
+              "text": "xistentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturalez"
+            },
+            {
+              "posicion": 3,
+              "id": 982,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.032002,
+              "text": "ara mejor proveer dispuestas por\nla Cámara 3ª de Apelaciones en lo Penal de La Plata, ésta \"Por sus fundamentos\" confirmó el\nsobreseimiento definitivo que había sido objeto del recurso (auto de fecha 8 de julio, fs.88).\nContra esta sentencia, Samuel Kot SRL interpuso el recurso extraordinario sobre el que debe\npronunciarse esta Corte.\nConsiderando:\n1) Que en el caso de \"Angel Siri\", el Tribunal declaró la existencia, en el derecho público argentino, de una\nacción o recurso de amparo destinado a tutelar las llamadas \"garantías constitucionales\". La doctrina que\nen tal oportunidad quedó establecida, tuvo por fundamento la afirmación de que dichas \"garantías\nconstitucionales\" existen y protegen al hombre por el solo hecho de hallarse consagradas en la Ley\nFundamental, de modo que deben hacers"
+            },
+            {
+              "posicion": 4,
+              "id": 950,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.031258,
+              "text": " dedujo recurso extraordinario el que, concedido por el tribunal a quo,\nha sido declarado improcedente por esta Corte en el día de la fecha.\nEl mismo día de la sentencia de la Cámara, pero antes de dictarse (fs.4), el apoderado de la empresa se\npresentó ante la misma Cámara deduciendo \"recurso de amparo\" a fin de obtener la desocupación del\ninmueble: invocó la sentencia de esta Corte, de fecha 27 de diciembre de 1957, recaída en el \"caso Siri\",\n\n\"las garantías a la libertad de trabajo -art. 14-; a la propiedad -art 17-; a la libre actividad -art. 19-, de la\nConstitución Nacional\", que estarían afectadas, e hizo presente que la situación que planteaba era de\n\"una gravedad extraordinaria. Al acto delictuoso de la ocupación de una fábrica y la deposesión de sus\nlegítimos propietarios, se suma"
+            },
+            {
+              "posicion": 5,
+              "id": 993,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.029644,
+              "text": "pis, I diritti della personalitá, 1950, p. 86 y siguientes ).\n4) Que conforme a lo expuesto, la doctrina del caso \"Siri\" no guarda relación directa ni inmediata con la\nsituación jurídica planteada en autos. Para que pudiera hacerse extensiva a esta última, habría que\nmodificarla en su esencia y sostener que el amparo no es un medio defensivo implícito en la Ley\n\nFundamental para la tutela de \"garantías constitucionales\", sino una acción sumarísima creada por los\njueces, al margen de toda norma legal autoritativa, con el fin de posibilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que preci"
+            }
+          ]
+        },
+        "hibrida_rerank": {
+          "latencia_recuperacion_s": 2.288,
+          "respuesta_llm": "En el caso \"Siri\", la Corte Suprema de Argentina declaró la existencia de una acción o recurso de amparo destinado a tutelar las \"garantías constitucionales\". Esta doctrina se fundamentó en la afirmación de que dichas garantías existen y protegen al individuo por el solo hecho de estar consagradas en la Constitución Nacional, lo que implica que deben ser aseguradas por los jueces. La Corte resolvió que el amparo no se limitaba a los tradicionales casos de hábeas corpus, sino que se extendía a otras situaciones que pudieran comportar ataques a las garantías constitucionales [12_siri-angel-1957.pdf].",
+          "chunks": [
+            {
+              "posicion": 1,
+              "id": 994,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.999134,
+              "text": "xistentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturalez"
+            },
+            {
+              "posicion": 2,
+              "id": 1015,
+              "source": "14_outón-1967.pdf",
+              "score": 0.994565,
+              "text": "l art. 16, inc. b) del reglamento aprobado por decreto 280/64, y en su mérito estimo que\ncorresponde revocar el fallo de fs. 133 de estas actuaciones, y hacer lugar al amparo pedido por los\naccionantes.\nOctubre 6 de 1966. EDUARDO H. MARQUARDT\nFALLO DE LA CORTE SUPREMA\nConsiderando:\n1°) Que hasta el 27 de diciembre de 1957, fecha en que se resolvió el caso \"Siri\" (Fallos, 239:459), el\nrecurso de amparo sólo se admitió, en el orden nacional, para proteger la libertad cuando mediase\ndetención, arresto o prisión ilegal de las personas (arts. 20, ley 48 y 617 y sigts., Cód. de Proced.\nCriminal).\n\n2°) Que, sin embargo, a partir de entonces el amparo no se circunscribió a los tradicionales casos de\nhábeas corpus sino que se extendió a otras situaciones que pudieran comportar ataques flagrantes,\ne"
+            },
+            {
+              "posicion": 3,
+              "id": 982,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.983112,
+              "text": "ara mejor proveer dispuestas por\nla Cámara 3ª de Apelaciones en lo Penal de La Plata, ésta \"Por sus fundamentos\" confirmó el\nsobreseimiento definitivo que había sido objeto del recurso (auto de fecha 8 de julio, fs.88).\nContra esta sentencia, Samuel Kot SRL interpuso el recurso extraordinario sobre el que debe\npronunciarse esta Corte.\nConsiderando:\n1) Que en el caso de \"Angel Siri\", el Tribunal declaró la existencia, en el derecho público argentino, de una\nacción o recurso de amparo destinado a tutelar las llamadas \"garantías constitucionales\". La doctrina que\nen tal oportunidad quedó establecida, tuvo por fundamento la afirmación de que dichas \"garantías\nconstitucionales\" existen y protegen al hombre por el solo hecho de hallarse consagradas en la Ley\nFundamental, de modo que deben hacers"
+            },
+            {
+              "posicion": 4,
+              "id": 950,
+              "source": "13_samuel-kot-1958.pdf",
+              "score": 0.972666,
+              "text": " dedujo recurso extraordinario el que, concedido por el tribunal a quo,\nha sido declarado improcedente por esta Corte en el día de la fecha.\nEl mismo día de la sentencia de la Cámara, pero antes de dictarse (fs.4), el apoderado de la empresa se\npresentó ante la misma Cámara deduciendo \"recurso de amparo\" a fin de obtener la desocupación del\ninmueble: invocó la sentencia de esta Corte, de fecha 27 de diciembre de 1957, recaída en el \"caso Siri\",\n\n\"las garantías a la libertad de trabajo -art. 14-; a la propiedad -art 17-; a la libre actividad -art. 19-, de la\nConstitución Nacional\", que estarían afectadas, e hizo presente que la situación que planteaba era de\n\"una gravedad extraordinaria. Al acto delictuoso de la ocupación de una fábrica y la deposesión de sus\nlegítimos propietarios, se suma"
+            },
+            {
+              "posicion": 5,
+              "id": 890,
+              "source": "12_siri-angel-1957.pdf",
+              "score": 0.947698,
+              "text": "Siri, Angel (1957)\nFuente: https://falloscsn.blogspot.com/2005/08/siri-angel-1957.html\n27 de Diciembre de 1957\nFallos 239:459\n(Amparo contra actos del Estado)\nEl actor era director y propietario del diario «Mercedes», que había sido clausurado por la policía de la\nprovincia de Buenos Aires. Ante ello interpuso un habeas corpus para que la justicia dispusiera su\nreapertura. Habiendo comprobado la base fáctica de que la medida se había dictado sin justificación, la\nmayoría de la Corte (votó en disidencia el juez Herrera) afirmó que “Los preceptos constitucionales tanto\ncomo la experiencia institucional del país reclaman de consuno el goce y ejercicio pleno de las garantías\nindividuales para la efectiva vigencia del Estado de derecho e imponen a los jueces el deber de\nasegurarlas”; y basándos"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
