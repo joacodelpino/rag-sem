@@ -356,9 +356,12 @@ primera consulta, ver más abajo), vía `python evals/bench_rerank.py` →
 | bge-reranker-v2-m3 (568M) | ~0.94 | **~18.7 s** |
 
 **~9× de diferencia**, con 4.8× de parámetros. Los 18.7s del grande son
-inviables en vivo; los 2.0s del chico son perfectamente presentables. Lo que
-todavía no sabemos es cuánta calidad cuesta esa diferencia — eso lo tiene que
-contestar Ragas sobre el set dorado, no la intuición.
+inviables en vivo; los 2.0s del chico son perfectamente presentables.
+
+Cuánta calidad cuesta esa diferencia ya está medido sobre el set dorado, y la
+respuesta no es la esperable: el modelo chico **empeora** el ranking en una
+categoría entera de preguntas. Ver [Lo que la evaluación
+destapó](#lo-que-la-evaluación-destapó).
 
 #### Precarga de modelos
 
@@ -436,10 +439,12 @@ de 20 pares. Eso no afecta la latencia (no hay caché por par) pero invalida
 cualquier lectura de calidad sobre esas corridas: el script mide tiempo y
 nada más. Con el corpus real el relleno deja de aplicarse solo.
 
-`evals/run_ragas.py` es el próximo módulo grande, y ahí entra
-`retrieval.config_snapshot()`: devuelve el reranker, los candidatos y el
-chunking con los que efectivamente se corrió, para que cada fila de la tabla
-quede etiquetada sin anotarlo a mano (que es como termina desincronizado).
+`evals/run_ragas.py` corre el set dorado contra las 4 configuraciones y
+escribe la tabla de ablación. Ahí entra `retrieval.config_snapshot()`:
+devuelve el reranker, los candidatos y el chunking con los que efectivamente
+se corrió, para que cada fila quede etiquetada sin anotarlo a mano (que es
+como termina desincronizado). El detalle de qué mide y por qué está en el
+README; los resultados, en [EVALUACION.md](EVALUACION.md).
 
 ---
 
@@ -500,15 +505,91 @@ ramas.
 primera página de cada PDF, y por eso la app y las citas del LLM muestran
 `Chunk.etiqueta()` en vez de `source`.
 
+## Lo que la evaluación destapó
+
+Igual que el manifiesto, correr la evaluación completa sacó a la luz algo que
+mirando el código no se veía. Está contado para el resto del grupo en
+[EVALUACION.md](EVALUACION.md); acá va la versión técnica.
+
+### El reranking chico rompe las preguntas de tipo `fuente`
+
+Cuatro de las 29 preguntas del set dorado preguntan **cuál documento** dice
+algo, no qué dice: *"¿qué ley establece las normas de defensa del
+consumidor?"*, *"¿qué ley es el Código Penal?"*, *"¿en qué fallo la Corte
+creó la acción de amparo?"*.
+
+La respuesta a esas preguntas **no está en el articulado**. Está en la
+**carátula**: el chunk 0, la portada que dice "Ley Nº 24.240 — Normas de
+Protección y Defensa de los Consumidores". El resto del documento habla del
+tema durante cien artículos y no se nombra a sí mismo ni una vez.
+
+Medido sobre esas 4 preguntas:
+
+| configuración | recall | MRR | s/consulta |
+|---|---|---|---|
+| sparse (BM25 solo) | **1.00** | **0.81** | 0.02 |
+| híbrida | 0.75 | 0.62 | 0.30 |
+| híbrida + rerank chico | 0.75 | **0.23** | 2.70 |
+| híbrida + rerank grande | **1.00** | 0.62 | 29.72 |
+
+El caso más claro es *"¿qué ley establece la defensa del consumidor?"*. La
+carátula correcta sale **1ª** con búsqueda híbrida. Después de pasarla por el
+reranker chico queda **fuera del top 5**. El reranker agarró la respuesta
+correcta que la primera etapa ya le había puesto en la mano y la tiró afuera.
+
+**Por qué pasa.** Un cross-encoder está entrenado para contestar una sola
+pregunta: *¿este pasaje **responde** a esta consulta?* Los datasets con los
+que se entrena (MS MARCO y derivados) tienen como positivo un párrafo que
+contiene la respuesta. Una carátula no contiene ninguna respuesta: es un
+título, un número de boletín y una fecha. El modelo la degrada haciendo
+exactamente aquello para lo que fue entrenado, y sube en su lugar artículos
+del cuerpo que hablan largo del tema y que para esta pregunta son inútiles.
+
+No es un bug del reranker ni de nuestro código. Es un modelo funcionando bien
+sobre una clase de pregunta que no es la suya.
+
+**Y BM25 solo le gana a todo.** La técnica más vieja y más barata del
+pipeline —0.02 s/consulta— saca 1.00/0.81 en esta categoría. Por una razón
+boba: la consulta dice "defensa del consumidor" y la carátula dice
+literalmente "Defensa del Consumidor". Coincidencia léxica exacta, que es lo
+único que BM25 sabe hacer y acá es justo lo que hace falta.
+
+### Por qué importa para la exposición
+
+Es el resultado que desarma la narrativa fácil de "segunda generación =
+mejor". La tabla global dice que el reranking mejora todo (recall 0.913 →
+0.933). Desagregada por categoría muestra que el mismo reranking **rompe una
+categoría entera** mientras sube el promedio, y que la técnica de 1994 gana
+ahí. **La métrica que elegís decide quién gana**: mirando solo el recall
+promedio, nada de esto es visible.
+
+Dicho con honestidad, que es como conviene presentarlo: el modelo grande
+**recupera** el terreno perdido en `fuente` pero no supera a la híbrida sola
+(0.62 de MRR en las dos). Donde el grande sí gana claro es en `identificador`
+(MRR 0.77 → 1.00) y en recall global (0.933 → 0.973). Y cuesta **100× la
+híbrida sola**. Eso confirma por medición la recomendación que ya estaba
+puesta por intuición de latencia: modelo chico para la demo en vivo, modelo
+grande para la corrida de evaluación.
+
+### Lo que la evaluación confirmó
+
+El caso del art. 72 —el que motivó el chunking por estructura y el encabezado
+de identidad— quedó cerrado con números. Antes del arreglo, *"¿qué dice el
+artículo 72 de la ley 11179?"* devolvía el art. 72 de la ley **11.723** y lo
+citaba como si fuera del Código Penal. Después, sparse, híbrida e
+híbrida+rerank lo resuelven con MRR **1.00** (chunk 510 primero) y naive con
+0.50. Es la evidencia de que el problema era de metadatos y de chunking, no
+de recuperador.
+
 ## Pendientes conocidos
 
-- **Ragas**: no implementado. Es el módulo que falta para la tabla de
-  ablación, y el que va a poner número a si el chunking por artículo y el
-  encabezado de identidad efectivamente mejoran el recall, en vez de saberlo
-  solo por las consultas de prueba.
-- **Cobertura del corpus**: hay 12 leyes y 15 resoluciones de 2022 muy
-  parecidas entre sí (AABE, dumping). Para el set dorado conviene chequear que
-  las 30 preguntas no caigan todas sobre los mismos tres documentos.
+- **Un solo eje de ablación**: se varió la recuperación con el resto fijo.
+  El modelo de embeddings, el tamaño de chunk y `RERANK_CANDIDATES` quedaron
+  sin explorar. No es una omisión: cada eje extra multiplica las corridas, y
+  con el reranker grande cada corrida completa son ~15 minutos.
+- **La abstención se mide con una heurística léxica**, no con un juez. Son 4
+  respuestas por configuración y el JSON las guarda enteras, así que se
+  auditan a ojo en un minuto — pero es el número más frágil de la tabla.
 - **La versión de las normas**: el manifiesto la registra pero no la corrige.
   Reemplazar el PDF de la LCT por su texto ordenado sería la solución de fondo;
   como el caso es didáctico, conviene decidir si conviene más **mostrarlo** en
