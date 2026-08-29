@@ -1,0 +1,2 @@
+config,preguntas,recall@k,precision@k,mrr,abstencion_negativas,seg_recuperacion,faithfulness,answer_correctness,context_precision,context_recall
+hybrid_rerank,29,0.9733333333333333,0.23200000000000004,0.8666666666666667,1.0,29.720827586206898,0.9633333333333333,0.5671131693112049,0.9470555554958938,1.0

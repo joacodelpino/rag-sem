@@ -1,0 +1,1499 @@
+{
+  "fecha": "2026-08-29T00:26:09",
+  "top_k": 5,
+  "advertir_version": true,
+  "modelo_juez": "gpt-4o-mini",
+  "config": {
+    "collection": "legal_docs",
+    "embedding_model": "BAAI/bge-m3",
+    "reranker_model": "BAAI/bge-reranker-v2-m3",
+    "candidates_per_branch": 20,
+    "rrf_k": 60,
+    "rerank_candidates": 20,
+    "chunk_strategy": "articulo",
+    "chunk_size": 800,
+    "chunk_overlap": 150,
+    "chunk_max_chars": 1200,
+    "chunk_min_chars": 250
+  },
+  "tabla": [
+    {
+      "config": "hybrid_rerank",
+      "preguntas": 29,
+      "recall@k": 0.9733333333333333,
+      "precision@k": 0.23200000000000004,
+      "mrr": 0.8666666666666667,
+      "abstencion_negativas": 1.0,
+      "seg_recuperacion": 29.720827586206898,
+      "faithfulness": 0.9633333333333333,
+      "answer_correctness": 0.5671131693112049,
+      "context_precision": 0.9470555554958938,
+      "context_recall": 1.0
+    }
+  ],
+  "detalle": {
+    "hybrid_rerank": {
+      "preguntas": [
+        {
+          "id": "f01",
+          "categoria": "factual",
+          "pregunta": "¿Cuántos días tiene el consumidor para arrepentirse de una compra hecha fuera del local?",
+          "respuesta_esperada": "10 días corridos",
+          "ids_relevantes": [
+            41
+          ],
+          "ids_recuperados": [
+            59,
+            60,
+            41,
+            36,
+            39
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 2/5)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 3/5)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 31 (cont. 1/3)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 32"
+          ],
+          "textos_recuperados": [
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 2/5)]\nsunto responsable la infracción verificada, intimándolo para que en el plazo de\ncinco (5) días hábiles presente por escrito su descargo.\nEn su primera presentación, el presunto infractor deberá constituir domicilio y acreditar personería.\nCuando no se acredite personería se intimará para que en el término de cinco (5) días hábiles subsane la\nomisión bajo apercibimiento de tenerlo por no presentado.\n\nLas constancias del expediente labrado conforme a lo previsto en este artículo, así como las\ncomprobaciones técnicas que se dispusieren, constituirán prueba suficiente de los hechos así\ncomprobados, salvo en los casos en que resulten desvirtuados por otras pruebas.\nLas pruebas se admitirán solamente en caso de existir hechos controvertidos, siempre que no resulten\nmanifiestamente inconducentes o meramente dilatorias. Contra la resolución que deniegue medidas de\nprueba sólo se podrá interponer el recurso de reconsideración previsto en el Reglamento de\nProcedimientos Administrativos, decreto 1759/72 t.o. 1991. La prueba deberá producirse en el término de\ndiez (10) días hábiles, prorrogables cuando haya causas justificadas, teniéndose por desistida aquella no\nproducida dentro de dicho plaz",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 3/5)]\nel término de\ndiez (10) días hábiles, prorrogables cuando haya causas justificadas, teniéndose por desistida aquella no\nproducida dentro de dicho plazo por causa imputable al infractor.\nEn cualquier momento durante la tramitación de las actuaciones, la autoridad de aplicación podrá ordenar\ncomo medida preventiva el cese de la conducta que se reputa en violación de esta ley y sus\nreglamentaciones.\nConcluidas las diligencias instructorias, se dictará la resolución definitiva dentro del término de veinte (20)\ndías hábiles.\nSin perjuicio de lo dispuesto en este artículo, la autoridad de aplicación contará con amplias facultades\npara disponer medidas técnicas, admitir pruebas o dictar medidas de no innovar.\nLos actos administrativos que dispongan sanciones, únicamente serán impugnables mediante recurso\ndirecto ante la Cámara Nacional de Apelaciones en las Relaciones de Consumo, o ante las Cámaras de\nApelaciones con asiento en las provincias, según corresponda.\nEl recurso deberá interponerse y fundarse ante la misma autoridad que impuso la sanción, dentro de los\ndiez (10) días hábiles de notificada la resolución; la autoridad de aplicación deberá elevar el recurso con\nsu contestación a l",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34]\nARTICULO 34. — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 31 (cont. 1/3)]\nARTICULO 31. — Cuando una empresa de servicio público domiciliario con variaciones regulares\nestacionales facture en un período consumos que exceden en un SETENTA Y CINCO POR CIENTO\n(75%) el promedio de los consumos correspondientes al mismo período de los DOS (2) años anteriores\nse presume que existe error en la facturación.\nPara el caso de servicios de consumos no estacionales se tomará en cuenta el consumo promedio de los\núltimos DOCE (12) meses anteriores a la facturación. En ambos casos, el usuario abonará únicamente el\nvalor de dicho consumo promedio.\nEn los casos en que un prestador de servicios públicos facturase sumas o conceptos indebidos o\nreclamare el pago de facturas ya abonadas el usuario podrá presentar reclamo, abonando únicamente los\nconceptos no reclamados.\n\nEl prestador dispondrá de un plazo de TREINTA (30) días a partir del reclamo del usuario para acreditar\nen forma fehaciente que el consumo facturado fue efectivamente realizado.\nSi el usuario no considerara satisfecho su reclamo o el prestador no le contestara en los plazos indicados,\npodrá requerir la intervención del organismo de control correspondiente dentro de los TREINTA (30) días\ncontados a partir de la",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 32]\nARTICULO 32. — Venta domiciliaria. Es la oferta o propuesta de venta de un bien o prestación de un\nservicio efectuada al consumidor fuera del establecimiento del proveedor. También se entenderá\ncomprendida dentro de la venta domiciliaria o directa aquella contratación que resulte de una\nconvocatoria al consumidor o usuario al establecimiento del proveedor o a otro sitio, cuando el objetivo de\ndicha convocatoria sea total o parcialmente distinto al de la contratación, o se trate de un premio u\nobsequio.\nEl contrato debe ser instrumentado por escrito y con las precisiones establecidas en los artículos 10 y 34\nde la presente ley.\nLo dispuesto precedentemente no es aplicable a la compraventa de bienes perecederos recibidos por el\nconsumidor y abonados al contado.\n(Artículo sustituido por art. 13 de la Ley N° 26.361 B.O. 7/4/2008)"
+          ],
+          "scores": [
+            0.09673,
+            0.07187,
+            0.06769,
+            0.04703,
+            0.02403
+          ],
+          "respuesta": "El consumidor tiene un plazo de diez (10) días corridos para revocar la aceptación de una compra hecha fuera del establecimiento del proveedor, contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo que ocurra primero, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada, y el vendedor debe informar por escrito al consumidor sobre esta facultad de revocación [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 0.3333333333333333,
+          "abstuvo": null,
+          "segundos_recuperacion": 34.18,
+          "segundos_generacion": 5.144
+        },
+        {
+          "id": "f02",
+          "categoria": "factual",
+          "pregunta": "¿Cuánto dura la garantía legal de un producto usado?",
+          "respuesta_esperada": "3 meses (6 meses para los productos que no son usados)",
+          "ids_relevantes": [
+            16
+          ],
+          "ids_recuperados": [
+            16,
+            20,
+            18,
+            19,
+            26
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 11",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 16",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 14",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 15",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 23"
+          ],
+          "textos_recuperados": [
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 11]\nARTICULO 11. — Garantías. Cuando se comercialicen cosas muebles no consumibles conforme lo\nestablece el artículo 2325 del Código Civil, el consumidor y los sucesivos adquirentes gozarán de garantía\nlegal por los defectos o vicios de cualquier índole, aunque hayan sido ostensibles o manifiestos al tiempo\n\ndel contrato, cuando afecten la identidad entre lo ofrecido y lo entregado, o su correcto funcionamiento.\nLa garantía legal tendrá vigencia por TRES (3) meses cuando se trate de bienes muebles usados y por\nSEIS (6) meses en los demás casos a partir de la entrega, pudiendo las partes convenir un plazo mayor.\nEn caso de que la cosa deba trasladarse a fábrica o taller habilitado el transporte será realizado por el\nresponsable de la garantía, y serán a su cargo los gastos de flete y seguros y cualquier otro que deba\nrealizarse para la ejecución del mismo.\n(Artículo sustituido por art. 9° de la Ley N° 26.361 B.O. 7/4/2008)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 16]\nARTICULO 16. — Prolongación del Plazo de Garantía. El tiempo durante el cual el consumidor está\nprivado del uso de la cosa en garantía, por cualquier causa relacionada con su reparación, debe\ncomputarse como prolongación del plazo de garantía legal.\nARTICULO 17. — Reparación no Satisfactoria. En los supuestos en que la reparación efectuada no\nresulte satisfactoria por no reunir la cosa reparada, las condiciones óptimas para cumplir con el uso al que\nestá destinada, el consumidor puede:\na) Pedir la sustitución de la cosa adquirida por otra de idénticas características. En tal caso el plazo de la\ngarantía legal se computa a partir de la fecha de la entrega de la nueva cosa;\nb) Devolver la cosa en el estado en que se encuentre a cambio de recibir el importe equivalente a las\nsumas pagadas, conforme el precio actual en plaza de la cosa, al momento de abonarse dicha suma o\nparte proporcional, si hubiere efectuado pagos parciales;\nc) Obtener una quita proporcional del precio.\nEn todos los casos, la opción por parte del consumidor no impide la reclamación de los eventuales daños\ny perjuicios que pudieren corresponder.",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 14]\nARTICULO 14. — Certificado de Garantía. El certificado de garantía deberá constar por escrito en idioma\nnacional, con redacción de fácil comprensión en letra legible, y contendrá como mínimo:\na) La identificación del vendedor, fabricante, importador o distribuidor;\nb) La identificación de la cosa con las especificaciones técnicas necesarias para su correcta\nindividualización;\nc) Las condiciones de uso, instalación y mantenimiento necesarias para su funcionamiento;\nd) Las condiciones de validez de la garantía y su plazo de extensión;\ne) Las condiciones de reparación de la cosa con especificación del lugar donde se hará efectiva.\nEn caso de ser necesaria la notificación al fabricante o importador de la entrada en vigencia de la\ngarantía, dicho acto estará a cargo del vendedor. La falta de notificación no libera al fabricante o\nimportador de la responsabilidad solidaria establecida en el artículo 13.\nCualquier cláusula cuya redacción o interpretación contraríen las normas del presente artículo es nula y\nse tendrá por no escrita.\n(Artículo sustituido por el art. 3º de la Ley Nº 24.999 B.O. 30/7/1998)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 15]\nARTICULO 15. — Constancia de Reparación. Cuando la cosa hubiese sido reparada bajo los términos de\nuna garantía legal, el garante estará obligado a entregar al consumidor una constancia de reparación en\ndonde se indique:\na) La naturaleza de la reparación;\nb) Las piezas reemplazadas o reparadas;\nc) La fecha en que el consumidor le hizo entrega de la cosa;\nd) La fecha de devolución de la cosa al consumidor.",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 23]\nARTICULO 23. — Deficiencias en la Prestación del Servicio. Salvo previsión expresa y por escrito en\ncontrario, si dentro de los treinta (30) días siguientes a la fecha en que concluyó el servicio se\nevidenciaren deficiencias o defectos en el trabajo realizado, el prestador del servicio estará obligado a\ncorregir todas las deficiencias o defectos o a reformar o a reemplazar los materiales y productos utilizados\nsin costo adicional de ningún tipo para el consumidor."
+          ],
+          "scores": [
+            0.98472,
+            0.60495,
+            0.01539,
+            0.0113,
+            0.00897
+          ],
+          "respuesta": "La garantía legal de un producto usado dura TRES (3) meses a partir de la entrega, según lo establecido en el artículo 11 de la Ley 24.240 - Defensa del Consumidor [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 11].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 29.226,
+          "segundos_generacion": 1.275
+        },
+        {
+          "id": "f03",
+          "categoria": "factual",
+          "pregunta": "¿Cuántos días de vacaciones le corresponden a un trabajador con menos de 5 años de antigüedad?",
+          "respuesta_esperada": "14 días corridos",
+          "ids_relevantes": [
+            328
+          ],
+          "ids_recuperados": [
+            328,
+            329,
+            332,
+            382,
+            331
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 164",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 165",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 168",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 225 (cont. 1/2)",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 167"
+          ],
+          "textos_recuperados": [
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 164]\nArt. 164. — El trabajador gozará de un período mínimo y continuado de descanso anual remunerado por\nlos siguientes plazos:\na) De catorce (14) días corridos cuando la antigüedad en el empleo no exceda de cinco (5) años;\nb) De veintiún (21) días corridos cuando siendo la antigüedad mayor de cinco (5) años no exceda de diez\n(10);\nc) De veintiocho (28) días corridos, cuando la antigüedad siendo mayor de diez (10) años no exceda de\nveinte (20);\nd) De treinta y cinco (35) días corridos, cuando la antigüedad exceda de veinte (20) años.\nPara determinar la extensión de las vacaciones atendiendo a la antigüedad en el empleo, se computará\ncomo tal aquella que tendría el trabajador al 31 de diciembre del año que correspondan las mismas.\nRequisitos para su goce - Comienzo de la licencia",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 165]\nArt. 165. — El trabajador, para tener derecho cada año al beneficio establecido en el artículo 164 de esta\nley, deberá haber prestado servicios durante la mitad, como mínimo, de los días hábiles comprendidos en\nel año calendario o aniversario respectivo. A este efecto se computarán como hábiles los días feriados en\nque el trabajador debiera normalmente prestar servicios.\nLa licencia comenzará en día lunes o el siguiente hábil si aquél fuese feriado. Tratándose de trabajadores\nque presten servicios en días inhábiles, las vacaciones deberán comenzar al día siguiente a aquél en que\nel trabajador gozare del descanso semanal o el subsiguiente hábil si aquél fuese feriado.\nPara gozar de este beneficio no se requerirá antigüedad mínima en el empleo.\nTiempo trabajado - Su cómputo",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 168]\nArt. 168. — El empleador deberá conceder el goce de las vacaciones de cada año dentro del período\ncomprendido entre el 1º de octubre y el 30 de abril del año siguiente. La fecha de iniciación de las\nvacaciones deberá ser comunicada por escrito, con una anticipación no menor de sesenta (60) días, a la\nautoridad de aplicación y al trabajador, ello sin perjuicio de que las convenciones colectivas puedan\n\ninstituir sistemas distintos acordes con las modalidades de cada actividad.\nLa autoridad de aplicación, mediante resolución fundada, y previa intervención de la asociación\nprofesional respectiva, podrá autorizar la concesión de vacaciones en períodos distintos a los fijados,\ncuando así lo requiera la característica especial de la actividad de que se trate.\nCuando las vacaciones no se otorguen en forma simultánea a todos los trabajadores ocupados por el\nempleador en el establecimiento, lugar de trabajo, sección o sector donde se desempeñe, y las mismas\nse acuerden individualmente o por grupo, el empleador deberá proceder en forma tal para que a cada\ntrabajador le corresponda el goce de éstas por los menos en una temporada de verano cada tres\nperíodos.\nRetribución",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 225 (cont. 1/2)]\nArt. 225. — Cada accidente o enfermedad inculpable que impida la prestación del servicio no afectará el\nderecho del trabajador a percibir su remuneración durante un período de tres (3) meses, si su antigüedad\nen el servicio fuere menor de cinco (5) años, y de seis (6) meses si fuera mayor. En los casos que el\ntrabajador tuviere carga de familia y por las mismas circunstancias se encontrara impedido de concurrir al\ntrabajo, los períodos durante los cuales tendrá derecho a percibir su remuneración se extenderán a seis\n(6) y doce (12) meses respectivamente, según si su antigüedad fuese inferior o superior a cinco (5) años.\nLa recidiva de enfermedades crónicas no será considerada enfermedad, salvo que se manifestara\ntranscurridos los dos (2) años. La remuneración que en estos casos corresponda abonar al trabajador se\nliquidará conforme a la que perciba en el momento de la interrupción de los servicios, con más los\naumentos que durante el período de interrupción fueren acordados a los de su misma categoría por\naplicación de una norma legal, convención colectiva de trabajo o decisión del empleador. Si el salario\nestuviere integrado por remuneraciones variables, se liquidará en cuanto a e",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 167]\nArt. 167. — Cuando el trabajador no llegase a totalizar el tiempo mínimo de trabajo previsto en el artículo\n165 de esta ley, gozará de un período de descanso anual, en proporción de un día de descanso por cada\nveinte (20) días de trabajo efectivo, computable de acuerdo al artículo anterior.\nEn el caso de cierre del establecimiento por vacaciones, por un período superior al tiempo de licencia que\npueda corresponderle al trabajador, éste tendrá derecho a percibir los salarios correspondientes a todo el\nperíodo del cierre que no fueren compensados por el período de vacaciones que le pueda corresponder.\nEpoca de otorgamiento - Comunicación"
+          ],
+          "scores": [
+            0.98933,
+            0.59593,
+            0.4998,
+            0.42629,
+            0.41283
+          ],
+          "respuesta": "A un trabajador con menos de 5 años de antigüedad le corresponden catorce (14) días corridos de vacaciones anuales [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 164].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 31.498,
+          "segundos_generacion": 1.589
+        },
+        {
+          "id": "f04",
+          "categoria": "factual",
+          "pregunta": "¿Cuántas materias por año tiene que aprobar un alumno de la UNLAR para seguir siendo regular?",
+          "respuesta_esperada": "2 asignaturas por año académico",
+          "ids_relevantes": [
+            2027
+          ],
+          "ids_recuperados": [
+            1894,
+            2027,
+            2054,
+            2081,
+            2036
+          ],
+          "etiquetas_recuperadas": [
+            "Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 177",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 6",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 29",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 57",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 14"
+          ],
+          "textos_recuperados": [
+            "[Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 177]\nArtículo 177°: Para ser electo/a representante del estamento estudiantil en el Consejo Superior y en los consejos\ndepartamentales, se requieren las siguientes condiciones:\n1) Ser estudiante regular, o sea, quienes hayan aprobado por lo menos dos (2) materias por año, salvo cuando el\nplan de estudios prevea menos de cuatro (4) asignaturas anuales, en cuyo caso deben aprobar una (1) como\nmínimo; entendiéndose que tal número de materias deben ser aprobadas en un (1) año calendario.\n2) Haber aprobado, por lo menos, el treinta por ciento (30%) del total de las asignaturas del plan de carrera que\ncurse.",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 6]\nArtículo 6º.- Es Estudiante Regular el alumno que hubiere aprobado por lo menos dos (2)\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nasignaturas durante cada año académico, salvo cuando el Plan de Estudios prevea menos\n \n \n \n \n \n \n \n \n \n \n \n \n \nde cuatro (4) asignaturas anuales, en cuyo caso deben aprobar una (1) como mínimo (art.\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n50, Ley Nacional de Educación Superior Nº 24.521). Quedan exceptuados de esta norma\n \n \n \n \n \n \n \n \n \n \n \n \n \nlos estudiantes que solo adeuden el Trabajo Final de su respectivo Plan de Estudios. \nLa condición de Estudiante Regular, a los fines de los Exámenes finales se reconocerá\n \n \n \n \n  \n \n \n \n \n \n \n \n \nasimismo por cada asignatura regularizada, y con arreglo a lo señalado en el artículo Nº 11\n \n \n \n \n  \n \n  \n \n \n  \n \n \n \ndel presente.",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 29]\nArtículo 29º.- Sin perjuicio de los otros requisitos, el alumno para alcanzar la condición de\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n“Regular” deberá aprobar no menos de un setenta y cinco por ciento (75%) de los al menos\n \n \n \n \n \n \n \n  \n \n \n \n \n \n  \n \ncuatro (4) trabajos prácticos previstos en el Plan de Cátedra y/o Programa de la Asignatura\n \n \n \n \n \n \n \n \n \n \n \n \n  \n \ny con un puntaje no inferior a cuatro(4). El Titular de Cátedra propondrá en su Plan Anual, la\n \n \n \n \n \n  \n \n \n \n \n \n \n \n \n \n  \nmodalidad de Trabajo Prácticos Recuperatorios. \n \n \nCAPÍTULO VII. DE LAS EVALUACIONES PARCIALES \n \nSECCIÓN ÚNICA",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 57]\nArtículo 57º.- Para poder rendir examen en condición de Regular, el alumno deberá haber\n \n \n \n \n \n \n \n \n \n \n \n \n \n \nalcanzado tal condición y mantenerla vigente en la respectiva asignatura al tiempo de la\n \n \n  \n \n \n \n \n \n \n \n \n \n \ninscripción, además de tener aprobadas las materias correlativas del correspondiente Plan\n \n \n \n \n \n \n \n \n \n \n \nde Estudios.",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 14]\nArtículo 14º.- Los Alumnos de la U.N.LaR. cuentan con los Derechos y Garantías que\n \n \n \n \n \n \n \n \n \n \n  \n \n \nexplícita o implícitamente estipula la Constitución Nacional.\nArtículo 15º.- Todos los alumnos activos y los estudiantes regulares según sus casos, de\n \n \n \n \n \n  \n \n \n \n \n \n \n \nesta Universidad, son legítimos titulares de los Derechos y Obligaciones previstos en la Ley\n \n \n \n \n \n \n \n  \n \n \n  \n \nNacional de Educación Superior, Nº 24.521, el Estatuto de la Universidad Nacional de la\n \n \n \n \n \n \n \n \n \n \n \n \n \n \nRioja y los señalados en este ordenamiento."
+          ],
+          "scores": [
+            0.91854,
+            0.87908,
+            0.54122,
+            0.50533,
+            0.13328
+          ],
+          "respuesta": "Un alumno de la Universidad Nacional de La Rioja (UNLAR) debe aprobar por lo menos dos (2) materias por año, salvo cuando el plan de estudios prevea menos de cuatro (4) asignaturas anuales, en cuyo caso debe aprobar una (1) como mínimo. Esta condición se establece en el Artículo 177° del Estatuto Académico de la UNLAR [Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 177].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 0.5,
+          "abstuvo": null,
+          "segundos_recuperacion": 26.106,
+          "segundos_generacion": 1.561
+        },
+        {
+          "id": "f05",
+          "categoria": "factual",
+          "pregunta": "¿Cuánto tiempo dura la regularidad de una materia en la UNLAR?",
+          "respuesta_esperada": "12 épocas o turnos de examen",
+          "ids_relevantes": [
+            2033
+          ],
+          "ids_recuperados": [
+            2033,
+            2090,
+            2027,
+            2040,
+            2069
+          ],
+          "etiquetas_recuperadas": [
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 11",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 68 (cont. 1/4)",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 6",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 17 (cont. 3/4)",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 45"
+          ],
+          "textos_recuperados": [
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 11]\nArtículo 11º.- La regularización de una asignatura, mantendrá su vigencia por el término de\n \n \n \n \n \n \n \n \n \n \n  \n \n \ndoce (12) épocas o turnos de exámenes, a contar desde el momento en que se adquiere la\n \n \n  \n \n \n  \n \n  \n \n \n \n \n  \ncondición de Regular. Excepcionalmente y por única vez, el/la Decano/a Departamental a\n \n \n \n  \n \n \n \n \n \n  \npedido del/la Director/a de Carrera respectiva, podrá extender la vigencia de dicha\n \n \n \n \n \n \n \n \n \n \n \n \nregularidad hasta dos (2) turnos o épocas de examenes adicionales. \n \n(Artículo modificado por art. 1° de la Ord. C.S. N° 163/2019). \n \n \nCUARTA SECCIÓN",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 68 (cont. 1/4)]\nArtículo 68º.- \nA) El examen final de alumnos regulares será rendido con el Programa vigente al\n \n \n \n \n \n \n \n \n \n \n \n \n \n \ntiempo de haber alcanzado la regularidad el alumno examinado, y será producido en\n \n \n \n \n \n  \n \n  \n \n \n \nforma oral. Salvo el caso en que el examinado optare previamente por rendir con\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n“Programa Abierto” el estudiante extraerá de un bolillero la cantidad de tres (3)\n \n \n \n \n \n \n \n \n \n \n \n \n \nbolillas correspondientes a cada Unidad del Programa de la Asignatura las que\n \n \n \n \n \n \n \n \n \n \n \n \ndeberá ser verificadas por todos los integrantes del Tribunal o Duplas Examinadoras.\n \n \n \n \n \n \n \n \n  \n \n \nEl alumno expondrá sobre temas de la bolilla sorteada que él elija, debiendo ser\n \n \n \n \n \n \n \n \n \n \n \n \n \n \nluego examinado sobre temas de una o dos de las restantes bolillas. En todos los\n \n \n \n \n \n  \n \n \n \n \n \n \n \n \ncasos, el alumno dispondrá, por lo menos, de un plazo de quince (15) minutos\n \n \n \n \n \n \n \n \n \n \n \n \n \n \nprevios a su exposición para organizar la misma. En tal ocasión no podrá contar con\n  \n \n \n \n  \n \n \n \n \n \n \n \n \napuntes u otros medios análogos, ni podrá tampoco retirarse del asiento asignado,\n  \n \n \n \n \n \n \n \n \n \n \ny/o",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 6]\nArtículo 6º.- Es Estudiante Regular el alumno que hubiere aprobado por lo menos dos (2)\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nasignaturas durante cada año académico, salvo cuando el Plan de Estudios prevea menos\n \n \n \n \n \n \n \n \n \n \n \n \n \nde cuatro (4) asignaturas anuales, en cuyo caso deben aprobar una (1) como mínimo (art.\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n50, Ley Nacional de Educación Superior Nº 24.521). Quedan exceptuados de esta norma\n \n \n \n \n \n \n \n \n \n \n \n \n \nlos estudiantes que solo adeuden el Trabajo Final de su respectivo Plan de Estudios. \nLa condición de Estudiante Regular, a los fines de los Exámenes finales se reconocerá\n \n \n \n \n  \n \n \n \n \n \n \n \n \nasimismo por cada asignatura regularizada, y con arreglo a lo señalado en el artículo Nº 11\n \n \n \n \n  \n \n  \n \n \n  \n \n \n \ndel presente.",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 17 (cont. 3/4)]\n \n \nincumplimiento de la presentación en tiempo y forma de la documentación que\n \n \n \n \n \n  \n \n \n \n \n \nmotivó la prórroga provoca la invalidez de las actuaciones académicas que el\n \n \n \n \n \n \n \n \n \n \n \n \naspirante haya realizado, tales como asistencia a clases, parciales, etc, según art.\n \n \n \n \n \n  \n \n \n \n \n \n21° del presente. \nc) Documento de Identidad y una (1) fotocopia de las dos (2) primeras hojas del\n \n \n \n  \n \n \n \n \n \n \n \n \n \n \nmismo. \nd) Certificado de domicilio. \ne) Tres (3) fotografías tipo carnet 4x4 cm. \nf) Una (1) fotocopia de la Partida de Nacimiento, autenticada en la UNLaR por la\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nSecretaría General o por autoridad competente. \ng) Constancia de Aprobación del Curso de Ingreso, que en su caso, resulte\n \n \n \n \n \n \n \n \n \n \n \n \n \nimplementado por los Departamentos Académicos en relación a las respectivas\n \n \n \n \n \n \n \n \n \n \ncarreras y sobre la base de la reglamentación que para cada caso se fije. \nh)\nConstancia\nde\npago\nde\nla\ninscripción,\nla\nque\ndeberá\nformalizarse\nen\n \n \n \n \n \n \n \n \n \n \n \n \ndependencias de la Fundación de la Universidad Nacional de La Rioja- FUNLaR. \n \n(Artículo modificado en su inc. “b” por art. 1° de la Ord. C.S. N° 163/2",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 45]\nArtículo 45º.- Cuando se constituya una Mesa Examinadora en un Turno Especial, se\n \n \n \n \n \n \n \n \n \n \n \n \n \nprocederá de acuerdo a las normas establecidas para los turnos ordinarios.\nArtículo 46º.- Cuando un Estudiante Regular y Activo de esta Universidad adeude hasta tres\n \n \n \n \n \n  \n \n \n \n \n \n \n \n(3) materias para concluir su carrera podrá solicitar, por única vez, Mesa Especial de\n \n \n \n \n \n \n \n \n \n \n \n \n \n \nExamen. Las solicitudes deberán ser presentadas con una antelación no menor de 15\n \n \n \n \n \n \n \n \n \n \n \n \n \n(quince) días corridos a la fecha en que deseen ser examinados."
+          ],
+          "scores": [
+            0.35001,
+            0.01665,
+            0.01616,
+            0.00851,
+            0.00401
+          ],
+          "respuesta": "La regularidad de una asignatura en la UNLAR dura por el término de doce (12) épocas o turnos de exámenes, a contar desde el momento en que se adquiere la condición de Regular. Excepcionalmente, el/la Decano/a Departamental puede extender la vigencia de dicha regularidad hasta dos (2) turnos o épocas de exámenes adicionales, a pedido del/la Director/a de Carrera respectiva [Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · Art. 11].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 28.485,
+          "segundos_generacion": 1.334
+        },
+        {
+          "id": "f06",
+          "categoria": "factual",
+          "pregunta": "¿En qué banco se deposita el dinero secuestrado en una causa penal?",
+          "respuesta_esperada": "Banco de la Ciudad de Buenos Aires, o la sucursal del Banco de la Nación Argentina que corresponda",
+          "ids_relevantes": [
+            94
+          ],
+          "ids_recuperados": [
+            94,
+            96,
+            95,
+            113,
+            101
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 1",
+            "Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 3 (cont. 2/2)",
+            "Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 3 (cont. 1/2)",
+            "Decreto 1148/1991 - Reglamentación del artículo 39 de la Ley 23.737 · texto original · Art. 3",
+            "Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 11"
+          ],
+          "textos_recuperados": [
+            "[Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 1]\nARTICULO 1º— La custodia y disposición de los bienes objeto de secuestro en causas penales de\ncompetencia de la justicia nacional y federal se ajustará a lo preceptuado en la presente ley.\nARTICULO 2º — En cuanto el estado de la causa lo permita, el dinero, títulos y valores secuestrados se\ndepositarán como pertenecientes a aquélla, en el Banco de la Ciudad de Buenos Aires o en la sucursal\ndel Banco de la Nación Argentina que corresponda, según que el asiento del tribunal esté en la Capital\nFederal o en el interior, sin perjuicio de disponerse, en cualquier estado de la causa, la entrega o\ntransferencia de dichos bienes, si procediere.",
+            "[Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 3 (cont. 2/2)]\n en los incisos precedentes, transcurridos seis (6)\nmeses desde el día del secuestro se dispondrá su venta en pública subasta, a través de las instituciones\nbancarias mencionadas en el art. 2º, en las que se depositará el importe obtenido de la venta.\nEn todos los casos, si los bienes secuestrados pudieren sufrir daño o demérito por el solo transcurso del\ntiempo, las instituciones a las que se hiciere entrega de los mismos podrán disponer de ellos con\nautorización del tribunal y previa tasación que éste ordenará.\nEn tal supuesto, aquéllas quedarán obligadas por la suma determinada en la tasación con más los\nintereses al tipo bancario si posteriormente correspondiere la devolución de los bienes a quien acreditare\nderechos sobre ellos.\nLos depósitos de dinero dispuestos en el art. 2º así como el resultante de los importes obtenidos de la\nventa de los bienes que determinan los incs. a) y e) del presente artículo, devengarán los intereses al tipo\nbancario correspondiente.",
+            "[Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 3 (cont. 1/2)]\nARTICULO 3º — Tratándose de bienes físicos, y en tanto no corresponda su entrega a quien tenga\nderechos sobre ellos, el mismo no sea habido, o citado legalmente no compareciere a recibirlos, se\nprocederá de la siguiente manera:\na) Si se tratare de cosa perecedera, se dispondrá de inmediato su venta en pública subasta, por\nintermedio de las instituciones bancarias mencionadas en el artículo precedente, en las cuales se\ndepositará el importe obtenido de la venta;\nb) Si los bienes secuestrados tuvieren interés científico o cultural, se dispondrá de inmediato su entrega a\nentidades de reconocidos antecedentes en la materia;\nc) En los casos de estupefacientes o psicotrópicos, el juzgado determinará la repartición u organismo del\nEstado Nacional a que serán entregados;\nd) Tratándose de armas de fuego o explosivos la entrega se hará al Comando de Arsenales del Ejército o\na la unidad militar más cercana, según que el asiento del tribunal, se halle en la Capital Federal o en el\n\ninterior;\ne) Si se tratare de cualquier otro bien no especificado en los incisos precedentes, transcurridos seis (6)\nmeses desde el día del secuestro se dispondrá su venta en pública subasta, a través de las institu",
+            "[Decreto 1148/1991 - Reglamentación del artículo 39 de la Ley 23.737 · texto original · Art. 3]\nARTICULO 3º.— Salvo que se hubiera resuelto con anterioridad, la sentencia condenatoria dispondrá la\nentrega de los bienes aludidos a la mencionada Secretaría.\nEn caso de tratarse de sumas de dinero se ordenará directamente su depósito en la cuenta que al efecto\nse abrirá en el Banco de la Nación Argentina a la orden de la SECRETARIA DE PROGRAMACION PARA\nLA PREVENCION DE LA DROGADICCION Y LA LUCHA CONTRA EL NARCOTRAFICO de la\nPRESIDENCIA DE LA NACION.\nEn el supuesto de tratarse de bienes registrables, se ordenarán las medidas necesarias para proceder a\nlas inscripciones correspondientes.",
+            "[Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 11]\nARTICULO 11. — La Policía Federal, la Gendarmería Nacional, la Prefectura Naval Argentina y las\npolícias provinciales, dentro de los sesenta (60) días a contar desde la publicación de la presente deberán\ncomunicar a los tribunales correspondientes la nómina de los bienes que tengan depositados como\npertenecientes a causas que tramiten o hayan tramitado ante ellos, para su disposición conforme a esta\n\nley."
+          ],
+          "scores": [
+            0.99828,
+            0.92607,
+            0.47743,
+            0.30456,
+            0.07587
+          ],
+          "respuesta": "El dinero, títulos y valores secuestrados en causas penales se depositarán en el Banco de la Ciudad de Buenos Aires o en la sucursal del Banco de la Nación Argentina que corresponda, según que el asiento del tribunal esté en la Capital Federal o en el interior, conforme a lo establecido en el artículo 2º de la Ley 20.785 [Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 2].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 34.202,
+          "segundos_generacion": 1.695
+        },
+        {
+          "id": "f07",
+          "categoria": "factual",
+          "pregunta": "¿Cuántos años duran en su cargo los consiliarios de la UNLAR?",
+          "respuesta_esperada": "3 años, y pueden ser reelectos una vez",
+          "ids_relevantes": [
+            1779
+          ],
+          "ids_recuperados": [
+            1779,
+            1807,
+            1826,
+            1815,
+            1794
+          ],
+          "etiquetas_recuperadas": [
+            "Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 70",
+            "Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 89",
+            "Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 102",
+            "Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 94",
+            "Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 78"
+          ],
+          "textos_recuperados": [
+            "[Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 70]\nArtículo 70º: Todos los miembros del Consejo Superior tienen voz y voto, gozando la presidencia, titular o\nsubrogante, del derecho a doble voto en caso de empate. Constituye quórum la presencia de más de la mitad de\nsus integrantes.\nArtículo 71º: Los consiliarios, representantes de los estamentos universitarios, duran tres (3) años en el ejercicio de\nsus mandatos y pueden ser reelectos en el cargo por una vez.",
+            "[Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 89]\nArtículo 89º: Los representantes de los estamentos por ante el consejo departamental se eligen según el modo\nestablecido por este Estatuto y en correlato con lo estipulado por la Ley de Educación Superior. Cuentan con voz y\nvoto en todas las sesiones. Las vacantes definitivas y transitorias que se produzcan en el consejo departamental\ndeberán ser cubiertas con los miembros inmediatos siguientes de su lista. Duran tres (3) años en el ejercicio de sus\nmandatos y pueden ser reelectos en el cargo por una vez.",
+            "[Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 102]\nArtículo 102°: El período de funciones del/la decano/a es de tres (3) años pudiendo ser reelecto/a en el cargo por\nuna vez.\nArtículo 103°: Podrán ser suspendidos/as o removidos/as por resolución del Consejo Superior, por las mismas\ncausales que las previstas para el caso del/la rector/a o el/la vicerrector/a.",
+            "[Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 94]\nArtículo 94º: El período de funciones del/la decano/a es de tres (3) años pudiendo ser reelecto/a en el cargo por una\nvez.\nArtículo 95º: Podrán ser suspendidos o removidos por resolución del Consejo Superior, por las mismas causales\nque las previstas para el caso del/la rector/a o el/la vicerrector/a.",
+            "[Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 78]\nArtículo 78º: El/la rector/a o vicerrector/a son elegidos por fórmula en votación directa, obligatoria, secreta y\nsimultánea con las demás autoridades universitarias entre los miembros de los distintos estamentos, y con el voto\nponderado de acuerdo a los siguientes porcentajes: estamento docente 50 %, estamento estudiantil 30 %,\nestamento no docentes 10 %, y estamento graduados 10 %.\nEl/la rector/a o vicerrector/a duran tres (3) años en sus funciones y pueden ser reelectos en el cargo por una vez. A\nlos fines de la limitación de la reelección en el cargo por una vez establecida en este artículo, se establece que la\nmisma comprende a ambos integrantes de la fórmula, independientemente del cargo del/la rector/a o vicerrector/a\nejercido en ambos períodos."
+          ],
+          "scores": [
+            0.97882,
+            0.61745,
+            0.19781,
+            0.19695,
+            0.15804
+          ],
+          "respuesta": "Los consiliarios de la Universidad Nacional de La Rioja (UNLAR) duran tres (3) años en el ejercicio de sus mandatos y pueden ser reelectos en el cargo por una vez [Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 71].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 28.435,
+          "segundos_generacion": 1.382
+        },
+        {
+          "id": "f08",
+          "categoria": "factual",
+          "pregunta": "¿En cuánto tiempo hay que avisarle al Registro Nacional de Armas que se secuestró un arma?",
+          "respuesta_esperada": "10 días hábiles",
+          "ids_relevantes": [
+            167
+          ],
+          "ids_recuperados": [
+            167,
+            168,
+            173,
+            171,
+            170
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 3",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 4",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 9",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 7",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 6"
+          ],
+          "textos_recuperados": [
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 3]\nARTICULO 3º — INFORMACION: Los Poderes Judiciales Nacional y Provinciales, Fuerzas de Seguridad,\nPolicía Federal Argentina y Policías Provinciales, y demás organismos competentes que en el ejercicio de\nlas atribuciones que le son propias procedan al secuestro o incautación de los materiales mencionados en\nel artículo 2º, deberán dentro de los diez (10) días hábiles de producido el mismo, informar al Registro\nNacional de Armas lo siguiente:\na) Lugar y fecha del secuestro o incautación y descripción sumario de las circunstancias;\n\nb) Tipo de arma, sistema de disparo, marca, modelo si lo tuviere o fuese conocido, calibre y numeración\nde serie;\nc) Tratándose de munición, tipo, calibre y cantidad de la misma;\nd) Detalle preciso de todo otro material controlado que fuere objeto del secuestro y/o incautación;\ne) Autoridad judicial o administrativa interviniente, carátula, número de la causa y datos de las personas\ninvolucradas.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 4]\nARTICULO 4º — DEPOSITO TRANSITORIO: Hasta tanto se adopte decisión definitiva sobre su destino,\nlos materiales secuestrados o incautados deberán ser depositados en los lugares y bajo las condiciones\nde seguridad que se fijarán por vía reglamentaria, circunstancia ésta que también deberá ser informada\nen los términos previstos en el artículo anterior, con indicación de la autoridad responsable del mismo.\nTodo cambio del lugar de depósito de los materiales, o de la autoridad depositaria responsable de los\nmismos deberá ser informado al Registro Nacional de Armas dentro de las cuarenta y ocho (48) horas de\nproducido.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 9]\nARTICULO 9º — DISPOSICION TRANSITORIA: Las Autoridades mencionadas en el artículo 3º, que a la\nfecha de entrada en vigencia de la presente ley tuvieren en su poder materiales provenientes de\nsecuestros o incautaciones ejecutados con anterioridad a la misma, deberán remitir la información allí\nprevista, ampliándose el plazo al de noventa (90) días hábiles.\nCuando con relación a dichos materiales se dieran las condiciones contempladas en el artículo 5º, se\ndeberá proceder en igual plazo a la remisión de los mismos, conforme el procedimiento allí previsto.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 7]\nARTICULO 7º — DECOMISO. DESTRUCCION: Cuando en virtud de sentencia judicial o resolución\nadministrativa firme se hubiere dispuesto el decomiso de los materiales comprendidos en el artículo 2º, se\ndeberá proceder a su destrucción, la que se llevará a cabo en el lugar y por los métodos que el Registro\nNacional de Armas establezca, con conocimiento de la Secretaría de Seguridad Interior.\nLa resolución que hubiere dispuesto el decomiso deberá comunicarse al Registro establecido en el\nartículo 1º, dentro de las cuarenta y ocho (48) horas de haber quedado firme.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 6]\nARTICULO 6º — DEVOLUCION: Cuando el material secuestrado o incautado se hallare debidamente\nregistrado, y siempre que ello resultare procedente conforme la normativa vigente, la autoridad judicial o\nadministrativa que intervenga podrá hacer entrega del mismo a su titular en calidad de depositario, hasta\ntanto culmine la sustanciación del procedimiento en trámite. En su caso, tal decisión deberá ser informada\nal Registro Nacional de Armas y asentada en el Registro creado a tales efectos."
+          ],
+          "scores": [
+            0.99634,
+            0.98637,
+            0.95989,
+            0.93584,
+            0.8727
+          ],
+          "respuesta": "Se debe informar al Registro Nacional de Armas dentro de los diez (10) días hábiles de producido el secuestro o incautación del arma, según lo establece el artículo 3º de la Ley 25.938 [Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 3].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 28.377,
+          "segundos_generacion": 1.382
+        },
+        {
+          "id": "i01",
+          "categoria": "identificador",
+          "pregunta": "¿Qué dice el artículo 72 de la ley 11179?",
+          "respuesta_esperada": "Enumera las acciones dependientes de instancia privada",
+          "ids_relevantes": [
+            510
+          ],
+          "ids_recuperados": [
+            510,
+            509,
+            954,
+            816,
+            241
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 72",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 70",
+            "Ley 24.156 - Administración Financiera y de los Sistemas de Control del Sector Público Nacional · texto actualizado · Art. 72",
+            "Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 71",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 72"
+          ],
+          "textos_recuperados": [
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 72]\nArt. 72. - Son acciones dependientes de instancia privada, las que nacieren de los delitos de violación,\nestupro, rapto y ultrajes al pudor, cuando no rsultare la muerte de la persona ofendida o leisones de las\nmencionadas en el artículo 91.\nEn los casos de este artículo, no se procederá a formar causa sino por acusación o denuncia del\nagraviado, o de su tutor, guardador o representantes legales. Sin embargo, se procederá de oficio cuando\nel delito fuere cometido contra un menor que no tenga padres, tutor, ni guardador, o que lo fuere por uno\nde sus ascendientes, tutor o guardador.",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 70]\nArt. 70. - Las indemnizaciones pecuniarias inherentes a las penas, podrán hacerse efectivas sobre los\nbienes propios del condenado, aun después de muerto.\nTITULO XI\nDel ejercicio de las acciones\nDel ejercicio de las acciones\nArt. 71. - Deberán iniciarse de oficio todas las acciones penales, con excepción de las siguientes:\n1.º Las que dependieren de instancia privada;\n2.º Las acciones privadas.",
+            "[Ley 24.156 - Administración Financiera y de los Sistemas de Control del Sector Público Nacional · texto actualizado · Art. 72]\nARTICULO\n72.- El\nsistema de tesorería está compuesto por el conjunto de órganos, normas\ny\nprocedimientos que intervienen en la recaudación de los ingresos y en\nlos pagos\nque configuran el flujo de fondos del sector público nacional, así como\nen la\ncustodia de las disponibilidades que se generen.",
+            "[Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 71]\nArt. 71. - Será reprimido con la pena establecida por el artículo 172 del Código Penal, el que de cualquier\nmanera y en cualquier forma defraude los derechos de propiedad intelectual que reconoce esta ley.\nArt. 72. - Sin perjuicio de la disposición general del artículo precedente, se consideran casos especiales\nde defraudación y sufrirán la pena que él establece, además del secuestro de la edición ilícita:\na) El que edite, venda o reproduzca por cualquier medio o instrumento, una obra inédita o publicada sin\nautorización de su autor o derechohabientes;\nb) El que falsifique obras intelectuales, entendiéndose como tal la edición de una obra ya editada,\nostentando falsamente el nombre del editor autorizado al efecto;\nc) El que edite, venda o reproduzca una obra suprimiendo o cambiando el nombre del autor, el título de la\nmisma o alterando dolosamente su texto;\nd) El que edite o reproduzca mayor número de los ejemplares debidamente autorizados.",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 72]\nArt. 72. — El empleador podrá aplicar medidas disciplinarias proporcionadas a las faltas o incumplimiento\ndemostrados por el trabajador. Para que ello sea procedente deberá oírse previamente al trabajador. Este\npodrá cuestionar ante los organismos competentes la procedencia, el tipo o extensión de la medida\naplicada, para que se la suprima, sustituya por otra o limite, según los casos.\nModalidades de su ejercicio"
+          ],
+          "scores": [
+            0.9969,
+            0.89025,
+            0.55661,
+            0.52622,
+            0.48279
+          ],
+          "respuesta": "El artículo 72 de la Ley 11.179 - Código Penal de la Nación establece que son acciones dependientes de instancia privada aquellas que nacen de los delitos de violación, estupro, rapto y ultrajes al pudor, siempre que no resulte la muerte de la persona ofendida o lesiones mencionadas en el artículo 91. En estos casos, no se procederá a formar causa sino por acusación o denuncia del agraviado, su tutor, guardador o representantes legales. Sin embargo, se procederá de oficio cuando el delito sea cometido contra un menor que no tenga padres, tutor, ni guardador, o que lo sea por uno de sus ascendientes, tutor o guardador [Ley 11.179 - Código Penal de la Nación · texto original · Art. 72].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 27.055,
+          "segundos_generacion": 1.815
+        },
+        {
+          "id": "i02",
+          "categoria": "identificador",
+          "pregunta": "¿Qué dice el artículo 208 de la Ley de Contrato de Trabajo?",
+          "respuesta_esperada": "Que a los menores de 18 años que trabajan de mañana y de tarde se les aplican los artículos 190, 191 y 192",
+          "ids_relevantes": [
+            367
+          ],
+          "ids_recuperados": [
+            367,
+            1979,
+            181,
+            176,
+            619
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208",
+            "Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 10",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 2",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 208"
+          ],
+          "textos_recuperados": [
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208]\nArt. 208. — Con relación a los menores de dieciocho (18) años de uno u otro sexo, que trabajen en horas\nde la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley.\nAhorro\nArt. 209. — El empleador, dentro de los treinta (30) días de la ocupación de un menor comprendido entre\nlos catorce (14) y dieciocho (18) años, deberá gestionar la obtención de una libreta de ahorro, de la\ninstitución de ahorro oficial, la cual permanecerá en su poder y custodia mientras el menor trabaje a sus\nórdenes, debiendo ser devuelta a éste o a sus padres o tutores al extinguirse el contrato de trabajo, o\ncuando el menor cumpla los dieciocho (18) años de edad.\nImporte a depositar - Comprobación",
+            "[Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación]\nles. Esta incapaci-\ndad comienza el día siguiente de la primera manifestación invalidante y finaliza \ncuando el trabajador recibe el alta médica, o se le declara una Incapacidad Labo-\nral Permanente, si se cumplió 1 año desde la primera manifestación invalidante, \no bien si fallece el damnificado.\n¿Qué cobra el trabajador durante la ILT?\nLa prestación dineraria durante una Incapacidad Laboral Temporaria se calcula \nconforme a las pautas dispuestas por el artículo 208 de la Ley de Contrato de Tra-\nbajo Nº 20.744 (t.o. 1976) y sus modificatorias, incluye la totalidad de los concep-\ntos que debió percibir el damnificado al momento de la primera manifestación \ninvalidante, sin tener en cuenta el tope máximo de remuneraciones sujetas a \naportes que estipula la ley previsional.\n\nSi el salario es",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 10]\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 2]\nARTICULO 2º — La ley de contrato de trabajo entrará en vigor a partir de la promulgación de la presente\ny se aplicará aun a las consecuencias de las relaciones y situaciones jurídicas existentes.\nARTICULO 3º — Las disposiciones de los artículos 15, 22, 29, 35, 51, 60, 61, 62, 63, 65 segundo párrafo,\n66, 75, 87, 104 primer párrafo, 107, 123, 194, 197, 218, 224, 264 segundo párrafo, 272 con relación a las\nindemnizaciones que correspondieran a la fecha del despido, 281, 282, 290, 291, 300 y 301, serán de\naplicación a las causas judiciales pendientes.",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 208]\nArt. 208. - Será reprimido con prisión de quince días a un año:\n1.º El que, sin título ni autorización para el ejercicio de un arte de curar o excediendo los límites de su\nautorización, anunciare, prescribiere, administrare o aplicare habitualmente medicamentos, aguas,\nelectricidad, hipnotismo o cualquier medio destinado al tratamiento de las enfermedades de las personas,\naun a título gratuito;\n2.º El que con título o autorización para el ejercicio de un arte de curar, anunciare o prometiere la curación\nde enfermedades a término fijo o por medios secretos o infalibles;\n3.º El que con título o autorización para el ejercicio de un arte de curar, prestare su nombre a otro que no\ntuviere título o autorización, para que ejerza los actos a que se refiere el inciso 1.º de este artículo.\nTITULO VIII\nDelitos contra el orden público\nCAPITULO I\nInstigación a cometer delitos\nDelitos contra el orden público\nInstigación a cometer delitos"
+          ],
+          "scores": [
+            0.98262,
+            0.93751,
+            0.14127,
+            0.12953,
+            0.11244
+          ],
+          "respuesta": "El artículo 208 de la Ley de Contrato de Trabajo establece que, en relación a los menores de dieciocho (18) años que trabajen en horas de la mañana y de la tarde, regirá lo dispuesto en los artículos 190, 191 y 192 de esta ley [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 208].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 30.553,
+          "segundos_generacion": 1.414
+        },
+        {
+          "id": "i03",
+          "categoria": "identificador",
+          "pregunta": "¿Qué dice el artículo 57 de la Ley de Contrato de Trabajo?",
+          "respuesta_esperada": "Que los libros sin las formalidades del artículo 56 no tienen valor en juicio a favor del empleador",
+          "ids_relevantes": [
+            228
+          ],
+          "ids_recuperados": [
+            228,
+            178,
+            181,
+            873,
+            82
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 6",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 10",
+            "Ley 14.394 - Modificaciones al régimen de los menores y de la familia (bien de familia, edad de matrimonio) · texto actualizado · Art. 57",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 57"
+          ],
+          "textos_recuperados": [
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57]\nArt. 57. — Los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que\ntengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no\nservirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de\nla seguridad social.\nAplicación a los registros, planillas u otros elementos de contralor",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 6]\nARTICULO 6º — Las disposiciones de los artículos 56, 57, 58, 90, 154, 155, 156 y 158 de la ley de\ncontrato de trabajo serán de aplicación a partir de los noventa (90) días de la promulgación de la\npresente.\nARTICULO 7º — Quedan derogados por esta ley y sustituidos los artículos 154 a 160 del Código de\nComercio, según Ley 11.729 y Decretos-Leyes 20.163/73, 18.913/70 y 18.523/69; las Leyes 16.593,\n16.577, 15.015, 12.383 y el Decreto-Ley 17.709/68; artículos 2º, 44, 45, 46 y 47 del Decreto-Ley\n33.302/45 (Ley 12.921) y el Decreto-Ley 17.620/73; el Decreto-Ley 18.596/70; artículos 1º, 2º, 3º, 4º, 9º,\n11 —primera parte— y 13 de la Ley 16.459; Ley 11.317, salvo en sus artículos 10, 11 y 19 a 24;\nDecreto-Ley 1740/45 (Ley 12.921) y el Decreto-Ley 18.338/69, salvo lo dispuesto en su artículo 7º, del\nque se deroga el último párrafo; Decreto-Ley 2.446/56, salvo en su artículo 1º (Ley 14.467); artículo 7º del\nDecreto Ley 17.258/67, y toda otra disposición legal o reglamentaria que se oponga a la misma.",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 10]\nARTICULO 10. — Facúltase al Poder Ejecutivo para ordenar las leyes mencionadas en el artículo 7º de la\npresente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo.\nLEY DE CONTRATO DE TRABAJO\nTITULO I\nDisposiciones Generales\nFuentes de regulación\nArtículo 1º — El contrato de trabajo y la relación de trabajo se rigen:\na) Por esta ley;\nb) Por las leyes y estatutos profesionales;\nc) Por las convenciones colectivas o laudos con fuerza de tales;\nd) Por la voluntad de las partes;\ne) Por los usos y costumbres.\nAmbito de aplicación",
+            "[Ley 14.394 - Modificaciones al régimen de los menores y de la familia (bien de familia, edad de matrimonio) · texto actualizado · Art. 57]\nARTICULO 57. – La presente ley comenzará a regir a los noventa días de su publicación, quedando a\npartir de entonces derogados los artículos 36, 37, 38 y 39 del Código Penal y todas las disposiciones que\ny en cuanto se opusieron a ella.\nARTICULO 58. – Comuníquese al Poder Ejecutivo.\nDada en la Sala de Sesiones del Congreso Argentino, en Buenos Aires, a 14 de diciembre de 1954.\nA. TEISAIRE – A.J.BENITEZ – Alberto H. Reales – Eduardo T. Oliver\n– Registrada bajo el N° 14.394 –\nBuenos Aires, 22 de diciembre de 1954\nPOR TANTO:\nTéngase por Ley de la Nación, cúmplase, comuníquese, publíquese, dése a la Dirección General del\nRegistro Nacional y archívese.\nPERON – Angel G. Borlenghi\nDECRETO N° 21.802\nAntecedentes normativo:",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 57]\nARTICULO 57. — Requisitos para Obtener el Reconocimiento. Para ser reconocidas como\norganizaciones de consumidores, las asociaciones civiles deberán acreditar, además de los requisitos\ngenerales, las siguientes condiciones especiales:\na) No podrán participar en actividades políticas partidarias;\nb) Deberán ser independientes de toda forma de actividad profesional, comercial y productiva;\nc) No podrán recibir donaciones, aportes o contribuciones de empresas comerciales, industriales o\nproveedoras de servicios, privadas o estatales, nacionales o extranjeras;\nd) Sus publicaciones no podrán contener avisos publicitarios."
+          ],
+          "scores": [
+            0.9847,
+            0.87447,
+            0.18486,
+            0.18251,
+            0.1173
+          ],
+          "respuesta": "El artículo 57 de la Ley de Contrato de Trabajo establece que los libros que carezcan de alguna de las formalidades prescriptas en el artículo 56 o que tengan alguno de los defectos allí consignados, no tendrán valor en juicio en favor del empleador y no servirán para acreditar el cumplimiento de obligaciones y deberes en materia de derecho de trabajo y de la seguridad social [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 57].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 30.472,
+          "segundos_generacion": 1.586
+        },
+        {
+          "id": "i04",
+          "categoria": "identificador",
+          "pregunta": "Según el artículo 5 de la ley 11.723, ¿cuántos años después de la muerte del autor sigue vigente la propiedad intelectual?",
+          "respuesta_esperada": "30 años",
+          "ids_relevantes": [
+            761
+          ],
+          "ids_recuperados": [
+            761,
+            762,
+            786,
+            764,
+            785
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 5",
+            "Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 6",
+            "Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 35",
+            "Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 8",
+            "Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 34"
+          ],
+          "textos_recuperados": [
+            "[Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 5]\nArt. 5° - La propiedad intelectual corresponde a los autores durante su vida y a sus herederos o\nderechohabientes, durante treinta años más. En los casos de colaboración debidamente autenticada, este\ntérmino comenzará a correr desde la muerte del último coautor.\nPara las obras póstumas, los términos comenzarán a correr desde la fecha de la muerte del autor y ellas\npermanecerán en el dominio privado de sus herederos o derechohabientes por el término de treinta años.\nSi no hubiere herederos o derechohabientes del autor la propiedad de la obra corresponderá por quince\naños, a quien la edite autorizadamente. Si hubiere herederos o derechohabientes y el autor hubiese\nencargado a una tercera persona la publicación de la obra, la propiedad quedará en condominio entre los\nherederos y el editor.",
+            "[Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 6]\nArt. 6° - Los herederos o derechohabientes no podrán oponerse a que terceros reediten las obras del\ncausante cuando dejen transcurrir más de diez años sin disponer su publicación.\nTampoco podrán oponerse los herederos o derechohabientes a que terceros traduzcan las obras del\ncausante después de diez años de su fallecimiento.\n\nEn estos casos, si entre el tercero editor y los herederos o derechohabientes no hubiera acuerdo sobre\nlas condiciones de impresión o la retribución pecuniaria, ambas serán fijadas por árbitros.",
+            "[Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 35]\nArt. 35. - El consentimiento a que se refiere el artículo 31 para la publicación del retrato no es necesario\ndespués de transcurridos 20 años de la muerte de la persona retratada.\nPara la publicación de una carta, el consentimiento no es necesario después de transcurridos 20 años de\nla muerte del autor de la carta. Esto aun en el caso de que la carta sea objeto de protección como obra,\nen virtud de la presente ley.",
+            "[Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 8]\nArt. 8° - La propiedad intelectual de las obras anónimas pertenecientes a instituciones, corporaciones o\npersonas jurídicas durará treinta años, contados desde su primera publicación.\nArt. 9° - Nadie tiene derecho a publicar, sin permiso de los autores o de sus derechohabientes, una\nproducción científica, literaria, artística o musical que se haya anotado o copiado durante su lectura,\nejecución o exposición públicas o privadas.",
+            "[Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 34]\nArt. 34. - Para las obras fotográficas la duración del derecho de propiedad es de 20 años desde la primera\npublicación.\nSin perjuicio de las condiciones y protección de las obras originales reproducidas o adaptadas a películas,\npara las obras cinematográficas, la duración del derecho de propiedad es de 30 años desde la fecha de la\nprimera publicación.\nLa fecha y el lugar de la publicación y el nombre o la marca del autor o del editor debe estar inscripta\nsobre la obra fotográfica o sobre la película, de lo contrario la reproducción de la obra fotográfica o\ncinematográfica no podrá ser motivo de la acción penal establecida en esta ley."
+          ],
+          "scores": [
+            0.99954,
+            0.95458,
+            0.92554,
+            0.86818,
+            0.74567
+          ],
+          "respuesta": "Según el artículo 5 de la Ley 11.723, la propiedad intelectual corresponde a los autores durante su vida y a sus herederos o derechohabientes durante treinta años más después de la muerte del autor. Por lo tanto, la propiedad intelectual sigue vigente durante un total de treinta años después de la muerte del autor [Ley 11.723 - Régimen Legal de la Propiedad Intelectual · texto original · Art. 5].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 19.762,
+          "segundos_generacion": 1.706
+        },
+        {
+          "id": "i05",
+          "categoria": "identificador",
+          "pregunta": "¿Qué ley creó el Registro Nacional de Armas de Fuego?",
+          "respuesta_esperada": "La ley 25.938",
+          "ids_relevantes": [
+            165
+          ],
+          "ids_recuperados": [
+            165,
+            166,
+            172,
+            174,
+            170
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Carátula",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 1",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 8",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 10",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 6"
+          ],
+          "textos_recuperados": [
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Carátula]\nArgentina.gob.ar\nFuente: https://www.argentina.gob.ar/normativa/nacional/99933/texto\nLey 25938\nHONORABLE CONGRESO DE LA NACION ARGENTINA\nREGISTRO NACIONAL DE ARMAS DE FUEGO\nSU ESTABLECIMIENTO\n- Sanción:\n- Publicada en el Boletín Oficial:\n- Número:\n- Boletín Oficial número: 30507\n- Página:\n- 1\nREGISTRO NACIONAL DE ARMAS DE FUEGO Y MATERIALES CONTROLADOS, SECUESTRADOS O\nINCAUTADOS\nLey 25.938\nEstablécese el mencionado Registro en el ámbito del Ministerio de Defensa - Registro Nacional de Armas.\nMateriales. Información que deberá suministrarse sobre los elementos secuestrados o incautados.\nDepósitos transitorio y definitivo. Decomiso. Destrucción. Gestión de arsenales. Invítase a los gobiernos\nprovinciales, a la Ciudad Autónoma de Buenos Aires y a sus respectivos poderes judiciales a adherir al\npresente Régimen.\nEl Senado y Cámara de Diputados de la Nación Argentina reunidos en Congreso, etc. sancionan con\nfuerza de Ley:",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 1]\nARTICULO 1º — REGISTRO: Establécese en el ámbito del Ministerio de Defensa - Registro Nacional de\nArmas, el \"REGISTRO NACIONAL DE ARMAS DE FUEGO Y MATERIALES CONTROLADOS,\nSECUESTRADOS O INCAUTADOS\".\nARTICULO 2º — MATERIALES: En el Registro que se establece por el artículo anterior se asentarán los\ndatos correspondientes a las armas de fuego, sus partes y repuestos, municiones y demás materiales\ncontrolados incluidos en la Ley Nacional de Armas y Explosivos y sus reglamentaciones, que hayan sido\nsecuestrados o incautados por las autoridades que se indican en el artículo siguiente. A dicha información\ntendrán acceso pleno el Registro Nacional de Armas y la Secretaría de Seguridad Interior, a los fines del\nadecuado ejercicio de sus respectivas competencias.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 8]\nARTICULO 8º — GESTION DE ARSENALES: Los Ministerios de Defensa —Registro Nacional de\nArmas—, y de Justicia, Seguridad y Derechos Humanos —Secretaría de Seguridad Interior—\nestablecerán, por resolución conjunta, las normas y procedimientos destinados a regular la seguridad y\ngestión de depósitos y arsenales, públicos y privados, destinados al almacenamiento de armas de fuego,\nsus partes y repuestos, municiones y demás materiales incluidos en la Ley Nacional de Armas y\nExplosivos y sus reglamentaciones.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 10]\nARTICULO 10. — ADHESION: Invítase a los gobiernos provinciales y a la Ciudad Autónoma de Buenos\nAires, sus respectivos Poderes Judiciales a adherir al régimen de la presente ley.\nARTICULO 11. — Comuníquese al Poder Ejecutivo nacional.\nDADA EN LA SALA DE SESIONES DEL CONGRESO ARGENTINO, EN BUENOS AIRES, A LOS\nVEINTIDOS DIAS DEL MES DE SEPTIEMBRE DEL AÑO DOS MIL CUATRO.\n— REGISTRADO BAJO EL Nº 25.938 —\nEDUARDO O. CAMAÑO. — MARCELO A. GUINLE. — Eduardo D. Rollano. — Juan J. Canals.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 6]\nARTICULO 6º — DEVOLUCION: Cuando el material secuestrado o incautado se hallare debidamente\nregistrado, y siempre que ello resultare procedente conforme la normativa vigente, la autoridad judicial o\nadministrativa que intervenga podrá hacer entrega del mismo a su titular en calidad de depositario, hasta\ntanto culmine la sustanciación del procedimiento en trámite. En su caso, tal decisión deberá ser informada\nal Registro Nacional de Armas y asentada en el Registro creado a tales efectos."
+          ],
+          "scores": [
+            0.9951,
+            0.99245,
+            0.96871,
+            0.88755,
+            0.84572
+          ],
+          "respuesta": "El Registro Nacional de Armas de Fuego fue creado por la Ley 25.938, que establece su funcionamiento en el ámbito del Ministerio de Defensa - Registro Nacional de Armas [Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 1].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 28.719,
+          "segundos_generacion": 1.174
+        },
+        {
+          "id": "i06",
+          "categoria": "identificador",
+          "pregunta": "¿Qué artículo de la ley 24.240 regula la garantía legal?",
+          "respuesta_esperada": "El artículo 11",
+          "ids_relevantes": [
+            16
+          ],
+          "ids_recuperados": [
+            16,
+            27,
+            20,
+            17,
+            18
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 11",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 24",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 16",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 12",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 14"
+          ],
+          "textos_recuperados": [
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 11]\nARTICULO 11. — Garantías. Cuando se comercialicen cosas muebles no consumibles conforme lo\nestablece el artículo 2325 del Código Civil, el consumidor y los sucesivos adquirentes gozarán de garantía\nlegal por los defectos o vicios de cualquier índole, aunque hayan sido ostensibles o manifiestos al tiempo\n\ndel contrato, cuando afecten la identidad entre lo ofrecido y lo entregado, o su correcto funcionamiento.\nLa garantía legal tendrá vigencia por TRES (3) meses cuando se trate de bienes muebles usados y por\nSEIS (6) meses en los demás casos a partir de la entrega, pudiendo las partes convenir un plazo mayor.\nEn caso de que la cosa deba trasladarse a fábrica o taller habilitado el transporte será realizado por el\nresponsable de la garantía, y serán a su cargo los gastos de flete y seguros y cualquier otro que deba\nrealizarse para la ejecución del mismo.\n(Artículo sustituido por art. 9° de la Ley N° 26.361 B.O. 7/4/2008)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 24]\nARTICULO 24. — Garantía. La garantía sobre un contrato de prestación de servicios deberá\ndocumentarse por escrito haciendo constar:\na) La correcta individualización del trabajo realizado;\nb) El tiempo de vigencia de la garantía, la fecha de iniciación de dicho período y las condiciones de\nvalidez de la misma;\nc) La correcta individualización de la persona, empresa o entidad que la hará efectiva.\nCAPITULO VI\nUSUARIOS DE SERVICIOS PUBLICOS DOMICILIARIOS",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 16]\nARTICULO 16. — Prolongación del Plazo de Garantía. El tiempo durante el cual el consumidor está\nprivado del uso de la cosa en garantía, por cualquier causa relacionada con su reparación, debe\ncomputarse como prolongación del plazo de garantía legal.\nARTICULO 17. — Reparación no Satisfactoria. En los supuestos en que la reparación efectuada no\nresulte satisfactoria por no reunir la cosa reparada, las condiciones óptimas para cumplir con el uso al que\nestá destinada, el consumidor puede:\na) Pedir la sustitución de la cosa adquirida por otra de idénticas características. En tal caso el plazo de la\ngarantía legal se computa a partir de la fecha de la entrega de la nueva cosa;\nb) Devolver la cosa en el estado en que se encuentre a cambio de recibir el importe equivalente a las\nsumas pagadas, conforme el precio actual en plaza de la cosa, al momento de abonarse dicha suma o\nparte proporcional, si hubiere efectuado pagos parciales;\nc) Obtener una quita proporcional del precio.\nEn todos los casos, la opción por parte del consumidor no impide la reclamación de los eventuales daños\ny perjuicios que pudieren corresponder.",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 12]\nARTICULO 12. — Servicio Técnico. Los fabricantes, importadores y vendedores de las cosas\nmencionadas en el artículo anterior, deben asegurar un servicio técnico adecuado y el suministro de\npartes y repuestos.\nARTICULO 13. — Responsabilidad solidaria. Son solidariamente responsables del otorgamiento y\ncumplimiento de la garantía legal, los productores, importadores, distribuidores y vendedores de las cosas\ncomprendidas en el artículo 11.\n(Artículo incorporado por el art. 2º de la Ley Nº 24.999 B.O. 30/7/1998)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 14]\nARTICULO 14. — Certificado de Garantía. El certificado de garantía deberá constar por escrito en idioma\nnacional, con redacción de fácil comprensión en letra legible, y contendrá como mínimo:\na) La identificación del vendedor, fabricante, importador o distribuidor;\nb) La identificación de la cosa con las especificaciones técnicas necesarias para su correcta\nindividualización;\nc) Las condiciones de uso, instalación y mantenimiento necesarias para su funcionamiento;\nd) Las condiciones de validez de la garantía y su plazo de extensión;\ne) Las condiciones de reparación de la cosa con especificación del lugar donde se hará efectiva.\nEn caso de ser necesaria la notificación al fabricante o importador de la entrada en vigencia de la\ngarantía, dicho acto estará a cargo del vendedor. La falta de notificación no libera al fabricante o\nimportador de la responsabilidad solidaria establecida en el artículo 13.\nCualquier cláusula cuya redacción o interpretación contraríen las normas del presente artículo es nula y\nse tendrá por no escrita.\n(Artículo sustituido por el art. 3º de la Ley Nº 24.999 B.O. 30/7/1998)"
+          ],
+          "scores": [
+            0.99693,
+            0.99344,
+            0.98898,
+            0.98805,
+            0.97724
+          ],
+          "respuesta": "El artículo que regula la garantía legal en la Ley 24.240 es el Artículo 11, que establece las condiciones y plazos de la garantía para cosas muebles no consumibles. Además, el Artículo 24 también se refiere a la garantía en contratos de prestación de servicios. [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 11]",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 26.119,
+          "segundos_generacion": 1.373
+        },
+        {
+          "id": "i07",
+          "categoria": "identificador",
+          "pregunta": "¿Qué leyes regulan el sistema de riesgos del trabajo?",
+          "respuesta_esperada": "La ley 24.557 y su modificatoria, la ley 26.773",
+          "ids_relevantes": [
+            1925
+          ],
+          "ids_recuperados": [
+            1925,
+            1932,
+            2014,
+            1933,
+            2013
+          ],
+          "etiquetas_recuperadas": [
+            "Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación",
+            "Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación",
+            "Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación",
+            "Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación",
+            "Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación"
+          ],
+          "textos_recuperados": [
+            "[Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación]\neador\nOtros participantes del Sistema \nde Riesgos del Trabajo\nAtención e información al Público\n4\n10\n16\n18\n26\n30\n38\n46\n48\nÍNDICE\n\n¿Qué es?\nEs uno de los componentes del Sistema de Seguridad Social Argentino. La ley N° \n24.557 de Riesgos del Trabajo (y su modificatoria la ley N° 26.773) tiene como ob-\njetivos prevenir los riesgos en la actividad laboral y reparar los daños ocasionados \npor accidentes de trabajo y enfermedades profesionales.\n¿Quiénes están cubiertos?\nObligatoriamente están cubiertos los funcionarios y empleados del sector públi-\nco nacional, de las provincias y sus municipios y la Ciudad Autónoma de Buenos \nAires; los trabajadores en relación de dependencia del sector privado; los traba-\njadores de casas particulares; los pasantes y las personas obligadas a prestar un \nservi",
+            "[Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación]\nia económica.\nEmpleador Autoasegurado (EA)\nEl Sistema de Riesgos del Trabajo permite que los empleadores se autoaseguren en \nvez de afiliarse a una ART. Para esto deben poder cumplir los requisitos técnicos y finan-\ncieros necesarios para poder brindar las prestaciones médico asistenciales, dinerarias y \npreventivas previstas en la Ley N° 24.557. Un empleador para ser autoasegurado debe \ncumplir con el Decreto N° 585/96 y contar con la aprobación especial de la SRT.\nSuperintendencia de Riesgos del Trabajo (SRT)\n \nLa SRT es el organismo del Estado Nacional encargado de:\n• \nControlar el cumplimiento de las normas de Salud y Seguridad en el Trabajo \ncon competencia en los territorios federales y colaborar con las administra-\nciones provinciales que tienen la competencia para intervenir y fisc",
+            "[Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación]\nDE RIESGOS DEL TRABAJO\n\n47\nPREGUNTAS MÁS FRECUENTES SOBRE EL SISTEMA DE RIESGOS DEL TRABAJO.\n• \nDiseñar e implementar políticas, planes, programas y acciones destinados a \nla erradicación del trabajo infantil, a la incorporación de la mujer al trabajo \nen igualdad de oportunidades y de trato con los varones y la inserción laboral \ny el mejoramiento del empleo de las personas discapacitadas.\nLa Superintendencia de Riesgos del Trabajo brinda el apoyo necesario a las Adminis-\ntraciones Provinciales del Trabajo para el adecuado cumplimiento de esas funciones.\nSuperintendencia de Seguros de la Nación (SSN)\n \nLa Ley de Riesgos del Trabajo reserva a la SSN funciones de fiscalización y control \nde los aspectos económicos y financieros de las ART. Además, entre otras atribu-\nciones, aprueba el régi",
+            "[Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación]\najo \ncon competencia en los territorios federales y colaborar con las administra-\nciones provinciales que tienen la competencia para intervenir y fiscalizar el \ncumplimiento de las normas laborales por parte de los empleadores (entre \nellas las de higiene y seguridad).\n• \nControlar a las Aseguradoras de Riesgos del Trabajo (ART). Garantizar que se \notorguen las prestaciones médico - asistenciales y dinerarias en caso de acci-\ndentes de trabajo o enfermedades profesionales. \n• \nPromover la prevención para conseguir ambientes laborales sanos y seguros.\n• \nImponer sanciones previstas por la Ley de Riesgos del Trabajo N° 24.557 y \nnormas concordantes.\n\nDe la SRT dependen las Comisiones Médicas y la Comisión Médica Central.\nComisiones Médicas (CM) y Comisión Médica Central (CMC)\nLas Comisiones ",
+            "[Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación]\nraciones Provinciales del Trabajo\n \nDe acuerdo al régimen republicano y federal, los estados provinciales ejercen el \npoder de policía del trabajo en sus jurisdicciones. Esto implica que deben:\n• \nSancionar a los empleadores por acciones u omisiones que violan las leyes y \nreglamentos del trabajo, salud, higiene y seguridad en el trabajo, así como \nde las cláusulas normativas de los convenios colectivos.\n• \nPromover la mejora de la calidad del empleo, de las condiciones de trabajo \ny de vida de los asalariados, y aumentar la proporción de trabajadores regis-\ntrados contribuyendo a reducir la exclusión social.\nOTROS PARTICIPANTES DEL SISTEMA \nDE RIESGOS DEL TRABAJO\n\n47\nPREGUNTAS MÁS FRECUENTES SOBRE EL SISTEMA DE RIESGOS DEL TRABAJO.\n• \nDiseñar e implementar políticas, planes, programas y a"
+          ],
+          "scores": [
+            0.99397,
+            0.98352,
+            0.97947,
+            0.97033,
+            0.94365
+          ],
+          "respuesta": "El sistema de riesgos del trabajo en Argentina está regulado principalmente por la Ley N° 24.557 de Riesgos del Trabajo y su modificatoria, la Ley N° 26.773. Estas leyes tienen como objetivos prevenir los riesgos en la actividad laboral y reparar los daños ocasionados por accidentes de trabajo y enfermedades profesionales [Preguntas más frecuentes sobre el Sistema de Riesgos del Trabajo (SRT, 2016) - material de divulgación].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 24.971,
+          "segundos_generacion": 1.437
+        },
+        {
+          "id": "i08",
+          "categoria": "identificador",
+          "pregunta": "¿Qué pena fija el artículo 204 del Código Penal según la ley 23.737?",
+          "respuesta_esperada": "Prisión de 6 meses a 3 años",
+          "ids_relevantes": [
+            118
+          ],
+          "ids_recuperados": [
+            118,
+            121,
+            120,
+            119,
+            616
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 23.737 - Modificación al Código Penal. Narcotráfico (estupefacientes) · texto original · Art. 1",
+            "Ley 23.737 - Modificación al Código Penal. Narcotráfico (estupefacientes) · texto original · Art. 4",
+            "Ley 23.737 - Modificación al Código Penal. Narcotráfico (estupefacientes) · texto original · Art. 204 ter",
+            "Ley 23.737 - Modificación al Código Penal. Narcotráfico (estupefacientes) · texto original · Art. 2",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 204"
+          ],
+          "textos_recuperados": [
+            "[Ley 23.737 - Modificación al Código Penal. Narcotráfico (estupefacientes) · texto original · Art. 1]\nArtículo 1º — Reemplázase el artículo 204 del Código Penal por el siguiente texto:\nArtículo 204: Será reprimido con prisión de seis meses a tres años el que estando autorizado para la\nventa de sustancias medicinales, las suministrare en especie, calidad o cantidad no correspondiente a la\nreceta médica o diversa de la declarada o convenida, o sin la presentación y archivo de la receta de\naquellos productos que según las reglamentaciones vigentes no pueden ser comercializados sin ese\nrequisito.",
+            "[Ley 23.737 - Modificación al Código Penal. Narcotráfico (estupefacientes) · texto original · Art. 4]\nArt. 4º — Incorpórase como artículo 204 quáter del Código Penal el siguiente texto:\nArtículo 204 quáter: Será reprimido con prisión de seis meses a tres años el que sin autorización vendiere\nsustancias medicinales que requieran receta médica para su comercialización.",
+            "[Ley 23.737 - Modificación al Código Penal. Narcotráfico (estupefacientes) · texto original · Art. 204 ter]\nArtículo 204 ter: Será reprimido con multa de seiscientos australes a doce mil australes el que teniendo a\nsu cargo la dirección, administración, control o vigilancia de un establecimiento destinado al expendio de\nmedicamentos, omitiere cumplir con los deberes a su cargo posibilitando la comisión de alguno de los\nhechos previstos en el artículo 204.",
+            "[Ley 23.737 - Modificación al Código Penal. Narcotráfico (estupefacientes) · texto original · Art. 2]\nArt. 2º — Incorpórase como artículo 204 bis del Código Penal el siguiente texto:\nArtículo 204 bis: Cuando el delito previsto en el artículo anterior se cometiere por negligencia, la pena\nserá de multa de trescientos australes a seis mil australes.\nArt. 3º — Incorpórase como artículo 204 ter del Código Penal el siguiente texto:",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 204]\nArt. 204. - Será reprimido con multa de quinientos a dos mil pesos, el que estando autorizado para la\nventa de substancias medicinales, las suministrare en especie, calidad o cantidad no correspondiente a\nlas prescripciones médicas o diversa de la declarada o convenida."
+          ],
+          "scores": [
+            0.99654,
+            0.99134,
+            0.99099,
+            0.98938,
+            0.90639
+          ],
+          "respuesta": "El artículo 204 del Código Penal, según la Ley 23.737, fija una pena de prisión de seis meses a tres años para quien, estando autorizado para la venta de sustancias medicinales, las suministre en especie, calidad o cantidad no correspondiente a la receta médica o diversa de la declarada o convenida, o sin la presentación y archivo de la receta de aquellos productos que según las reglamentaciones vigentes no pueden ser comercializados sin ese requisito [Ley 23.737 - Modificación al Código Penal. Narcotráfico (estupefacientes) · texto original · Art. 1].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 21.993,
+          "segundos_generacion": 1.497
+        },
+        {
+          "id": "m01",
+          "categoria": "multihop",
+          "pregunta": "¿En qué tipo de ventas puede arrepentirse el consumidor y cuántos días tiene para hacerlo?",
+          "respuesta_esperada": "En la venta domiciliaria y en la venta por correspondencia; tiene 10 días corridos",
+          "ids_relevantes": [
+            39,
+            40,
+            41
+          ],
+          "ids_recuperados": [
+            41,
+            36,
+            42,
+            33,
+            37
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 31 (cont. 1/3)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 35",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 30",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 31 (cont. 2/3)"
+          ],
+          "textos_recuperados": [
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34]\nARTICULO 34. — Revocación de aceptación. En los casos previstos en los artículos 32 y 33 de la\npresente ley, el consumidor tiene derecho a revocar la aceptación durante el plazo de DIEZ (10) días\n\ncorridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que\nocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada.\nEl vendedor debe informar por escrito al consumidor de esta facultad de revocación en todo documento\nque con motivo de venta le sea presentado al consumidor.\nTal información debe ser incluida en forma clara y notoria.\nEl consumidor debe poner el bien a disposición del vendedor y los gastos de devolución son por cuenta\nde este último.\n(Artículo sustituido por art. 14 de la Ley N° 26.361 B.O. 7/4/2008)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 31 (cont. 1/3)]\nARTICULO 31. — Cuando una empresa de servicio público domiciliario con variaciones regulares\nestacionales facture en un período consumos que exceden en un SETENTA Y CINCO POR CIENTO\n(75%) el promedio de los consumos correspondientes al mismo período de los DOS (2) años anteriores\nse presume que existe error en la facturación.\nPara el caso de servicios de consumos no estacionales se tomará en cuenta el consumo promedio de los\núltimos DOCE (12) meses anteriores a la facturación. En ambos casos, el usuario abonará únicamente el\nvalor de dicho consumo promedio.\nEn los casos en que un prestador de servicios públicos facturase sumas o conceptos indebidos o\nreclamare el pago de facturas ya abonadas el usuario podrá presentar reclamo, abonando únicamente los\nconceptos no reclamados.\n\nEl prestador dispondrá de un plazo de TREINTA (30) días a partir del reclamo del usuario para acreditar\nen forma fehaciente que el consumo facturado fue efectivamente realizado.\nSi el usuario no considerara satisfecho su reclamo o el prestador no le contestara en los plazos indicados,\npodrá requerir la intervención del organismo de control correspondiente dentro de los TREINTA (30) días\ncontados a partir de la",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 35]\nARTICULO 35. — Prohibición. Queda prohibida la realización de propuesta al consumidor, por cualquier\ntipo de medio, sobre una cosa o servicio que no haya sido requerido previamente y que genere un cargo\nautomático en cualquier sistema de débito, que obligue al consumidor a manifestarse por la negativa para\nque dicho cargo no se efectivice.\nSi con la oferta se envió una cosa, el receptor no está obligado a conservarla ni a restituirla al remitente\naunque la restitución pueda ser realizada libre de gastos.\nCAPITULO VIII\nDE LAS OPERACIONES DE VENTA DE CREDITO",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 30]\nARTICULO 30. — Interrupción de la Prestación del Servicio. Cuando la prestación del servicio público\ndomiciliario se interrumpa o sufra alteraciones, se presume que es por causa imputable a la empresa\nprestadora. Efectuado el reclamo por el usuario, la empresa dispone de un plazo máximo de treinta (30)\ndías para demostrar que la interrupción o alteración no le es imputable. En caso contrario, la empresa\ndeberá reintegrar el importe total del servicio no prestado dentro del plazo establecido precedentemente.\nEsta disposición no es aplicable cuando el valor del servicio no prestado sea deducido de la factura\ncorrespondiente. El usuario puede interponer el reclamo desde la interrupción o alteración del servicio y\nhasta los quince (15) días posteriores al vencimiento de la factura.",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 31 (cont. 2/3)]\n los plazos indicados,\npodrá requerir la intervención del organismo de control correspondiente dentro de los TREINTA (30) días\ncontados a partir de la respuesta del prestador o de la fecha de vencimiento del plazo para contestar, si\néste no hubiera respondido.\nEn los casos en que el reclamo fuera resuelto a favor del usuario y si éste hubiera abonado un importe\nmayor al que finalmente se determine, el prestador deberá reintegrarle la diferencia correspondiente con\nmás los mismos intereses que el prestador cobra por mora, calculados desde la fecha de pago hasta la\nefectiva devolución, e indemnizará al usuario con un crédito equivalente al VEINTICINCO POR CIENTO\n(25%) del importe cobrado o reclamado indebidamente. La devolución y/o indemnización se hará efectiva\nen la factura inmediata siguiente.\nSi el reclamo fuera resuelto a favor del prestador éste tendrá derecho a reclamar el pago de la diferencia\nadeudada con más los intereses que cobra por mora, calculados desde la fecha de vencimiento de la\nfactura reclamada hasta la fecha de efectivo pago.\nLa tasa de interés por mora en facturas de servicios públicos no podrá exceder en más del CINCUENTA\nPOR CIENTO (50%) la tasa pasiva para d"
+          ],
+          "scores": [
+            0.08623,
+            0.02645,
+            0.01066,
+            0.00912,
+            0.00798
+          ],
+          "respuesta": "El consumidor tiene derecho a revocar la aceptación en los casos previstos en los artículos 32 y 33 de la Ley 24.240, durante un plazo de DIEZ (10) días corridos contados a partir de la fecha en que se entregue el bien o se celebre el contrato, lo último que ocurra, sin responsabilidad alguna. Esta facultad no puede ser dispensada ni renunciada [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 34].",
+          "recall": 0.3333333333333333,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 33.781,
+          "segundos_generacion": 1.441
+        },
+        {
+          "id": "m02",
+          "categoria": "multihop",
+          "pregunta": "¿Qué tiene que hacer un alumno de la UNLAR para ser regular y cuánto le dura la regularidad de una materia?",
+          "respuesta_esperada": "Aprobar 2 asignaturas por año académico; la regularidad de la materia dura 12 turnos de examen",
+          "ids_relevantes": [
+            2027,
+            2033
+          ],
+          "ids_recuperados": [
+            2027,
+            2033,
+            2036,
+            2081,
+            1894
+          ],
+          "etiquetas_recuperadas": [
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 6",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 11",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 14",
+            "Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 57",
+            "Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 177"
+          ],
+          "textos_recuperados": [
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 6]\nArtículo 6º.- Es Estudiante Regular el alumno que hubiere aprobado por lo menos dos (2)\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nasignaturas durante cada año académico, salvo cuando el Plan de Estudios prevea menos\n \n \n \n \n \n \n \n \n \n \n \n \n \nde cuatro (4) asignaturas anuales, en cuyo caso deben aprobar una (1) como mínimo (art.\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n50, Ley Nacional de Educación Superior Nº 24.521). Quedan exceptuados de esta norma\n \n \n \n \n \n \n \n \n \n \n \n \n \nlos estudiantes que solo adeuden el Trabajo Final de su respectivo Plan de Estudios. \nLa condición de Estudiante Regular, a los fines de los Exámenes finales se reconocerá\n \n \n \n \n  \n \n \n \n \n \n \n \n \nasimismo por cada asignatura regularizada, y con arreglo a lo señalado en el artículo Nº 11\n \n \n \n \n  \n \n  \n \n \n  \n \n \n \ndel presente.",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 11]\nArtículo 11º.- La regularización de una asignatura, mantendrá su vigencia por el término de\n \n \n \n \n \n \n \n \n \n \n  \n \n \ndoce (12) épocas o turnos de exámenes, a contar desde el momento en que se adquiere la\n \n \n  \n \n \n  \n \n  \n \n \n \n \n  \ncondición de Regular. Excepcionalmente y por única vez, el/la Decano/a Departamental a\n \n \n \n  \n \n \n \n \n \n  \npedido del/la Director/a de Carrera respectiva, podrá extender la vigencia de dicha\n \n \n \n \n \n \n \n \n \n \n \n \nregularidad hasta dos (2) turnos o épocas de examenes adicionales. \n \n(Artículo modificado por art. 1° de la Ord. C.S. N° 163/2019). \n \n \nCUARTA SECCIÓN",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 14]\nArtículo 14º.- Los Alumnos de la U.N.LaR. cuentan con los Derechos y Garantías que\n \n \n \n \n \n \n \n \n \n \n  \n \n \nexplícita o implícitamente estipula la Constitución Nacional.\nArtículo 15º.- Todos los alumnos activos y los estudiantes regulares según sus casos, de\n \n \n \n \n \n  \n \n \n \n \n \n \n \nesta Universidad, son legítimos titulares de los Derechos y Obligaciones previstos en la Ley\n \n \n \n \n \n \n \n  \n \n \n  \n \nNacional de Educación Superior, Nº 24.521, el Estatuto de la Universidad Nacional de la\n \n \n \n \n \n \n \n \n \n \n \n \n \n \nRioja y los señalados en este ordenamiento.",
+            "[Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · texto ordenado · Art. 57]\nArtículo 57º.- Para poder rendir examen en condición de Regular, el alumno deberá haber\n \n \n \n \n \n \n \n \n \n \n \n \n \n \nalcanzado tal condición y mantenerla vigente en la respectiva asignatura al tiempo de la\n \n \n  \n \n \n \n \n \n \n \n \n \n \ninscripción, además de tener aprobadas las materias correlativas del correspondiente Plan\n \n \n \n \n \n \n \n \n \n \n \nde Estudios.",
+            "[Resolución ME 2485-E/2017 - Estatuto Académico de la Universidad Nacional de La Rioja (texto ordenado) · texto ordenado · Art. 177]\nArtículo 177°: Para ser electo/a representante del estamento estudiantil en el Consejo Superior y en los consejos\ndepartamentales, se requieren las siguientes condiciones:\n1) Ser estudiante regular, o sea, quienes hayan aprobado por lo menos dos (2) materias por año, salvo cuando el\nplan de estudios prevea menos de cuatro (4) asignaturas anuales, en cuyo caso deben aprobar una (1) como\nmínimo; entendiéndose que tal número de materias deben ser aprobadas en un (1) año calendario.\n2) Haber aprobado, por lo menos, el treinta por ciento (30%) del total de las asignaturas del plan de carrera que\ncurse."
+          ],
+          "scores": [
+            0.37502,
+            0.35881,
+            0.3542,
+            0.1998,
+            0.17713
+          ],
+          "respuesta": "Para ser considerado Estudiante Regular en la Universidad Nacional de La Rioja (UNLAR), un alumno debe haber aprobado por lo menos dos (2) asignaturas durante cada año académico. Sin embargo, si el Plan de Estudios prevé menos de cuatro (4) asignaturas anuales, debe aprobar al menos una (1) asignatura como mínimo [Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · Art. 6].\n\nLa regularidad de una asignatura se mantiene vigente por un término de doce (12) épocas o turnos de exámenes, contados desde el momento en que se adquiere la condición de Regular. Excepcionalmente, el Decano/a Departamental puede extender esta vigencia hasta dos (2) turnos o épocas de exámenes adicionales, a pedido del Director/a de Carrera respectiva [Reglamento General de Alumnos - OHCS 283/04 y modificatorias (texto ordenado) · Art. 11].",
+          "recall": 1.0,
+          "precision": 0.4,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 31.38,
+          "segundos_generacion": 2.361
+        },
+        {
+          "id": "m03",
+          "categoria": "multihop",
+          "pregunta": "¿Cuánto tiempo hay para informar un arma secuestrada y cuánto para informar un cambio de lugar de depósito?",
+          "respuesta_esperada": "10 días hábiles para informar el secuestro y 48 horas para informar el cambio de depósito",
+          "ids_relevantes": [
+            167,
+            168
+          ],
+          "ids_recuperados": [
+            168,
+            167,
+            173,
+            170,
+            101
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 4",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 3",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 9",
+            "Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 6",
+            "Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 11"
+          ],
+          "textos_recuperados": [
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 4]\nARTICULO 4º — DEPOSITO TRANSITORIO: Hasta tanto se adopte decisión definitiva sobre su destino,\nlos materiales secuestrados o incautados deberán ser depositados en los lugares y bajo las condiciones\nde seguridad que se fijarán por vía reglamentaria, circunstancia ésta que también deberá ser informada\nen los términos previstos en el artículo anterior, con indicación de la autoridad responsable del mismo.\nTodo cambio del lugar de depósito de los materiales, o de la autoridad depositaria responsable de los\nmismos deberá ser informado al Registro Nacional de Armas dentro de las cuarenta y ocho (48) horas de\nproducido.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 3]\nARTICULO 3º — INFORMACION: Los Poderes Judiciales Nacional y Provinciales, Fuerzas de Seguridad,\nPolicía Federal Argentina y Policías Provinciales, y demás organismos competentes que en el ejercicio de\nlas atribuciones que le son propias procedan al secuestro o incautación de los materiales mencionados en\nel artículo 2º, deberán dentro de los diez (10) días hábiles de producido el mismo, informar al Registro\nNacional de Armas lo siguiente:\na) Lugar y fecha del secuestro o incautación y descripción sumario de las circunstancias;\n\nb) Tipo de arma, sistema de disparo, marca, modelo si lo tuviere o fuese conocido, calibre y numeración\nde serie;\nc) Tratándose de munición, tipo, calibre y cantidad de la misma;\nd) Detalle preciso de todo otro material controlado que fuere objeto del secuestro y/o incautación;\ne) Autoridad judicial o administrativa interviniente, carátula, número de la causa y datos de las personas\ninvolucradas.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 9]\nARTICULO 9º — DISPOSICION TRANSITORIA: Las Autoridades mencionadas en el artículo 3º, que a la\nfecha de entrada en vigencia de la presente ley tuvieren en su poder materiales provenientes de\nsecuestros o incautaciones ejecutados con anterioridad a la misma, deberán remitir la información allí\nprevista, ampliándose el plazo al de noventa (90) días hábiles.\nCuando con relación a dichos materiales se dieran las condiciones contempladas en el artículo 5º, se\ndeberá proceder en igual plazo a la remisión de los mismos, conforme el procedimiento allí previsto.",
+            "[Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 6]\nARTICULO 6º — DEVOLUCION: Cuando el material secuestrado o incautado se hallare debidamente\nregistrado, y siempre que ello resultare procedente conforme la normativa vigente, la autoridad judicial o\nadministrativa que intervenga podrá hacer entrega del mismo a su titular en calidad de depositario, hasta\ntanto culmine la sustanciación del procedimiento en trámite. En su caso, tal decisión deberá ser informada\nal Registro Nacional de Armas y asentada en el Registro creado a tales efectos.",
+            "[Ley 20.785 - Bienes objeto de secuestro en causas penales. Custodia y disposición · texto original · Art. 11]\nARTICULO 11. — La Policía Federal, la Gendarmería Nacional, la Prefectura Naval Argentina y las\npolícias provinciales, dentro de los sesenta (60) días a contar desde la publicación de la presente deberán\ncomunicar a los tribunales correspondientes la nómina de los bienes que tengan depositados como\npertenecientes a causas que tramiten o hayan tramitado ante ellos, para su disposición conforme a esta\n\nley."
+          ],
+          "scores": [
+            0.99196,
+            0.7646,
+            0.53055,
+            0.29786,
+            0.16177
+          ],
+          "respuesta": "Según la Ley 25.938, los Poderes Judiciales y las Fuerzas de Seguridad deben informar al Registro Nacional de Armas sobre un arma secuestrada dentro de los diez (10) días hábiles desde que se produjo el secuestro o incautación [Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 3].\n\nEn cuanto a un cambio de lugar de depósito de los materiales secuestrados, este debe ser informado al Registro Nacional de Armas dentro de las cuarenta y ocho (48) horas de producido el cambio [Ley 25.938 - Registro Nacional de Armas de Fuego y Materiales Controlados, Secuestrados o Incautados · texto original · Art. 4].",
+          "recall": 1.0,
+          "precision": 0.4,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 25.284,
+          "segundos_generacion": 2.089
+        },
+        {
+          "id": "m05",
+          "categoria": "multihop",
+          "pregunta": "¿Cuántos días de vacaciones corresponden con menos de 5 años de antigüedad y qué hay que haber trabajado para tener derecho?",
+          "respuesta_esperada": "14 días corridos; hay que haber trabajado como mínimo la mitad de los días hábiles del año",
+          "ids_relevantes": [
+            328,
+            329
+          ],
+          "ids_recuperados": [
+            328,
+            329,
+            382,
+            331,
+            344
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 164",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 165",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 225 (cont. 1/2)",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 167",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 183"
+          ],
+          "textos_recuperados": [
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 164]\nArt. 164. — El trabajador gozará de un período mínimo y continuado de descanso anual remunerado por\nlos siguientes plazos:\na) De catorce (14) días corridos cuando la antigüedad en el empleo no exceda de cinco (5) años;\nb) De veintiún (21) días corridos cuando siendo la antigüedad mayor de cinco (5) años no exceda de diez\n(10);\nc) De veintiocho (28) días corridos, cuando la antigüedad siendo mayor de diez (10) años no exceda de\nveinte (20);\nd) De treinta y cinco (35) días corridos, cuando la antigüedad exceda de veinte (20) años.\nPara determinar la extensión de las vacaciones atendiendo a la antigüedad en el empleo, se computará\ncomo tal aquella que tendría el trabajador al 31 de diciembre del año que correspondan las mismas.\nRequisitos para su goce - Comienzo de la licencia",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 165]\nArt. 165. — El trabajador, para tener derecho cada año al beneficio establecido en el artículo 164 de esta\nley, deberá haber prestado servicios durante la mitad, como mínimo, de los días hábiles comprendidos en\nel año calendario o aniversario respectivo. A este efecto se computarán como hábiles los días feriados en\nque el trabajador debiera normalmente prestar servicios.\nLa licencia comenzará en día lunes o el siguiente hábil si aquél fuese feriado. Tratándose de trabajadores\nque presten servicios en días inhábiles, las vacaciones deberán comenzar al día siguiente a aquél en que\nel trabajador gozare del descanso semanal o el subsiguiente hábil si aquél fuese feriado.\nPara gozar de este beneficio no se requerirá antigüedad mínima en el empleo.\nTiempo trabajado - Su cómputo",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 225 (cont. 1/2)]\nArt. 225. — Cada accidente o enfermedad inculpable que impida la prestación del servicio no afectará el\nderecho del trabajador a percibir su remuneración durante un período de tres (3) meses, si su antigüedad\nen el servicio fuere menor de cinco (5) años, y de seis (6) meses si fuera mayor. En los casos que el\ntrabajador tuviere carga de familia y por las mismas circunstancias se encontrara impedido de concurrir al\ntrabajo, los períodos durante los cuales tendrá derecho a percibir su remuneración se extenderán a seis\n(6) y doce (12) meses respectivamente, según si su antigüedad fuese inferior o superior a cinco (5) años.\nLa recidiva de enfermedades crónicas no será considerada enfermedad, salvo que se manifestara\ntranscurridos los dos (2) años. La remuneración que en estos casos corresponda abonar al trabajador se\nliquidará conforme a la que perciba en el momento de la interrupción de los servicios, con más los\naumentos que durante el período de interrupción fueren acordados a los de su misma categoría por\naplicación de una norma legal, convención colectiva de trabajo o decisión del empleador. Si el salario\nestuviere integrado por remuneraciones variables, se liquidará en cuanto a e",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 167]\nArt. 167. — Cuando el trabajador no llegase a totalizar el tiempo mínimo de trabajo previsto en el artículo\n165 de esta ley, gozará de un período de descanso anual, en proporción de un día de descanso por cada\nveinte (20) días de trabajo efectivo, computable de acuerdo al artículo anterior.\nEn el caso de cierre del establecimiento por vacaciones, por un período superior al tiempo de licencia que\npueda corresponderle al trabajador, éste tendrá derecho a percibir los salarios correspondientes a todo el\nperíodo del cierre que no fueren compensados por el período de vacaciones que le pueda corresponder.\nEpoca de otorgamiento - Comunicación",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 183]\nArt. 183. — Los trabajadores tendrán derecho a percibir la remuneración indicada en el artículo 181,\npárrafo primero, siempre que hubiesen trabajado a las órdenes de un mismo empleador cuarenta y ocho\n(48) horas o seis (6) jornadas dentro del término de diez (10) días hábiles anteriores al feriado.\nIgual derecho tendrán los que hubiesen trabajado la víspera hábil del día feriado y continuaran trabajando\nen cualquiera de los cinco (5) días hábiles subsiguientes.\nSalario - Su determinación"
+          ],
+          "scores": [
+            0.93295,
+            0.86097,
+            0.19597,
+            0.16629,
+            0.14786
+          ],
+          "respuesta": "Con menos de 5 años de antigüedad, al trabajador le corresponden catorce (14) días corridos de vacaciones. Para tener derecho a este beneficio, el trabajador deberá haber prestado servicios durante la mitad, como mínimo, de los días hábiles comprendidos en el año calendario o aniversario respectivo [Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 164 y Art. 165].",
+          "recall": 1.0,
+          "precision": 0.4,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 30.17,
+          "segundos_generacion": 1.323
+        },
+        {
+          "id": "m06",
+          "categoria": "multihop",
+          "pregunta": "En un sumario por defensa del consumidor, ¿cuántos días hay para presentar el descargo y cuántos para apelar la sanción?",
+          "respuesta_esperada": "5 días hábiles para el descargo y 10 días hábiles para el recurso",
+          "ids_relevantes": [
+            58,
+            61
+          ],
+          "ids_recuperados": [
+            59,
+            60,
+            58,
+            61,
+            1512
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 2/5)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 3/5)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 1/5)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 4/5)",
+            "Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor) · texto actualizado · Art. 2 (cont. 20/24)"
+          ],
+          "textos_recuperados": [
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 2/5)]\nsunto responsable la infracción verificada, intimándolo para que en el plazo de\ncinco (5) días hábiles presente por escrito su descargo.\nEn su primera presentación, el presunto infractor deberá constituir domicilio y acreditar personería.\nCuando no se acredite personería se intimará para que en el término de cinco (5) días hábiles subsane la\nomisión bajo apercibimiento de tenerlo por no presentado.\n\nLas constancias del expediente labrado conforme a lo previsto en este artículo, así como las\ncomprobaciones técnicas que se dispusieren, constituirán prueba suficiente de los hechos así\ncomprobados, salvo en los casos en que resulten desvirtuados por otras pruebas.\nLas pruebas se admitirán solamente en caso de existir hechos controvertidos, siempre que no resulten\nmanifiestamente inconducentes o meramente dilatorias. Contra la resolución que deniegue medidas de\nprueba sólo se podrá interponer el recurso de reconsideración previsto en el Reglamento de\nProcedimientos Administrativos, decreto 1759/72 t.o. 1991. La prueba deberá producirse en el término de\ndiez (10) días hábiles, prorrogables cuando haya causas justificadas, teniéndose por desistida aquella no\nproducida dentro de dicho plaz",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 3/5)]\nel término de\ndiez (10) días hábiles, prorrogables cuando haya causas justificadas, teniéndose por desistida aquella no\nproducida dentro de dicho plazo por causa imputable al infractor.\nEn cualquier momento durante la tramitación de las actuaciones, la autoridad de aplicación podrá ordenar\ncomo medida preventiva el cese de la conducta que se reputa en violación de esta ley y sus\nreglamentaciones.\nConcluidas las diligencias instructorias, se dictará la resolución definitiva dentro del término de veinte (20)\ndías hábiles.\nSin perjuicio de lo dispuesto en este artículo, la autoridad de aplicación contará con amplias facultades\npara disponer medidas técnicas, admitir pruebas o dictar medidas de no innovar.\nLos actos administrativos que dispongan sanciones, únicamente serán impugnables mediante recurso\ndirecto ante la Cámara Nacional de Apelaciones en las Relaciones de Consumo, o ante las Cámaras de\nApelaciones con asiento en las provincias, según corresponda.\nEl recurso deberá interponerse y fundarse ante la misma autoridad que impuso la sanción, dentro de los\ndiez (10) días hábiles de notificada la resolución; la autoridad de aplicación deberá elevar el recurso con\nsu contestación a l",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 1/5)]\nARTICULO 45. — Actuaciones Administrativas. La autoridad nacional de aplicación iniciará actuaciones\nadministrativas en caso de presuntas infracciones a las disposiciones de esta ley, sus normas\nreglamentarias y resoluciones que en consecuencia se dicten, de oficio, por denuncia de quien invocare\nun interés particular o actuare en defensa del interés general de los consumidores, o por comunicación de\nautoridad administrativa o judicial.\nSe procederá a labrar actuaciones en las que se dejará constancia del hecho denunciado o verificado y\nde la disposición presuntamente infringida.\nEn el expediente se agregará la documentación acompañada y se citará al presunto infractor para que,\ndentro del plazo de cinco (5) días hábiles, presente por escrito su descargo y ofrezca las pruebas que\nhacen a su derecho.\nSi las actuaciones se iniciaran mediante un acta de inspección, en que fuere necesaria una comprobación\ntécnica posterior a los efectos de la determinación de la presunta infracción y que resultare positiva, se\nprocederá a notificar al presunto responsable la infracción verificada, intimándolo para que en el plazo de\ncinco (5) días hábiles presente por escrito su descargo.\nEn su primera",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 4/5)]\nsanción, dentro de los\ndiez (10) días hábiles de notificada la resolución; la autoridad de aplicación deberá elevar el recurso con\nsu contestación a la Cámara en un plazo de diez (10) días, acompañado del expediente en el que se\nhubiera dictado el acto administrativo recurrido. En todos los casos, para interponer el recurso directo\ncontra una resolución administrativa que imponga sanción de multa, deberá depositarse el monto de ésta\na la orden de la autoridad que la dispuso, y presentar el comprobante del depósito con el escrito del\nrecurso, sin cuyo requisito será desestimado, salvo que el cumplimiento de la misma pudiese ocasionar\nun perjuicio irreparable al recurrente.\nPara resolver cuestiones no previstas expresamente en la presente ley y sus reglamentaciones, en el\námbito nacional, se aplicarán analógicamente las disposiciones de la Ley Nacional de Procedimientos\nAdministrativos 19.549 y su reglamentación, y en lo que ésta no contemple, las disposiciones del Código\nProcesal Civil y Comercial de la Nación.\nLa Ciudad Autónoma de Buenos Aires y las provincias dictarán las normas referidas a su actuación como\nautoridades locales de aplicación, estableciendo en sus respectivos ámbi",
+            "[Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor) · texto actualizado · Art. 2 (cont. 20/24)]\n de edad, quien acredita su identidad con D.N.I.\nN°:…………………………………, que ocupa el cargo de\n………………………………………………………………………………… impuesto/a del motivo de la visita y\nde la condición de funcionario (s) público(s) de los actuantes, no opone reparo al acto y con base en el\nalcance de la normativa mencionada y en el marco del ACTA ACUERDO entre la inspeccionada y la\nSECRETARÍA DE COMERCIO del MINISTERIO DE ECONOMÍA, se procede a realizar un control sobre\nlos productos que se consignan en la planilla adjunta a la presente como Anexo 1, que consta de …..…\n\nfojas, todos ellos incluidos en el denominado programa y que la inspeccionada se ha comprometido a\nofertar a los consumidores para su comercialización. ------------\nActo seguido se procede a efectuar el relevamiento consignado con base en los parámetros que se\nenumeran y se detallan a continuación:\nPor lo expuesto se formulan cargos por presunta infracción al/ a los art/s de la Ley……………………N°\n24.240 y sus modificatorias, otorgándole un plazo de CINCO (5) días hábiles para presentar descargo\nindicando como referencia número de acta y expediente, ofrecer prueba si las hubiere, acreditar\npersonería, constituir domicilio procesal y electrónico, aco"
+          ],
+          "scores": [
+            0.9641,
+            0.9108,
+            0.88231,
+            0.83711,
+            0.75539
+          ],
+          "respuesta": "En un sumario por defensa del consumidor, el plazo para presentar el descargo es de cinco (5) días hábiles desde la notificación de la infracción verificada [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 1/5)]. \n\nEn cuanto a la apelación de la sanción, el recurso debe interponerse dentro de los diez (10) días hábiles de notificada la resolución que impone la sanción [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 45 (cont. 4/5)].",
+          "recall": 1.0,
+          "precision": 0.4,
+          "mrr": 0.3333333333333333,
+          "abstuvo": null,
+          "segundos_recuperacion": 31.272,
+          "segundos_generacion": 2.025
+        },
+        {
+          "id": "s01",
+          "categoria": "fuente",
+          "pregunta": "¿En qué fallo la Corte Suprema creó la acción de amparo?",
+          "respuesta_esperada": "En el fallo Siri, de 1957",
+          "ids_relevantes": [
+            1026
+          ],
+          "ids_recuperados": [
+            1110,
+            1026,
+            1063,
+            1229,
+            1096
+          ],
+          "etiquetas_recuperadas": [
+            "CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Dictamen del Procurador General de la Nación (cont. 2/2)",
+            "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)",
+            "CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)"
+          ],
+          "textos_recuperados": [
+            "[CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Dictamen del Procurador General de la Nación (cont. 2/2)]\nn momento oportuno al respecto, como lo demuestran las presentaciones de fs. 66 y 108,\nefectuadas en nombre del Sindicato Obreros Marítimos Unidos, y la circunstancia de que se haya puesto\nen conocimiento del Ministerio de Trabajo y Seguridad Social la interposición de este amparo, con\nremisión de una copia de la demanda inicial, en la que los actores sostuvieron que aquella norma era\ncontraria a garantías de la Constitución Nacional y a disposiciones de la ley 14.455.\nEn cuanto al problema de fondo, comparto los fundamentos de las disidencias que en la sentencia\nrecordada al comienzo suscribieron los doctores Boffi Boggero y Zavala Rodríguez, en cuanto declaran\ninconstitucional el art. 16, inc. b) del reglamento aprobado por decreto 280/64, y en su mérito estimo que\ncorresponde revocar el fallo de fs. 133 de estas actuaciones, y hacer lugar al amparo pedido por los\naccionantes.\nOctubre 6 de 1966. EDUARDO H. MARQUARDT\nFALLO DE LA CORTE SUPREMA",
+            "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)]\nSiri, Angel (1957)\nFuente: https://falloscsn.blogspot.com/2005/08/siri-angel-1957.html\n27 de Diciembre de 1957\nFallos 239:459\n(Amparo contra actos del Estado)\nEl actor era director y propietario del diario «Mercedes», que había sido clausurado por la policía de la\nprovincia de Buenos Aires. Ante ello interpuso un habeas corpus para que la justicia dispusiera su\nreapertura. Habiendo comprobado la base fáctica de que la medida se había dictado sin justificación, la\nmayoría de la Corte (votó en disidencia el juez Herrera) afirmó que “Los preceptos constitucionales tanto\ncomo la experiencia institucional del país reclaman de consuno el goce y ejercicio pleno de las garantías\nindividuales para la efectiva vigencia del Estado de derecho e imponen a los jueces el deber de\nasegurarlas”; y basándose en ese principio admitió la acción. De esta forma surgió el instituto procesal del\namparo, aunque ese nombre no fue formulado por el actor ni se alude a él en este fallo.\nOpinión del procurador general de la Nación (I).\nDe lo informado a fs. 37 y vta. así como de las propias manifestaciones formuladas por el interesado en\nsu escrito de fs. 35, surge que la clausura del periódico \"Mercedes\", que ",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)]\nDICTAMEN DEL PROCURADOR GENERAL\nSuprema Corte:\nEl presente recurso de amparo se funda en los mismos hechos que han dado lugar a la instrucción de la\ncausa \"Houssay, Abel F. A. representando a Kot, Samuel S.R.L. , denuncia Kot, Juan\" en la que dictamino\ntambién el día de la fecha.\nAquí, sin embargo, se hace especial hincapié en lo resuelto en Fallos: 239, 459 para fundar de ese modo\nla intervención de los tribunales del crimen en la cuestión de que se trata, aun al margen del proceso\npenal antes mencionado.\nY bien, lo decidido en el recurso planteado por Angel Siri no es, a mi juicio, de aplicación al sub iudice.\nAllí, lo mismo que en los casos jurisprudenciales a que expresamente se refirió V. E. para destacar su\napartamiento de la doctrina tradicional hasta entonces observada (Fallos, 168, 15; 169, 103), se pedía\namparo, no contra un hecho realizado por particulares, sino contra un acto arbitrario de la autoridad para\nel que no existía remedio expreso en la legislación a pesar de que comportaba la violación de garantías\nindividuales aseguradas por la Constitución Nacional.\nComo se observa, pues, la situación es fundamentalmente distinta: en primer lugar, porque aquí no se\ntrata de",
+            "[CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)]\ntados (in re: \"Santiago del Estero, Provincia de c.\nacción de amparo\"), la Corte, de acuerdo con lo resuelto por la Corte\nSuprema de los Estados Unidos -en la causa \"AetnaLifeInsurance Co. c.\nHavorth, 300 U.S. 227\"-, definió los presupuestos formales de admisibilidad\nde este tipo de acción: a) actividad administrativa que afecta un interés\nlegítimo; b) que el grado de afectación sea suficientemente directo; y c) que\naquella actividad tenga concreción bastante.\nConsidero cumplidos dichos\nrecaudos en el sub lite, toda vez que el accionante acredita estar excluido de\nlos padrones de aspirantes para acceder al cargo de juez de la Cámara de\nApelaciones local (fs. 163/174) y de la convocatoria efectuada por el Consejo\nde la Magistratura provincial (177/178), por no reunir los recaudos\nconstitucionales para ser aspirante. Así pues, entiendo configurada la\nafectación del interés legítimo del actor en forma directa y concreta.\nVI. Como quedó expuesto a través\ndel relato antes efectuado, el actor es \"argentino naturalizado\" y\npretende acceder al cargo de juez de Cámara en la Provincia de Buenos Aires,\ncuya Constitución le exige \"haber nacido en territorio argentino o ser\nhijo de ciudadano na",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los "
+          ],
+          "scores": [
+            0.86626,
+            0.8376,
+            0.83595,
+            0.8296,
+            0.68981
+          ],
+          "respuesta": "La Corte Suprema creó la acción de amparo en el fallo \"Siri, Ángel\" (1957), donde se afirmó que los preceptos constitucionales reclaman el goce y ejercicio pleno de las garantías individuales, lo que llevó a admitir la acción de amparo en el caso de la clausura del diario \"Mercedes\" [CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 0.5,
+          "abstuvo": null,
+          "segundos_recuperacion": 28.653,
+          "segundos_generacion": 1.438
+        },
+        {
+          "id": "s02",
+          "categoria": "fuente",
+          "pregunta": "¿Qué fallo extendió el amparo a los actos de particulares?",
+          "respuesta_esperada": "El fallo Samuel Kot, de 1958",
+          "ids_relevantes": [
+            1061
+          ],
+          "ids_recuperados": [
+            1097,
+            1061,
+            1096,
+            1098,
+            1077
+          ],
+          "etiquetas_recuperadas": [
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 9/18)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Carátula (cont. 1/2)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 10/18)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Por ello, y sin perjuicio de señalar la confusión que derivaría de la admisión (cont. 13/20)"
+          ],
+          "textos_recuperados": [
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 9/18)]\nsprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los que provengan\nde sujetos particulares (en la Argentina: Constituciones de Entre Ríos y Santiago del Estero; ley 2494 de\nSanta Fe y Constitución de 1921 de la misma provincia. En el extranjero: Constituciones de Brasil,\nMéxico, Guatemala, Honduras, Panamá, Nicaragua, Italia, República Federal Alemana, Baviera, España\nde 1931, Austria de 1920, etcétera. Ver además: R. Bielsa, Estudios de derecho público, 1952, t. III, p.\n401; J. A. González Calderón, Comisión de estudios constitucionales, 1957, t. II, p. 36 y 39; Federación\nArgentina de Colegios de Abogados, Quinta Conferencia Nacional de Abogados, 1941, p. 66 y ss.,\ndeclaración ponencia adicional y, especialmente, discurso del miembro informante, doctor A. Walter\nVillegas). Y si es posible, por vía de hipótesis, que el legislador amplíe la esfera de acción del amparo,\nextendiéndolo a las violaciones cometidas por personas privadas, lo que de ningún modo puede admitirse\nes que los jueces, sobre la base de supuestos principios implícitos en la Constitución, tengan la misma\npotestad ampli",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Carátula (cont. 1/2)]\nSamuel Kot (1958)\nFuente: https://falloscsn.blogspot.com/2005/08/samuel-kot-1958.html\n5 de Septiembre de 1958\nFallos 241:291\n(Amparo contra actos de particulares)\nLa empresa Samuel Kot SRL era propietaria de una fábrica que había sido tomada por sus empleados\ncomo consecuencia de un conflicto laboral. Luego de intentar una denuncia por usurpación que terminó\ncon el sobreseimiento de los empleados, interpuso un “recurso de amparo” invocando afectación de \"las\ngarantías a la libertad de trabajo -art. 14-; a la propiedad -art 17-; a la libre actividad -art. 19-, de la\nConstitución Nacional\".\nLa Corte acogió el planteo ampliando la jurisprudencia amparista que había proclamado el año anterior en\n“Siri”, aclarando que si bien en aquella oportunidad la restricción ilegítima provenía de la autoridad pública\ny no de actos de particulares, “tal distinciónno es esencial a los fines de la protección constitucional”.\nAdmitido que existe una garantía tácita o implícita –dijo la mayoría de la Corte– que protege los diversos\naspectos de la libertad individual (art. 33, Const. Nacional), ninguna reserva cabe establecer de modo que\nexcluya en absoluto y a priori toda restricción que emane de person",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los ",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 10/18)]\n de ningún modo puede admitirse\nes que los jueces, sobre la base de supuestos principios implícitos en la Constitución, tengan la misma\npotestad ampliatoria.\n7) Que ello, asimismo, estaría en oposición a la doctrina jurisprudencial norteamericana referente al writ of\nmandamus, con el que habitualmente se compara al remedio de amparo. De modo uniforme y sin\nexcepciones, los tribunales de Estados Unidos han decidido que el mencionado writ existe respecto de los\nactos de un oficial público, (officer) o de una corporación pública o semipública en tanto que no opera\ncontra actos de particulares ni se extiende a las relaciones privadas entre individuos (Suprema Corte de\nEstados Unidos, caso \"Rorick v. U. S. Sugar Co.\", Federal Reporter, Second Series, t. 120, p. 418, y fallos\nde los tribunales de Georgia, W. Virginia, Wisconsin, Missouri, S. Dakota, California, Oklahoma, etc.,\ncitados en el Corpus Iuris Secundum, 1948, t. 55, p. 451 y siguientes).\n8) Que, por lo demás, es preciso advertir que las facultades de uso y goce que se dicen infringidas, gozan\nde minuciosa y adecuada protección legal. El argumento, enfáticamente planteado por el recurrente, de\nque la denegación del amparo petici",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Por ello, y sin perjuicio de señalar la confusión que derivaría de la admisión (cont. 13/20)]\nincias, es digna de señalar la de Entre Ríos, que conserva\nexpresamente el alcance tradicional del hábeas corpus, extendiéndolo, aún, a la protección de cualquiera\nde las garantías establecidas en la Constitución Nacional o Provincial o las leyes (art. 25).\nLa misma amplitud corresponde reconocer al recurso de amparo, que esta Corte, en el precedente antes\nmencionado (Fallos, 239, 459), extrajo de la sabia norma del art. 33 de la Constitución. Sin una reserva\nque, expresa o implícitamente, emane de los preceptos constitucionales y que imponga una inteligencia\nrestringida del recurso de amparo, la interpretación amplia es la que mejor consulta los grandes objetivos\nde la Ley Suprema y las genuinas finalidades de aquellas garantías. Lo que primordialmente tienen en\nvista el hábeas corpus y el recurso de amparo, no es el origen de la restricción ilegítima a cualquiera de\nlos derechos fundamentales de la persona humana, sino estos derechos en sí mismos, a fin de que sean\nsalvaguardados. Dichas garantías no atienden unilateralmente a los agresores, para señalar distinciones\n\nentre ellos, sino a los agredidos, para restablecer sus derechos esenciales. La Constitución está dirigida\nirrevo"
+          ],
+          "scores": [
+            0.99035,
+            0.97586,
+            0.96112,
+            0.94542,
+            0.93688
+          ],
+          "respuesta": "El fallo que extendió el amparo a los actos de particulares fue el caso \"Siri\", que fue mencionado en el contexto del fallo \"Samuel Kot SRL\" (1958). En este último, la Corte aclaró que, aunque en el caso \"Siri\" la restricción provenía de una autoridad pública, la distinción no es esencial para la protección constitucional de la libertad [CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Carátula (cont. 1/2)].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 0.5,
+          "abstuvo": null,
+          "segundos_recuperacion": 28.865,
+          "segundos_generacion": 1.737
+        },
+        {
+          "id": "s03",
+          "categoria": "fuente",
+          "pregunta": "¿Qué ley es el Código Penal de la Nación?",
+          "respuesta_esperada": "La ley 11.179",
+          "ids_relevantes": [
+            457
+          ],
+          "ids_recuperados": [
+            457,
+            699,
+            458,
+            461,
+            625
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 11.179 - Código Penal de la Nación · texto original · Carátula",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 303",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 1",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 5",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 214"
+          ],
+          "textos_recuperados": [
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Carátula]\nInfoLEG - Ministerio de Economía y Finanzas Públicas\nFuente: https://servicios.infoleg.gob.ar/infolegInternet/anexos/15000-19999/16546/norma.htm\nIr a texto actualizado y otros datos\nLEY N° 11.179\nCODIGO PENAL DE LA NACION\nBuenos Aires, 29 de octubre de 1921\nEl Senado y Cámara de Diputados de la Nación Argentina, reunidos en Congreso, etc., sancionan con\nfuerza de\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nLEY:\nLIBRO PRIMERO\nDISPOSICIONES GENERALES\nTITULO I\nAplicación de la ley penal",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 303]\nArt. 303. - El presente código regirá como ley de la nación seis meses después de su promulgación.\nArt. 304. - El Poder Ejecutivo dispondrá la edición oficial del código juntamente con la exposición de\nmotivos que lo acompaña. Los gastos que origine la publicación se imputarán a esta ley.",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 1]\nArtículo 1.° - Este código se aplicará:\n1.º Por delitos cometidos o cuyos efectos deban producirse en el territorio de la Nación Argentina, o en los\nlugares sometidos a su jurisdicción;\n2.º Por delitos cometidos en el extranjero por agentes o empleados de autoridades argentinas en\ndesempeño de su cargo.",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 5]\nArt. 5.° - Las penas que este código establece son las siguientes: reclusión, prisión, multa e inhabilitación.\nArt. 6.° - La pena de reclusión, perpetua o temporal, se cumplirá con trabajo obligatorio en los\nestablecimientos destinados al efecto. Los recluídos podrán ser empleados en obras públicas de\ncualquier clase con tal que no fueren contratadas por particulares.",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 214]\nArt. 214. - Será reprimido con reclusión o prisión de diez a veinticinco años o reclusión o prisión perpetua\ny en uno u otro caso, inhabilitación absoluta perpetua, siempre que el hecho no se halle comprendido en\notra disposición de este código, todo argentino o toda persona que deba obediencia a la nación por razón\nde su empleo o función pública, que tomare las armas contra ésta, se uniere a sus enemigos o les\nprestare cualquier ayuda o socorro."
+          ],
+          "scores": [
+            0.98387,
+            0.96799,
+            0.90504,
+            0.87122,
+            0.85927
+          ],
+          "respuesta": "El Código Penal de la Nación es la Ley N° 11.179, sancionada el 29 de octubre de 1921. [Ley 11.179 - Código Penal de la Nación · texto original · Carátula]",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 1.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 28.143,
+          "segundos_generacion": 1.075
+        },
+        {
+          "id": "s04",
+          "categoria": "fuente",
+          "pregunta": "¿Qué ley establece las normas de protección y defensa de los consumidores?",
+          "respuesta_esperada": "La ley 24.240",
+          "ids_relevantes": [
+            0
+          ],
+          "ids_recuperados": [
+            66,
+            0,
+            81,
+            1,
+            80
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 47 (cont. 3/3)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Carátula",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 56 (cont. 3/3)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 1",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 56 (cont. 2/3)"
+          ],
+          "textos_recuperados": [
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 47 (cont. 3/3)]\nLey N° 27.701 B.O. 1/12/2022.)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Carátula]\nArgentina.gob.ar\nFuente: https://www.argentina.gob.ar/normativa/nacional/ley-24240-638/actualizacion\nLey 24240\nHONORABLE CONGRESO DE LA NACION ARGENTINA\nDEFENSA DEL CONSUMIDOR\nREGIMEN LEGAL\n- Sanción:\n- Publicada en el Boletín Oficial:\n- Número:\n- Boletín Oficial número: 27744\n- Página:\n- 34\nLey Nº 24.240\nNormas de Protección y Defensa de los Consumidores. Autoridad de Aplicación. Procedimiento y\nSanciones. Disposiciones Finales.\nPromulgada Parcialmente: Octubre 13 de 1993.\nEl Senado y Cámara de Diputados de la Nación Argentina reunidos en Congreso, etc., sancionan con\nfuerza de Ley:\nTITULO I\nNORMAS DE PROTECCION Y DEFENSA DE LOS CONSUMIDORES\nCAPITULO I\nDISPOSICIONES GENERALES",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 56 (cont. 3/3)]\n 2089/93 B.O. 15/10/1993)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 1]\nARTICULO 1º —Objeto. Consumidor. Equiparación. La presente ley tiene por objeto la defensa del\nconsumidor o usuario. Se considera consumidor a la persona física o jurídica que adquiere o utiliza, en\nforma gratuita u onerosa, bienes o servicios como destinatario final, en beneficio propio o de su grupo\nfamiliar o social.\nQueda equiparado al consumidor quien, sin ser parte de una relación de consumo como consecuencia o\nen ocasión de ella, adquiere o utiliza bienes o servicios, en forma gratuita u onerosa, como destinatario\nfinal, en beneficio propio o de su grupo familiar o social.\n(Artículo sustituido por punto 3.1 del Anexo II de la Ley N° 26.994 B.O. 08/10/2014 Suplemento. Vigencia:\n1° de agosto de 2015, texto según art. 1° de la Ley N° 27.077 B.O. 19/12/2014)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 56 (cont. 2/3)]\nanismos oficiales o privados;\n\nf) Asesorar a los consumidores sobre el consumo de bienes y/o uso de servicios, precios, condiciones de\ncompra, calidad y otras materias de interés;\ng) Organizar, realizar y divulgar estudios de mercado, de control de calidad, estadísticas de precios y\nsuministrar toda otra información de interés para los consumidores. En los estudios sobre controles de\ncalidad, previo a su divulgación, se requerirá la certificación de los mismos por los organismos de\ncontralor correspondientes, quienes se expedirán en los plazos que establezca la reglamentación;;\nh) Promover la educación del consumidor;\ni) Realizar cualquier otra actividad tendiente a la defensa o protección de los intereses del consumidor.\n(La parte del inciso g) que dice: En los estudios sobre controles de calidad, previo a su divulgación, se\nrequerirá la certificación de los mismos por los organismos de contralor correspondientes, quienes se\nexpedirán en los plazos que establezca la reglamentación' fue observada por el Art. 10 del Decreto\nNacional Nº 2089/93 B.O. 15/10/1993)"
+          ],
+          "scores": [
+            0.99712,
+            0.99651,
+            0.99428,
+            0.99345,
+            0.99196
+          ],
+          "respuesta": "La ley que establece las normas de protección y defensa de los consumidores es la Ley N° 24.240, conocida como la Ley de Defensa del Consumidor. Esta ley fue promulgada parcialmente el 13 de octubre de 1993 y regula diversos aspectos relacionados con la defensa de los consumidores y usuarios en Argentina [Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Carátula].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 0.5,
+          "abstuvo": null,
+          "segundos_recuperacion": 32.743,
+          "segundos_generacion": 1.5
+        },
+        {
+          "id": "n01",
+          "categoria": "negativa",
+          "pregunta": "¿Cuál es el plazo mínimo de un contrato de alquiler según la ley 27.551?",
+          "respuesta_esperada": "No está en el corpus",
+          "ids_relevantes": [],
+          "ids_recuperados": [
+            1711,
+            1705,
+            1710,
+            1708,
+            747
+          ],
+          "etiquetas_recuperadas": [
+            "Contrato de locación comercial - oficina profesional (modelo con campos en blanco)",
+            "Contrato de locación comercial - local / depósito (modelo con campos en blanco)",
+            "Contrato de locación comercial - oficina profesional (modelo con campos en blanco)",
+            "Contrato de locación comercial - local / depósito (modelo con campos en blanco)",
+            "Decreto 897/1995 - Ley de Prenda. Texto ordenado del Decreto-Ley 15.348/46 (ratificado por Ley 12.962) · texto ordenado · Art. 42"
+          ],
+          "textos_recuperados": [
+            "[Contrato de locación comercial - oficina profesional (modelo con campos en blanco)]\n PLAZO\nLa locación se pacta por \n (\n) años, desde el \n/\n/\n hasta el \n/\n/\n, conforme al plazo mínimo de tres (3) años del artículo 1198 del C.C.yC.\nCUARTA — PRECIO Y FORMA DE PAGO\nEl canon mensual inicial es de PESOS \n ($ \n),\npagadero dentro de los primeros cinco (5) días hábiles de cada mes, mediante transferencia bancaria al\nCBU/CVU \n.\nQUINTA — AJUSTE DEL PRECIO\nEl canon se actualizará cada \n meses según el índice \n (IPC-\nINDEC / ICL / otro pactado), en los términos del D.N.U. N.° 70/2023.\nSEXTA — DEPÓSITO EN GARANTÍA\nEl/la Locatario/a entrega en garantía la suma de PESOS \n ($\n) equivalente a \n mes/es de alquiler, que será devuelta al vencimiento libre\nde deudas.\nSÉPTIMA — EXPENSAS Y SERVICIOS\nrents.\nfor owners\nrents.ar\n1\n\nLas expensas ordinarias y los servicios públicos (electricidad, ga",
+            "[Contrato de locación comercial - local / depósito (modelo con campos en blanco)]\ntrial de \n, quedando prohibido cualquier uso\nhabitacional o destino diferente sin autorización escrita del/de la Locador/a.\nTERCERA — PLAZO\nLa locación se pacta por el término de \n (\n) años, con inicio el día \n/\n/\n y vencimiento el día \n/\n/\n. Conforme al artículo 1198 del C.C.yC., el plazo\nmínimo para locaciones no habitacionales es de tres (3) años.\nCUARTA — PRECIO Y FORMA DE PAGO\nEl precio mensual inicial es de PESOS \n ($ \n),\npagadero en forma anticipada dentro de los primeros cinco (5) días hábiles de cada mes, mediante\ntransferencia bancaria al CBU/CVU \n. El pago se considerará\nefectuado cuando el importe se acredite en la cuenta indicada.\nQUINTA — AJUSTE DEL PRECIO\nEl precio mensual se actualizará cada \n meses conforme a: \n(IPC-INDEC / ICL / índice convenido por las partes). Las parte",
+            "[Contrato de locación comercial - oficina profesional (modelo con campos en blanco)]\nCONTRATO DE LOCACIÓN COMERCIAL — OFICINA\nPROFESIONAL\nEn la ciudad de \n, Provincia de \n, a los \n días del mes\nde \n del año \n.\nPRIMERA — PARTES\nLOCADOR/A: \n, C.U.I.T./D.N.I. N.° \n, con domicilio en\n.\nLOCATARIO/A: \n, C.U.I.T./D.N.I. N.° \n, con domicilio\nen \n, profesión/actividad: \n.\nSEGUNDA — OBJETO Y DESTINO\nEl/la Locador/a da en locación la unidad funcional N.° \n, Piso \n, ubicada en\n, \nLocalidad \nde \n, \nProvincia \nde\n, con una superficie cubierta de aproximadamente \n m². El Inmueble\nse destinará exclusivamente al ejercicio de actividades profesionales / comerciales consistentes en\n, quedando prohibido su uso como vivienda permanente.\nTERCERA — PLAZO\nLa locación se pacta por \n (\n) años, desde el \n/\n/\n hasta el \n/\n/\n, conforme al plazo mínimo de tres (3) años del artículo 1198 del C.C.yC.\nCUA",
+            "[Contrato de locación comercial - local / depósito (modelo con campos en blanco)]\n para el ejercicio de su actividad; (g) no\nperturbar la tranquilidad de los demás ocupantes del edificio; (h) restituir el Inmueble al vencimiento\nen el mismo estado de recepción.\nNOVENA — OBLIGACIONES DEL LOCADOR\nEl/la Locador/a entregará el Inmueble en condiciones aptas para el uso convenido y garantizará el goce\npacífico durante la vigencia del contrato. Las reparaciones estructurales o de instalaciones de\nresponsabilidad del/de la Locador/a serán efectuadas en un plazo razonable.\nDÉCIMA — GARANTÍAS\nEl/la Locatario/a presenta como garantía adicional: \n. Datos de la\ngarantía: \n.\nUNDÉCIMA — RESCISIÓN ANTICIPADA\nVencido el plazo de seis (6) meses desde el inicio, el/la Locatario/a podrá rescindir con notificación\nfehaciente de treinta (30) días, abonando la compensación correspondiente con",
+            "[Decreto 897/1995 - Ley de Prenda. Texto ordenado del Decreto-Ley 15.348/46 (ratificado por Ley 12.962) · texto ordenado · Art. 42]\nARTICULO 42. — La prenda no perjudica el privilegio del acreedor por alquileres de predios urbanos, por\nel término de DOS (2) meses; ni al de predios rurales por UN (1) año de arrendamiento.\nEs lo mismo que se trate de alquileres a pagar por adelantado o después de vencer los respectivos\nperíodos de arrendamiento.\n\nA tal efecto, igual situación que el locador tiene quien ha cedido el uso y goce de un inmueble rural a\ncambio de una prestación en especie.\nEl privilegio que se reconoce en este artículo requiere que el contrato de locación o el que a este se\nequipara, se haya inscripto antes de la prenda en el Registro de Prenda, o que los créditos consten en el\ncontrato de prenda. La omisión del deudor de dejar esa constancia le hará pasible de las sanciones\npenales establecidas en el artículo 45, inciso a)."
+          ],
+          "scores": [
+            0.31063,
+            0.27436,
+            0.0402,
+            0.03129,
+            0.01246
+          ],
+          "respuesta": "El contexto proporcionado no menciona la ley 27.551, por lo que no puedo responder a tu consulta sobre el plazo mínimo de un contrato de alquiler según esa ley. Sin embargo, se menciona que el plazo mínimo para locaciones no habitacionales es de tres (3) años, conforme al artículo 1198 del Código Civil y Comercial (C.C.yC.) [Contrato de locación comercial - oficina profesional (modelo con campos en blanco)].",
+          "recall": NaN,
+          "precision": NaN,
+          "mrr": NaN,
+          "abstuvo": true,
+          "segundos_recuperacion": 29.731,
+          "segundos_generacion": 1.291
+        },
+        {
+          "id": "n02",
+          "categoria": "negativa",
+          "pregunta": "¿Qué dice la ley de teletrabajo sobre el derecho a la desconexión?",
+          "respuesta_esperada": "No está en el corpus",
+          "ids_relevantes": [],
+          "ids_recuperados": [
+            392,
+            379,
+            390,
+            270,
+            378
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 234",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 221",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 232",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 106",
+            "Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 220"
+          ],
+          "textos_recuperados": [
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 234]\nArt. 234. — Los trabajadores que se encontraren en las condiciones previstas en el presente capítulo y\nque, por razón del desempeño de esos cargos, dejaren de prestar servicios, tendrán derecho a la reserva\nde su empleo por parte del empleador y a su reincorporación hasta treinta (30) días después de concluido\nel ejercicio de sus funciones, no pudiendo ser despedidos durante los plazos que fije la ley respectiva, a\npartir de la cesación de las mismas. El período de tiempo durante el cual los trabajadores hubieran\ndesempeñado las funciones precedentemente aludidas será considerado período de trabajo en las\nmismas condiciones y con el alcance de los artículos 231 y 232, segunda parte, sin perjuicio de los\nmayores beneficios que sobre la materia establezca la ley de garantía de la actividad sindical.\nDe las suspensiones por causas económicas y disciplinarias\nRequisitos de su validez",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 221]\nArt. 221. — Queda prohibida la ocupación del trabajador desde las trece (13) horas del día sábado hasta\nlas veinticuatro (24) del día domingo siguiente, salvo los casos de excepción que las leyes o\nreglamentaciones profesionales prevean, en cuyo caso el trabajador gozará de un descanso\ncompensatorio de la misma duración, en la forma y oportunidad que fijen esas disposiciones.\nSalarios",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 232]\nArt. 232. — Los trabajadores que por razón de ocupar cargos electivos en el orden nacional, provincial o\nmunicipal, dejaran de prestar servicios, tendrán derecho a la reserva de su empleo por parte del\nempleador, y a su reincorporación hasta treinta (30) días después de concluido el ejercicio de sus\nfunciones, no pudiendo ser despedido durante el término de un (1) año a partir de la cesación de las\nmismas.\nEl período de tiempo durante el cual los trabajadores hubieran desempeñado las funciones\nprecedentemente aludidas será considerado período de trabajo a los efectos del cómputo de su\nantigüedad, frente a los beneficios que por esta ley, estatutos profesionales y convenciones colectivas de\ntrabajo le hubiesen correspondido en el caso de haber prestado servicios. El tiempo de permanencia en\ntales funciones no será considerado para determinar los promedios de remuneración a los fines de la\naplicación de las mismas disposiciones.\nDespido o no reincorporación del trabajador",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 106]\nArt. 106. — El despido del trabajador, pendientes los plazos previstos o previsibles del ciclo o temporada\nen los que estuviere prestando servicios, dará lugar al pago de los resarcimientos establecidos en el\nartículo 104, primer párrafo, de esta ley.\nEl trabajador adquiere los derechos que esta ley asigna a los trabajadores permanentes de prestación\ncontinua, a partir de su contratación en la primera temporada, si ello respondiera a necesidades también\npermanentes de la empresa o explotación ejercida, con la modalidad prevista en este capítulo.\nComportamiento de las partes a la época de la reiniciación del trabajo - Responsabilidad",
+            "[Ley 20.744 - Régimen de Contrato de Trabajo (LCT) · texto original · Art. 220]\nArt. 220. — El trabajador no estará obligado a prestar servicios en horas suplementarias, salvo casos de\npeligro o accidente ocurrido o inminente de fuerza mayor, o por exigencias excepcionales de la empresa,\njuzgado su comportamiento en base al criterio de colaboración en el logro de los fines de la misma.\nDel descanso semanal\nProhibición de trabajar"
+          ],
+          "scores": [
+            0.00549,
+            0.00256,
+            0.00253,
+            0.00198,
+            0.0017
+          ],
+          "respuesta": "El contexto proporcionado no incluye información sobre la ley de teletrabajo ni sobre el derecho a la desconexión. Por lo tanto, no puedo responder a tu consulta.",
+          "recall": NaN,
+          "precision": NaN,
+          "mrr": NaN,
+          "abstuvo": true,
+          "segundos_recuperacion": 31.458,
+          "segundos_generacion": 1.161
+        },
+        {
+          "id": "n03",
+          "categoria": "negativa",
+          "pregunta": "¿Qué obliga la ley de góndolas a los supermercados?",
+          "respuesta_esperada": "No está en el corpus",
+          "ids_relevantes": [],
+          "ids_recuperados": [
+            1515,
+            7,
+            90,
+            1635,
+            89
+          ],
+          "etiquetas_recuperadas": [
+            "Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor) · texto actualizado · Art. 2 (cont. 23/24)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 7",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 65",
+            "Secretaría de Comercio, Resolución 99/2022 - Reunión. Invítase · texto original · Carátula (cont. 8/9)",
+            "Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 64"
+          ],
+          "textos_recuperados": [
+            "[Secretaría de Comercio, Resolución 75/2022 - Modelo de convenio (defensa del consumidor) · texto actualizado · Art. 2 (cont. 23/24)]\n. 20/01/2023.\nVigencia: a partir de su publicación en el Boletín Oficial)\nLocales Productos Alimenticios:\nEn caso de que se configurara reincidencia en los términos de lo previsto en el Artículo 49 de la Ley N°\n24.240 y sus modificatorias, se podrá aplicar un incremento de hasta el CUARENTA POR CIENTO (40 %)\nde las multas a imponer por incumplimientos a dicho Programa.\nEn el caso de segunda reincidencia, las multas a aplicar por incumplimientos al mencionado Programa\npodrán incrementarse en hasta un CIEN POR CIENTO (100 %).\nEn todos los casos se deberá respetar el monto máximo establecido por el inciso b) del Artículo 47 de la\nLey N° 24.240 y sus modificatorias.\nA fin de que los nombres de los establecimientos sean más fáciles de comprender los mismos hacen\nreferencia a la nomenclatura de la Ley N° 18.425 a saber: Supermercado Total, aquel local de ventas de\nuna superficie superior a CINCO MIL METROS CUADRADOS (5.000 m2) cubiertos, aquí lo llamamos\nHipermercado. Supermercado aquel local de ventas no inferior a MIL METROS CUADRADOS (1.000 m2)\npara los ramos obligatorios. Autoservicio de productos alimenticios, aquel local de ventas no inferior a\nCIENTO CUARENTA METROS CUADRADOS (140",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 7]\nARTICULO 7º — Oferta. La oferta dirigida a consumidores potenciales indeterminados, obliga a quien la\nemite durante el tiempo en que se realice, debiendo contener la fecha precisa de comienzo y de\nfinalización, así como también sus modalidades, condiciones o limitaciones.\nLa revocación de la oferta hecha pública es eficaz una vez que haya sido difundida por medios similares a\nlos empleados para hacerla conocer.\nLa no efectivización de la oferta será considerada negativa o restricción injustificada de venta, pasible de\nlas sanciones previstas en el artículo 47 de esta ley. (Ultimo párrafo incorporado por art. 5° de la Ley N°\n26.361 B.O. 7/4/2008)",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 65]\nARTICULO 65. — La presente ley es de orden público, rige en todo el territorio nacional y entrará en\nvigencia a partir de la fecha de su publicación en el Boletín Oficial. El Poder Ejecutivo debe reglamentar la\npresente ley dentro de los ciento veinte (120) días a partir de su publicación.",
+            "[Secretaría de Comercio, Resolución 99/2022 - Reunión. Invítase · texto original · Carátula (cont. 8/9)]\nsí o a través de instituciones que los nuclean, se considera\npertinente invitar a la reunión referida en los considerandos precedente a la Asociación de Bancos de la\nArgentina (ABA), a la Asociación de Bancos Públicos y Privados (ABAPPRA), a la Asociación de la Banca\nEspecializada (ABE), a la Asociación de Bancos Argentinos (ADEBA), a la Unión Industrial Argentina\n\n(UIA), a la Confederación Argentina de la Mediana Empresa (CAME), a la Confederación General del\nTrabajo de la República Argentina (CGT), a la Cámara Argentina de Distribuidores y Autoservicios\nMayoristas (CADAM), a la Cámara Argentina de Supermercados (CAS), a la Federación Argentina de\nSupermercados y Autoservicios, a la Asociación de Supermercados Unidos (ASU), a las diversas\nUniversidades Nacionales, a las Asociaciones Profesionales de Ciencias Económicas y a las distintas\nAsociaciones de Usuarios y Consumidores legalmente constituidas y debidamente registradas en el\nRegistro Nacional de Asociaciones de Consumidores (R.N.A.C.) o a la Cámara que las agrupe, al\nINSTITUTO NACIONAL DE SERVICIOS SOCIALES PARA JUBILADOS Y PENSIONADOS, a la\nADMINISTRACIÓN FEDERAL DE INGRESOS PÚBLICOS, a la DIRECCIÓN GENERAL DE ADUANAS y\nal ",
+            "[Ley 24.240 - Defensa del Consumidor. Normas de Protección y Defensa de los Consumidores · texto actualizado · Art. 64]\nARTICULO 64. — Modifícase el artículo 13 de la ley 22.802, que quedará redactado de la siguiente forma:\nLos gobiernos provinciales y la Municipalidad de la Ciudad de Buenos Aires actuarán como autoridades\nlocales de aplicación ejerciendo el control y vigilancia sobre el cumplimiento de la presente ley y sus\nnormas reglamentarias, con respecto a los hechos cometidos en su jurisdicción y que afecten\nexclusivamente al comercio local, juzgando las presuntas infracciones.\nA ese fin determinarán los organismos que cumplirán tales funciones, pudiendo los gobiernos provinciales\ndelegar sus atribuciones en los gobiernos municipales, excepto la de juzgamiento que sólo será delegable\nen el caso de exhibición de precios previsto en el inciso i) del artículo 12."
+          ],
+          "scores": [
+            0.01087,
+            0.00261,
+            0.00227,
+            0.00209,
+            0.00206
+          ],
+          "respuesta": "El contexto proporcionado no incluye información específica sobre las obligaciones que la ley de góndolas impone a los supermercados. Por lo tanto, no puedo responder a tu consulta. Si necesitas información sobre este tema, te recomendaría consultar el texto de la ley de góndolas o documentos relacionados que aborden específicamente sus disposiciones.",
+          "recall": NaN,
+          "precision": NaN,
+          "mrr": NaN,
+          "abstuvo": true,
+          "segundos_recuperacion": 39.764,
+          "segundos_generacion": 1.09
+        },
+        {
+          "id": "n04",
+          "categoria": "negativa",
+          "pregunta": "¿Qué dice el artículo 500 del Código Penal?",
+          "respuesta_esperada": "No está en el corpus",
+          "ids_relevantes": [],
+          "ids_recuperados": [
+            461,
+            458,
+            503,
+            496,
+            678
+          ],
+          "etiquetas_recuperadas": [
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 5",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 1",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 59",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 50",
+            "Ley 11.179 - Código Penal de la Nación · texto original · Art. 277"
+          ],
+          "textos_recuperados": [
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 5]\nArt. 5.° - Las penas que este código establece son las siguientes: reclusión, prisión, multa e inhabilitación.\nArt. 6.° - La pena de reclusión, perpetua o temporal, se cumplirá con trabajo obligatorio en los\nestablecimientos destinados al efecto. Los recluídos podrán ser empleados en obras públicas de\ncualquier clase con tal que no fueren contratadas por particulares.",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 1]\nArtículo 1.° - Este código se aplicará:\n1.º Por delitos cometidos o cuyos efectos deban producirse en el territorio de la Nación Argentina, o en los\nlugares sometidos a su jurisdicción;\n2.º Por delitos cometidos en el extranjero por agentes o empleados de autoridades argentinas en\ndesempeño de su cargo.",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 59]\nArt. 59. - La acción penal se extinguirá:\n1.º Por la muerte del imputado;\n2.º Por la amnistía;\n3.º Por la prescripción;\n4.º Por la renuncia del agraviado, respecto de los delitos de acción privada.\nArt. 60. - La renuncia de la persona ofendida al ejercicio de la acción penal, sólo perjudicará al\nrenunciante y a sus herederos.",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 50]\nArt. 50. - Habrá reincidencia siempre que el condenado por sentencia firme a una pena privativa de\nlibertad, dictada por cualquier tribunal del país cometiere un nuevo delito, aunque hubiere mediado indulto\no conmutación.\nLa condena sufrida en el extranjero se tendrá en cuenta para la reincidencia si ha sido pronunciada por\nrazón de un delito que pueda, según la ley argentina, dar lugar a extradición.\nA los efectos de la reincidencia, no se tomará en cuenta los delitos militares o políticos ni los amnistiados.",
+            "[Ley 11.179 - Código Penal de la Nación · texto original · Art. 277]\nArt. 277. - 1. Será reprimido con prisión de quince días a dos años, el que, sin promesa anterior al delito,\ncometiere después de su ejecución, alguno de los hechos siguientes:\n1.° Ocultare al delincuente o facilitar su fuga para substraerlo a la justicia;\n2.° Procurar la desaparición de los rastros o pruebas del delito;\n3.° Guardar, esconder, comprar, vender o recibir en prenda o en cambio los efectos substraídos;\n4.° Negar a la autoridad, sin motivo legítimo alguno, el permiso de penetrar en el domicilio para tomar la\npersona del delincuente que se encuentar en él;\n5.° Guardar habitualmente delicuentes u ocultar en la misma forma armas o efectos de los mismos,\naunque no tuviere conocimiento determinado de los delitos;\n6.° Dejar de comunicar a la autoridad las noticias que tuviere acerca de la comisión de algún delito\ncuando estuviere obligado a hacerlo por su profesión o empleo."
+          ],
+          "scores": [
+            0.02406,
+            0.02124,
+            0.00609,
+            0.00563,
+            0.00511
+          ],
+          "respuesta": "El contexto proporcionado no incluye información sobre el artículo 500 del Código Penal de la Nación. Por lo tanto, no puedo responder a tu consulta.",
+          "recall": NaN,
+          "precision": NaN,
+          "mrr": NaN,
+          "abstuvo": true,
+          "segundos_recuperacion": 40.507,
+          "segundos_generacion": 0.757
+        }
+      ],
+      "ragas": {
+        "promedios": {
+          "faithfulness": 0.9633333333333333,
+          "answer_correctness": 0.5671131693112049,
+          "context_precision": 0.9470555554958938,
+          "context_recall": 1.0
+        },
+        "detalle": [
+          {
+            "id": "f01",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.3647123364797913,
+            "context_precision": 0.5833333333041666,
+            "context_recall": 1.0
+          },
+          {
+            "id": "f02",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.4711600261559745,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "f03",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.5130655044663117,
+            "context_precision": 0.8666666666377778,
+            "context_recall": 1.0
+          },
+          {
+            "id": "f04",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.4063168269579567,
+            "context_precision": 0.99999999995,
+            "context_recall": 1.0
+          },
+          {
+            "id": "f05",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.4056977722562531,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "f06",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.6465246685633852,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "f07",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.7664536494548168,
+            "context_precision": 0.99999999998,
+            "context_recall": 1.0
+          },
+          {
+            "id": "f08",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.6204280182477542,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "i01",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.39842922443989404,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "i02",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.8351591523281812,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "i03",
+            "faithfulness": 0.6666666666666666,
+            "answer_correctness": 0.6862818899072254,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "i04",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.47629802069434696,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "i05",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.4096897209239725,
+            "context_precision": 0.99999999998,
+            "context_recall": 1.0
+          },
+          {
+            "id": "i06",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.49151307272843686,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "i07",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.5568507917321499,
+            "context_precision": 0.9166666666361111,
+            "context_recall": 1.0
+          },
+          {
+            "id": "i08",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.3863583070414911,
+            "context_precision": 0.99999999995,
+            "context_recall": 1.0
+          },
+          {
+            "id": "m01",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.65620061909835,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "m02",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.5478022472768325,
+            "context_precision": 0.9166666666361111,
+            "context_recall": 1.0
+          },
+          {
+            "id": "m03",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.6039892777609684,
+            "context_precision": 0.9999999999,
+            "context_recall": 1.0
+          },
+          {
+            "id": "m05",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.9409946872748102,
+            "context_precision": 0.9166666666361111,
+            "context_recall": 1.0
+          },
+          {
+            "id": "m06",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.6929853270102098,
+            "context_precision": 0.8874999999778125,
+            "context_recall": 1.0
+          },
+          {
+            "id": "s01",
+            "faithfulness": 0.6666666666666666,
+            "answer_correctness": 0.5472981502649854,
+            "context_precision": 0.5888888888692593,
+            "context_recall": 1.0
+          },
+          {
+            "id": "s02",
+            "faithfulness": 0.75,
+            "answer_correctness": 0.34416861125859455,
+            "context_precision": 0.99999999998,
+            "context_recall": 1.0
+          },
+          {
+            "id": "s03",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.6349076677433068,
+            "context_precision": 0.99999999998,
+            "context_recall": 1.0
+          },
+          {
+            "id": "s04",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.7745436627141227,
+            "context_precision": 0.99999999998,
+            "context_recall": 1.0
+          }
+        ]
+      }
+    }
+  }
+}
