@@ -4,10 +4,11 @@ Demo académica de RAG vectorial y RAG de segunda generación (híbrido +
 reranking) sobre un corpus de documentación jurídica, con **Qdrant** como
 base vectorial y **Ragas** como framework de evaluación.
 
-Estado actual: **las tres configuraciones de recuperación implementadas** —
-naive (densa), híbrida (densa + BM25 fusionadas con RRF) e híbrida + reranking
-con cross-encoder, comparables lado a lado en la app, sobre el corpus real de
-36 PDFs. Falta el módulo de evaluación con Ragas.
+Estado actual: **pipeline completo** — las tres configuraciones de
+recuperación (naive densa, híbrida densa+BM25 fusionadas con RRF, e híbrida +
+reranking con cross-encoder) comparables lado a lado en la app sobre el corpus
+real de 36 PDFs, más el módulo de evaluación que corre el set dorado de 29
+preguntas y produce la tabla de ablación.
 
 ## Cómo levantarlo
 
@@ -114,6 +115,45 @@ taskkill /F /PID <pid>
 Bajar la app NO baja Qdrant: son procesos separados (`docker compose down`
 para eso).
 
+## Evaluación
+
+```bash
+python evals/run_ragas.py                 # todo: 4 configuraciones x 29 preguntas
+python evals/run_ragas.py --sin-ragas     # solo métricas por id (no gasta API)
+python evals/run_ragas.py --limite 3 --configs naive    # prueba de humo
+```
+
+Escribe dos archivos en `evals/results/`: un CSV con la tabla de ablación (una
+fila por configuración) y un JSON con el detalle por pregunta —chunks
+recuperados, respuesta generada, tiempos y `config_snapshot()`—.
+
+Mide **dos familias de métricas que no hay que mezclar**:
+
+| | Cómo se calcula | Qué mide | Reproducible |
+|---|---|---|---|
+| `recall@k`, `precision@k`, `mrr` | comparando ids recuperados contra `chunks_relevantes` | solo la recuperación | sí, al bit |
+| `faithfulness`, `answer_correctness`, `context_precision`, `context_recall` | Ragas, juzgado por un LLM | la calidad de la respuesta | no, tiene varianza |
+
+Si la tabla solo tuviera métricas de Ragas no habría forma de saber si una
+configuración bajó porque recupera peor o porque el juez tuvo un mal día. Las
+métricas por id son el ancla dura.
+
+Detalles que importan al leer la tabla:
+
+- **`precision@k` tiene techo 0.2** con `top_k=5` y una sola respuesta
+  correcta. Sirve para comparar configuraciones entre sí, no como valor
+  absoluto.
+- **Las 4 preguntas negativas se miden aparte**, con `abstencion_negativas`:
+  no tienen chunks relevantes ni respuesta que verificar, y lo único correcto
+  es que el sistema diga que no sabe. Meterlas en el promedio de recall daría
+  cero por una razón que no tiene que ver con la calidad del sistema.
+- **La abstención se detecta con una heurística léxica**, no con un juez. Son
+  4 respuestas por configuración: el JSON las guarda enteras y se auditan a
+  ojo en un minuto.
+- **Ragas usa BGE-M3 local para sus embeddings**, no los de OpenAI: medir con
+  un modelo distinto del que construyó el índice sería evaluar con una regla
+  que el sistema evaluado no usa. Además sale gratis.
+
 ## Cómo funciona
 
 Ver [ARQUITECTURA.md](ARQUITECTURA.md) — recorrido archivo por archivo del
@@ -129,7 +169,7 @@ rag-legal-demo/
 ├── data/
 │   ├── raw/                  # documentos del corpus (36 PDFs)
 │   ├── manifest.csv          # identidad de cada PDF: título, ley, versión
-│   └── golden_set.csv        # 30 preguntas del set dorado (a completar)
+│   └── golden_set.csv        # set dorado: 29 preguntas verificadas contra el índice
 ├── src/
 │   ├── ingest.py             # manifiesto + chunking + indexado (denso + sparse)
 │   ├── chunk.py              # el tipo que viaja por todo el pipeline
@@ -141,8 +181,11 @@ rag-legal-demo/
 ├── evals/
 │   ├── build_manifest.py     # genera data/manifest.csv a partir de data/raw/
 │   ├── snapshot_retrieval.py # congela las consultas de prueba antes de reingestar
+│   ├── build_golden_set.py   # genera data/golden_set.csv verificando contra el índice
+│   ├── verify_golden_set.py  # audita el set dorado (independiente del generador)
+│   ├── run_ragas.py          # evaluación + tabla de ablación
 │   ├── bench_rerank.py       # latencia de cada reranker (calidad/latencia)
-│   └── results/              # CSV y JSON de cada corrida (Ragas todavía sin implementar)
+│   └── results/              # CSV y JSON de cada corrida
 ├── tests/
 │   └── test_bm25.py          # tokenizador (se corre sin pytest)
 └── notebooks/                # exploración, no se presenta
