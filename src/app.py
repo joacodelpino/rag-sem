@@ -5,7 +5,9 @@ Muestra la misma consulta resuelta por cada configuración de recuperación, en
 columnas paralelas, para que se vea la diferencia en vivo: qué chunks trajo
 cada una, en qué orden, y qué respondió el LLM con ese contexto.
 
-La tercera columna (híbrida + reranking) se suma cuando exista esa ruta.
+Qué columnas se muestran se elige en la barra lateral, pero la consulta se
+resuelve SIEMPRE en las cuatro configuraciones: ver el comentario de
+`resolver_todas()`.
 """
 import streamlit as st
 
@@ -66,6 +68,42 @@ def recuperar(config: str, query: str, top_k: int):
     return CONFIGS[config](query, top_k=top_k)
 
 
+@st.cache_data(show_spinner=False)
+def responder(config: str, query: str, top_k: int, advertir_version: bool) -> str:
+    """Cachea la respuesta del LLM por (configuración, consulta, top_k, aviso).
+
+    Hace falta desde que las columnas se pueden mostrar y ocultar: cada vez que
+    se toca un control, Streamlit re-ejecuta el script entero de arriba a abajo.
+    Sin caché, prender y apagar una columna dispararía una llamada a la API por
+    cada columna visible, cada vez. Con caché, tocar los checkboxes no gasta un
+    centavo: solo la primera vez que aparece una combinación se llama al LLM.
+
+    `advertir_version` entra en la clave a propósito: es justamente el
+    interruptor que la demo prende y apaga sobre la misma consulta, y las dos
+    ramas tienen que poder convivir en el caché para poder ir y volver.
+    """
+    return generate_answer(query, recuperar(config, query, top_k), advertir_version)
+
+
+def resolver_todas(query: str, top_k: int) -> dict[str, list]:
+    """Corre la consulta por las CUATRO configuraciones, se muestren o no.
+
+    Es deliberado que no se limite a las visibles. La demo se apoya en poder
+    prender una columna a mitad de una explicación —"miren qué pasa si le sumo
+    BM25"— y si esa columna hubiera que recuperarla recién en ese momento, la
+    espera caería justo en el peor momento posible. Recuperando todo de una,
+    tocar los checkboxes es instantáneo porque sale del caché de `recuperar()`.
+
+    El costo de traer las cuatro es el de la más cara: son secuenciales, pero
+    naive, sparse e híbrida juntas suman menos de un segundo contra los ~3s del
+    reranking. En la práctica no se nota la diferencia.
+
+    La generación NO se hace acá: esa sí se paga por columna visible, porque
+    cuesta plata y una columna oculta no la necesita.
+    """
+    return {nombre: recuperar(nombre, query, top_k) for nombre in CONFIGS}
+
+
 st.set_page_config(page_title="RAG jurídico — demo", layout="wide")
 st.title("Asistente de consulta sobre documentación jurídica")
 st.caption(
@@ -86,6 +124,25 @@ with st.sidebar:
         "recuperación: se prende y se apaga por consulta, con el control que "
         "está sobre las columnas."
     )
+
+    st.divider()
+    st.subheader("Qué configuraciones mostrar")
+    seleccion = st.multiselect(
+        "Columnas visibles",
+        options=list(CONFIGS),
+        default=list(CONFIGS),
+        label_visibility="collapsed",
+        help=(
+            "Solo cambia qué se muestra. La consulta se resuelve igual en las "
+            "cuatro configuraciones, así que prender una columna después de "
+            "haber consultado es instantáneo."
+        ),
+    )
+    # Se reordena según CONFIGS y no según el orden en que se clickearon: las
+    # columnas cuentan una progresión (densa -> léxica -> fusión -> reranking) y
+    # esa progresión es la mitad de la explicación. Dejar que el orden dependa
+    # de en qué orden tocó los chips quien maneja la demo la rompe.
+    mostrar = [nombre for nombre in CONFIGS if nombre in seleccion]
 
 query = st.text_input(
     "Consulta",
@@ -113,19 +170,41 @@ advertir_version = col_c.checkbox(
     ),
 )
 
+# La consulta ejecutada se guarda en session_state en vez de renderizar dentro
+# del `if` del botón. Si no, cualquier interacción posterior —tocar el selector
+# de columnas, mover top_k— re-ejecuta el script con el botón ya en False y la
+# pantalla queda en blanco. Guardarla hace que los resultados sobrevivan a los
+# reruns, que es lo que vuelve usable al selector.
 if st.button("Consultar", type="primary") and query:
-    columns = st.columns(len(CONFIGS))
+    st.session_state.corrida = (query, top_k)
 
-    for column, nombre in zip(columns, CONFIGS):
+if "corrida" in st.session_state:
+    query_corrida, top_k_corrido = st.session_state.corrida
+
+    with st.spinner("Recuperando en las cuatro configuraciones..."):
+        resultados = resolver_todas(query_corrida, top_k_corrido)
+
+    if not mostrar:
+        st.warning(
+            "No hay ninguna configuración seleccionada. Elegí al menos una en "
+            "la barra lateral."
+        )
+
+    columns = st.columns(len(mostrar)) if mostrar else []
+
+    for column, nombre in zip(columns, mostrar):
         with column:
             st.subheader(nombre)
 
-            with st.spinner("Recuperando..."):
-                chunks = recuperar(nombre, query, top_k)
+            chunks = resultados[nombre]
 
             if generar:
                 with st.spinner("Generando..."):
-                    st.write(generate_answer(query, chunks, advertir_version))
+                    st.write(
+                        responder(
+                            nombre, query_corrida, top_k_corrido, advertir_version
+                        )
+                    )
 
             st.markdown("**Chunks recuperados**")
             if not chunks:
