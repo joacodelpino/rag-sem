@@ -323,8 +323,11 @@ modelo y con qué parámetros salió.
 
 Resultados de esta corrida:
 
-- `evals/results/ragas_ablacion.json` / `.csv` — las 4 configuraciones
+- `evals/results/ragas_rerank-chico.json` / `.csv` — las 4 configuraciones
 - `evals/results/ragas_rerank-grande.json` / `.csv` — el modelo de reranking grande
+
+Qué es cada archivo de esa carpeta está explicado en
+`evals/results/README.md`, junto con el comando que lo regenera.
 
 **Detalle técnico de la corrida:** 5 fragmentos por consulta; respuestas
 generadas con `gpt-4o-mini`; métricas de Ragas juzgadas también por

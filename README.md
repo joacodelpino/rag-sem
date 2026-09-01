@@ -194,7 +194,7 @@ rag-legal-demo/
 │   ├── run_ragas.py          # evaluación + tabla de ablación
 │   ├── ragas_una_pregunta.py # recorte de UNA pregunta contra las 5 configuraciones
 │   ├── bench_rerank.py       # latencia de cada reranker (calidad/latencia)
-│   └── results/              # CSV y JSON de cada corrida
+│   └── results/              # CSV y JSON de cada corrida (ver su README.md)
 ├── tests/
 │   └── test_bm25.py          # tokenizador (se corre sin pytest)
 └── notebooks/                # exploración, no se presenta
