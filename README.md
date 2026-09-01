@@ -123,6 +123,14 @@ python evals/run_ragas.py --sin-ragas     # solo métricas por id (no gasta API)
 python evals/run_ragas.py --limite 3 --configs naive    # prueba de humo
 ```
 
+Para mirar **una** pregunta en detalle en vez del promedio —qué recuperó y qué
+contestó cada configuración, con el reranker chico y el grande lado a lado—:
+
+```bash
+python evals/ragas_una_pregunta.py --id s01               # el caso Siri
+python evals/ragas_una_pregunta.py --id f01 --sin-ragas   # sin juez
+```
+
 Escribe dos archivos en `evals/results/`: un CSV con la tabla de ablación (una
 fila por configuración) y un JSON con el detalle por pregunta —chunks
 recuperados, respuesta generada, tiempos y `config_snapshot()`—.
@@ -184,6 +192,7 @@ rag-legal-demo/
 │   ├── build_golden_set.py   # genera data/golden_set.csv verificando contra el índice
 │   ├── verify_golden_set.py  # audita el set dorado (independiente del generador)
 │   ├── run_ragas.py          # evaluación + tabla de ablación
+│   ├── ragas_una_pregunta.py # recorte de UNA pregunta contra las 5 configuraciones
 │   ├── bench_rerank.py       # latencia de cada reranker (calidad/latencia)
 │   └── results/              # CSV y JSON de cada corrida
 ├── tests/

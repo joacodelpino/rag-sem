@@ -1,0 +1,433 @@
+{
+  "fecha": "2026-09-01T03:26:17",
+  "pregunta": {
+    "id": "s01",
+    "categoria": "fuente",
+    "pregunta": "¿En qué fallo la Corte Suprema creó la acción de amparo?",
+    "respuesta_esperada": "En el fallo Siri, de 1957",
+    "chunks_relevantes": "1026",
+    "por_que": "Cuatro documentos del corpus mencionan a Siri, pero uno solo ES el fallo. Mide si el sistema distingue la fuente de las citas.",
+    "ids_relevantes": [
+      1026
+    ]
+  },
+  "top_k": 5,
+  "modelo_juez": "gpt-4o-mini",
+  "config": {
+    "collection": "legal_docs",
+    "embedding_model": "BAAI/bge-m3",
+    "reranker_model": "BAAI/bge-reranker-v2-m3",
+    "candidates_per_branch": 20,
+    "rrf_k": 60,
+    "rerank_candidates": 20,
+    "chunk_strategy": "articulo",
+    "chunk_size": 800,
+    "chunk_overlap": 150,
+    "chunk_max_chars": 1200,
+    "chunk_min_chars": 250
+  },
+  "tabla": [
+    {
+      "config": "naive",
+      "preguntas": 1,
+      "recall@k": 0.0,
+      "precision@k": 0.0,
+      "mrr": 0.0,
+      "abstencion_negativas": NaN,
+      "seg_recuperacion": 0.371,
+      "faithfulness": 0.8,
+      "answer_correctness": 0.6118485726063128,
+      "context_precision": 0.99999999995,
+      "context_recall": 1.0,
+      "reranker": "-",
+      "seg_total": 16.57
+    },
+    {
+      "config": "sparse (BM25)",
+      "preguntas": 1,
+      "recall@k": 1.0,
+      "precision@k": 0.2,
+      "mrr": 0.25,
+      "abstencion_negativas": NaN,
+      "seg_recuperacion": 0.027,
+      "faithfulness": 1.0,
+      "answer_correctness": 0.4950654719057898,
+      "context_precision": 0.499999999975,
+      "context_recall": 1.0,
+      "reranker": "-",
+      "seg_total": 9.74
+    },
+    {
+      "config": "hibrida (RRF)",
+      "preguntas": 1,
+      "recall@k": 0.0,
+      "precision@k": 0.0,
+      "mrr": 0.0,
+      "abstencion_negativas": NaN,
+      "seg_recuperacion": 0.383,
+      "faithfulness": 0.75,
+      "answer_correctness": 0.07894237330224693,
+      "context_precision": 0.9999999999,
+      "context_recall": 0.0,
+      "reranker": "-",
+      "seg_total": 9.76
+    },
+    {
+      "config": "hibrida + rerank chico",
+      "preguntas": 1,
+      "recall@k": 1.0,
+      "precision@k": 0.2,
+      "mrr": 0.2,
+      "abstencion_negativas": NaN,
+      "seg_recuperacion": 5.687,
+      "faithfulness": 1.0,
+      "answer_correctness": 0.8010352487537894,
+      "context_precision": 0.6999999999766667,
+      "context_recall": 1.0,
+      "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+      "seg_total": 20.29
+    },
+    {
+      "config": "hibrida + rerank grande",
+      "preguntas": 1,
+      "recall@k": 1.0,
+      "precision@k": 0.2,
+      "mrr": 0.5,
+      "abstencion_negativas": NaN,
+      "seg_recuperacion": 37.12,
+      "faithfulness": 0.75,
+      "answer_correctness": 0.6187267216935568,
+      "context_precision": 0.4499999999775,
+      "context_recall": 1.0,
+      "reranker": "BAAI/bge-reranker-v2-m3",
+      "seg_total": 50.02
+    }
+  ],
+  "detalle": {
+    "naive": {
+      "preguntas": [
+        {
+          "id": "s01",
+          "categoria": "fuente",
+          "pregunta": "¿En qué fallo la Corte Suprema creó la acción de amparo?",
+          "respuesta_esperada": "En el fallo Siri, de 1957",
+          "ids_relevantes": [
+            1026
+          ],
+          "ids_recuperados": [
+            1070,
+            1111,
+            1063,
+            1096,
+            1097
+          ],
+          "etiquetas_recuperadas": [
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Por ello, y sin perjuicio de señalar la confusión que derivaría de la admisión (cont. 6/20)",
+            "CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Considerando: (cont. 1/17)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 9/18)"
+          ],
+          "textos_recuperados": [
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Por ello, y sin perjuicio de señalar la confusión que derivaría de la admisión (cont. 6/20)]\n6, 606; J. A., 1950-III, 486, entre otros); fs.6.\nContra esta sentencia, el interesado interpuso recurso extraordinario, el cual, concedido por la Cámara de\nApelación, llega ahora a la decisión de esta Corte.\nY Considerando:\nQue, ante todo, corresponde apartar el fundamento expresado por el tribunal a quo para desechar la\npretensión del interesado. Este no dedujo recurso de habeas corpus, sino de amparo, invocando los\nderechos constitucionales de la libertad de trabajo, de la propiedad y de la libre actividad, o sea, dedujo\nuna garantía distinta a la que protege la libertad corporal y que, a semejanza del hábeas corpus, procura\nasimismo una protección expeditiva y rápida que emana directamente de la Constitución. Esta Corte lo ha\ndeclarado así en la sentencia de fecha 27 de diciembre del año ppdo en la causa \"Siri, Angel\" (Fallos,\n239, 450 ), con fundamentos que se dan aquí por reproducidos en todo lo pertinente.\nQue si bien en el precedente citado la restricción ilegítima provenía de la autoridad pública y no de actos\nde particulares, tal distinción no es esencial a los fines de la protección constitucional. Admitido que existe\nuna garantía tácita o implícita que protege los diver",
+            "[CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Considerando: (cont. 1/17)]\nConsiderando:\n1°) Que hasta el 27 de diciembre de 1957, fecha en que se resolvió el caso \"Siri\" (Fallos, 239:459), el\nrecurso de amparo sólo se admitió, en el orden nacional, para proteger la libertad cuando mediase\ndetención, arresto o prisión ilegal de las personas (arts. 20, ley 48 y 617 y sigts., Cód. de Proced.\nCriminal).\n\n2°) Que, sin embargo, a partir de entonces el amparo no se circunscribió a los tradicionales casos de\nhábeas corpus sino que se extendió a otras situaciones que pudieran comportar ataques flagrantes,\nevidentes e insusceptibles de una reparación ulterior adecuada contra las garantías individuales que\nconsagra la Constitución, porque dichas garantías integran -como lo dijo este tribunal con palabras de\nJoaquín V. González- \"el patrimonio inalterable que hace de cada hombre, ciudadano o no, un ser libre e\nindependiente dentro de la Nación Argentina\".\n3°) Que, de este modo, por medio de la interpretación de los textos constitucionales se ha venido a\nreconocer la necesidad del remedio excepcional del amparo judicial no solamente cuando se halla en\njuego la libertad de las personas sino también cualquiera de las otras garantías individuales que consagra\nla Ley Sup",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)]\nDICTAMEN DEL PROCURADOR GENERAL\nSuprema Corte:\nEl presente recurso de amparo se funda en los mismos hechos que han dado lugar a la instrucción de la\ncausa \"Houssay, Abel F. A. representando a Kot, Samuel S.R.L. , denuncia Kot, Juan\" en la que dictamino\ntambién el día de la fecha.\nAquí, sin embargo, se hace especial hincapié en lo resuelto en Fallos: 239, 459 para fundar de ese modo\nla intervención de los tribunales del crimen en la cuestión de que se trata, aun al margen del proceso\npenal antes mencionado.\nY bien, lo decidido en el recurso planteado por Angel Siri no es, a mi juicio, de aplicación al sub iudice.\nAllí, lo mismo que en los casos jurisprudenciales a que expresamente se refirió V. E. para destacar su\napartamiento de la doctrina tradicional hasta entonces observada (Fallos, 168, 15; 169, 103), se pedía\namparo, no contra un hecho realizado por particulares, sino contra un acto arbitrario de la autoridad para\nel que no existía remedio expreso en la legislación a pesar de que comportaba la violación de garantías\nindividuales aseguradas por la Constitución Nacional.\nComo se observa, pues, la situación es fundamentalmente distinta: en primer lugar, porque aquí no se\ntrata de",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los ",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 9/18)]\nsprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los que provengan\nde sujetos particulares (en la Argentina: Constituciones de Entre Ríos y Santiago del Estero; ley 2494 de\nSanta Fe y Constitución de 1921 de la misma provincia. En el extranjero: Constituciones de Brasil,\nMéxico, Guatemala, Honduras, Panamá, Nicaragua, Italia, República Federal Alemana, Baviera, España\nde 1931, Austria de 1920, etcétera. Ver además: R. Bielsa, Estudios de derecho público, 1952, t. III, p.\n401; J. A. González Calderón, Comisión de estudios constitucionales, 1957, t. II, p. 36 y 39; Federación\nArgentina de Colegios de Abogados, Quinta Conferencia Nacional de Abogados, 1941, p. 66 y ss.,\ndeclaración ponencia adicional y, especialmente, discurso del miembro informante, doctor A. Walter\nVillegas). Y si es posible, por vía de hipótesis, que el legislador amplíe la esfera de acción del amparo,\nextendiéndolo a las violaciones cometidas por personas privadas, lo que de ningún modo puede admitirse\nes que los jueces, sobre la base de supuestos principios implícitos en la Constitución, tengan la misma\npotestad ampli"
+          ],
+          "scores": [
+            0.56989,
+            0.56687,
+            0.55321,
+            0.55307,
+            0.55125
+          ],
+          "respuesta": "La Corte Suprema de Justicia de la Nación Argentina creó la acción de amparo en el fallo \"Siri, Angel\", resuelto el 27 de diciembre de 1957, donde se amplió el recurso de amparo más allá de los casos tradicionales de hábeas corpus, permitiendo su uso para proteger otras garantías individuales consagradas por la Constitución [CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Considerando: (cont. 1/17)].",
+          "recall": 0.0,
+          "precision": 0.0,
+          "mrr": 0.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 0.371,
+          "segundos_generacion": 2.635
+        }
+      ],
+      "ragas": {
+        "promedios": {
+          "faithfulness": 0.8,
+          "answer_correctness": 0.6118485726063128,
+          "context_precision": 0.99999999995,
+          "context_recall": 1.0
+        },
+        "detalle": [
+          {
+            "id": "s01",
+            "faithfulness": 0.8,
+            "answer_correctness": 0.6118485726063128,
+            "context_precision": 0.99999999995,
+            "context_recall": 1.0
+          }
+        ]
+      }
+    },
+    "sparse (BM25)": {
+      "preguntas": [
+        {
+          "id": "s01",
+          "categoria": "fuente",
+          "pregunta": "¿En qué fallo la Corte Suprema creó la acción de amparo?",
+          "respuesta_esperada": "En el fallo Siri, de 1957",
+          "ids_relevantes": [
+            1026
+          ],
+          "ids_recuperados": [
+            1110,
+            1028,
+            1228,
+            1026,
+            1229
+          ],
+          "etiquetas_recuperadas": [
+            "CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Dictamen del Procurador General de la Nación (cont. 2/2)",
+            "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 3/3)",
+            "CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 6/18)",
+            "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)",
+            "CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)"
+          ],
+          "textos_recuperados": [
+            "[CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Dictamen del Procurador General de la Nación (cont. 2/2)]\nn momento oportuno al respecto, como lo demuestran las presentaciones de fs. 66 y 108,\nefectuadas en nombre del Sindicato Obreros Marítimos Unidos, y la circunstancia de que se haya puesto\nen conocimiento del Ministerio de Trabajo y Seguridad Social la interposición de este amparo, con\nremisión de una copia de la demanda inicial, en la que los actores sostuvieron que aquella norma era\ncontraria a garantías de la Constitución Nacional y a disposiciones de la ley 14.455.\nEn cuanto al problema de fondo, comparto los fundamentos de las disidencias que en la sentencia\nrecordada al comienzo suscribieron los doctores Boffi Boggero y Zavala Rodríguez, en cuanto declaran\ninconstitucional el art. 16, inc. b) del reglamento aprobado por decreto 280/64, y en su mérito estimo que\ncorresponde revocar el fallo de fs. 133 de estas actuaciones, y hacer lugar al amparo pedido por los\naccionantes.\nOctubre 6 de 1966. EDUARDO H. MARQUARDT\nFALLO DE LA CORTE SUPREMA",
+            "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 3/3)]\ntir la procedencia del recurso intentado, estimo que\ncorrespondería confirmar lo resuelto en cuanto ha podido ser materia de apelación extraordinaria. –\nOctubre 14 de 1957. – Sebastián Soler.\nFallo de la Corte Suprema\nBuenos Aires, diciembre 27 de 1957.\nQue en los autos \"Siri, Angel, s./interpone recurso de hábeas corpus\", en los que a fs. 47 vta. se ha\nconcedido el recurso extraordinario contra la sentencia de la Cám. de Apel. en lo Penal del departamento\nde Mercedes (Prov. de Buenos Aires), de fecha 28 de mayo de 1957.",
+            "[CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 6/18)]\nó un\nnuevo traslado por su orden, el que fue contestado únicamente por el actor a\nfs. 152/155.\nEn tales condiciones, a fs. 159\nvta., el Tribunal corrió vista a este Ministerio Público.\nV. Ante todo, considero que\ncorresponde examinar si se encuentran reunidos los presupuestos para la\nadmisibilidad formal de la acción declarativa articulada, toda vez que\n\"los pronunciamientos de la Corte deben atender a las circunstancias\nexistentes al momento de la decisión\" (Fallos: 310:670; 318:373; 320:1386\ny sus citas, entre muchos otros).\nAl respecto, no es ocioso\n\nrecordar que \"la declaración de certeza, en tanto no tenga carácter\nsimplemente consultivo, no importe una indagación meramente especulativa y\nresponda a un 'caso' que busque precaver los efectos de un acto en ciernes al\nque se atribuye ilegitimidad y lesión al régimen constitucional federal,\nconstituye causa en los términos de la Ley Fundamental\" (Fallos: 307:1379;\n308:2569; 310:606, 977; 318:30; 320:1875; 322:678 y 1253, entre otros).\nPrecisamente, en el primero de\nlos precedentes citados (in re: \"Santiago del Estero, Provincia de c.\nacción de amparo\"), la Corte, de acuerdo con lo resuelto por la Corte\nSuprema de los Estados Unido",
+            "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)]\nSiri, Angel (1957)\nFuente: https://falloscsn.blogspot.com/2005/08/siri-angel-1957.html\n27 de Diciembre de 1957\nFallos 239:459\n(Amparo contra actos del Estado)\nEl actor era director y propietario del diario «Mercedes», que había sido clausurado por la policía de la\nprovincia de Buenos Aires. Ante ello interpuso un habeas corpus para que la justicia dispusiera su\nreapertura. Habiendo comprobado la base fáctica de que la medida se había dictado sin justificación, la\nmayoría de la Corte (votó en disidencia el juez Herrera) afirmó que “Los preceptos constitucionales tanto\ncomo la experiencia institucional del país reclaman de consuno el goce y ejercicio pleno de las garantías\nindividuales para la efectiva vigencia del Estado de derecho e imponen a los jueces el deber de\nasegurarlas”; y basándose en ese principio admitió la acción. De esta forma surgió el instituto procesal del\namparo, aunque ese nombre no fue formulado por el actor ni se alude a él en este fallo.\nOpinión del procurador general de la Nación (I).\nDe lo informado a fs. 37 y vta. así como de las propias manifestaciones formuladas por el interesado en\nsu escrito de fs. 35, surge que la clausura del periódico \"Mercedes\", que ",
+            "[CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)]\ntados (in re: \"Santiago del Estero, Provincia de c.\nacción de amparo\"), la Corte, de acuerdo con lo resuelto por la Corte\nSuprema de los Estados Unidos -en la causa \"AetnaLifeInsurance Co. c.\nHavorth, 300 U.S. 227\"-, definió los presupuestos formales de admisibilidad\nde este tipo de acción: a) actividad administrativa que afecta un interés\nlegítimo; b) que el grado de afectación sea suficientemente directo; y c) que\naquella actividad tenga concreción bastante.\nConsidero cumplidos dichos\nrecaudos en el sub lite, toda vez que el accionante acredita estar excluido de\nlos padrones de aspirantes para acceder al cargo de juez de la Cámara de\nApelaciones local (fs. 163/174) y de la convocatoria efectuada por el Consejo\nde la Magistratura provincial (177/178), por no reunir los recaudos\nconstitucionales para ser aspirante. Así pues, entiendo configurada la\nafectación del interés legítimo del actor en forma directa y concreta.\nVI. Como quedó expuesto a través\ndel relato antes efectuado, el actor es \"argentino naturalizado\" y\npretende acceder al cargo de juez de Cámara en la Provincia de Buenos Aires,\ncuya Constitución le exige \"haber nacido en territorio argentino o ser\nhijo de ciudadano na"
+          ],
+          "scores": [
+            16.5322,
+            16.10207,
+            13.57568,
+            13.09417,
+            12.77095
+          ],
+          "respuesta": "La acción de amparo fue creada en el fallo \"Siri, Ángel\" (1957), donde la Corte Suprema afirmó que los preceptos constitucionales reclaman el goce y ejercicio pleno de las garantías individuales, lo que impone a los jueces el deber de asegurarlas. Este fallo es considerado fundamental en el establecimiento del instituto procesal del amparo, aunque el término no fue utilizado en el mismo [CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 0.25,
+          "abstuvo": null,
+          "segundos_recuperacion": 0.027,
+          "segundos_generacion": 1.543
+        }
+      ],
+      "ragas": {
+        "promedios": {
+          "faithfulness": 1.0,
+          "answer_correctness": 0.4950654719057898,
+          "context_precision": 0.499999999975,
+          "context_recall": 1.0
+        },
+        "detalle": [
+          {
+            "id": "s01",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.4950654719057898,
+            "context_precision": 0.499999999975,
+            "context_recall": 1.0
+          }
+        ]
+      }
+    },
+    "hibrida (RRF)": {
+      "preguntas": [
+        {
+          "id": "s01",
+          "categoria": "fuente",
+          "pregunta": "¿En qué fallo la Corte Suprema creó la acción de amparo?",
+          "respuesta_esperada": "En el fallo Siri, de 1957",
+          "ids_relevantes": [
+            1026
+          ],
+          "ids_recuperados": [
+            1096,
+            1063,
+            1229,
+            1077,
+            1098
+          ],
+          "etiquetas_recuperadas": [
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)",
+            "CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Por ello, y sin perjuicio de señalar la confusión que derivaría de la admisión (cont. 13/20)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 10/18)"
+          ],
+          "textos_recuperados": [
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los ",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)]\nDICTAMEN DEL PROCURADOR GENERAL\nSuprema Corte:\nEl presente recurso de amparo se funda en los mismos hechos que han dado lugar a la instrucción de la\ncausa \"Houssay, Abel F. A. representando a Kot, Samuel S.R.L. , denuncia Kot, Juan\" en la que dictamino\ntambién el día de la fecha.\nAquí, sin embargo, se hace especial hincapié en lo resuelto en Fallos: 239, 459 para fundar de ese modo\nla intervención de los tribunales del crimen en la cuestión de que se trata, aun al margen del proceso\npenal antes mencionado.\nY bien, lo decidido en el recurso planteado por Angel Siri no es, a mi juicio, de aplicación al sub iudice.\nAllí, lo mismo que en los casos jurisprudenciales a que expresamente se refirió V. E. para destacar su\napartamiento de la doctrina tradicional hasta entonces observada (Fallos, 168, 15; 169, 103), se pedía\namparo, no contra un hecho realizado por particulares, sino contra un acto arbitrario de la autoridad para\nel que no existía remedio expreso en la legislación a pesar de que comportaba la violación de garantías\nindividuales aseguradas por la Constitución Nacional.\nComo se observa, pues, la situación es fundamentalmente distinta: en primer lugar, porque aquí no se\ntrata de",
+            "[CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)]\ntados (in re: \"Santiago del Estero, Provincia de c.\nacción de amparo\"), la Corte, de acuerdo con lo resuelto por la Corte\nSuprema de los Estados Unidos -en la causa \"AetnaLifeInsurance Co. c.\nHavorth, 300 U.S. 227\"-, definió los presupuestos formales de admisibilidad\nde este tipo de acción: a) actividad administrativa que afecta un interés\nlegítimo; b) que el grado de afectación sea suficientemente directo; y c) que\naquella actividad tenga concreción bastante.\nConsidero cumplidos dichos\nrecaudos en el sub lite, toda vez que el accionante acredita estar excluido de\nlos padrones de aspirantes para acceder al cargo de juez de la Cámara de\nApelaciones local (fs. 163/174) y de la convocatoria efectuada por el Consejo\nde la Magistratura provincial (177/178), por no reunir los recaudos\nconstitucionales para ser aspirante. Así pues, entiendo configurada la\nafectación del interés legítimo del actor en forma directa y concreta.\nVI. Como quedó expuesto a través\ndel relato antes efectuado, el actor es \"argentino naturalizado\" y\npretende acceder al cargo de juez de Cámara en la Provincia de Buenos Aires,\ncuya Constitución le exige \"haber nacido en territorio argentino o ser\nhijo de ciudadano na",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Por ello, y sin perjuicio de señalar la confusión que derivaría de la admisión (cont. 13/20)]\nincias, es digna de señalar la de Entre Ríos, que conserva\nexpresamente el alcance tradicional del hábeas corpus, extendiéndolo, aún, a la protección de cualquiera\nde las garantías establecidas en la Constitución Nacional o Provincial o las leyes (art. 25).\nLa misma amplitud corresponde reconocer al recurso de amparo, que esta Corte, en el precedente antes\nmencionado (Fallos, 239, 459), extrajo de la sabia norma del art. 33 de la Constitución. Sin una reserva\nque, expresa o implícitamente, emane de los preceptos constitucionales y que imponga una inteligencia\nrestringida del recurso de amparo, la interpretación amplia es la que mejor consulta los grandes objetivos\nde la Ley Suprema y las genuinas finalidades de aquellas garantías. Lo que primordialmente tienen en\nvista el hábeas corpus y el recurso de amparo, no es el origen de la restricción ilegítima a cualquiera de\nlos derechos fundamentales de la persona humana, sino estos derechos en sí mismos, a fin de que sean\nsalvaguardados. Dichas garantías no atienden unilateralmente a los agresores, para señalar distinciones\n\nentre ellos, sino a los agredidos, para restablecer sus derechos esenciales. La Constitución está dirigida\nirrevo",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 10/18)]\n de ningún modo puede admitirse\nes que los jueces, sobre la base de supuestos principios implícitos en la Constitución, tengan la misma\npotestad ampliatoria.\n7) Que ello, asimismo, estaría en oposición a la doctrina jurisprudencial norteamericana referente al writ of\nmandamus, con el que habitualmente se compara al remedio de amparo. De modo uniforme y sin\nexcepciones, los tribunales de Estados Unidos han decidido que el mencionado writ existe respecto de los\nactos de un oficial público, (officer) o de una corporación pública o semipública en tanto que no opera\ncontra actos de particulares ni se extiende a las relaciones privadas entre individuos (Suprema Corte de\nEstados Unidos, caso \"Rorick v. U. S. Sugar Co.\", Federal Reporter, Second Series, t. 120, p. 418, y fallos\nde los tribunales de Georgia, W. Virginia, Wisconsin, Missouri, S. Dakota, California, Oklahoma, etc.,\ncitados en el Corpus Iuris Secundum, 1948, t. 55, p. 451 y siguientes).\n8) Que, por lo demás, es preciso advertir que las facultades de uso y goce que se dicen infringidas, gozan\nde minuciosa y adecuada protección legal. El argumento, enfáticamente planteado por el recurrente, de\nque la denegación del amparo petici"
+          ],
+          "scores": [
+            0.03012,
+            0.02976,
+            0.02947,
+            0.0292,
+            0.02724
+          ],
+          "respuesta": "El contexto proporcionado no menciona un fallo específico en el que la Corte Suprema haya creado la acción de amparo. Se hace referencia a la doctrina y a la interpretación del recurso de amparo, pero no se identifica un fallo que establezca su creación. Por lo tanto, no puedo responder a tu consulta con la información disponible.",
+          "recall": 0.0,
+          "precision": 0.0,
+          "mrr": 0.0,
+          "abstuvo": null,
+          "segundos_recuperacion": 0.383,
+          "segundos_generacion": 1.188
+        }
+      ],
+      "ragas": {
+        "promedios": {
+          "faithfulness": 0.75,
+          "answer_correctness": 0.07894237330224693,
+          "context_precision": 0.9999999999,
+          "context_recall": 0.0
+        },
+        "detalle": [
+          {
+            "id": "s01",
+            "faithfulness": 0.75,
+            "answer_correctness": 0.07894237330224693,
+            "context_precision": 0.9999999999,
+            "context_recall": 0.0
+          }
+        ]
+      }
+    },
+    "hibrida + rerank chico": {
+      "preguntas": [
+        {
+          "id": "s01",
+          "categoria": "fuente",
+          "pregunta": "¿En qué fallo la Corte Suprema creó la acción de amparo?",
+          "respuesta_esperada": "En el fallo Siri, de 1957",
+          "ids_relevantes": [
+            1026
+          ],
+          "ids_recuperados": [
+            1063,
+            1229,
+            1077,
+            1096,
+            1026
+          ],
+          "etiquetas_recuperadas": [
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)",
+            "CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Por ello, y sin perjuicio de señalar la confusión que derivaría de la admisión (cont. 13/20)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)",
+            "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)"
+          ],
+          "textos_recuperados": [
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)]\nDICTAMEN DEL PROCURADOR GENERAL\nSuprema Corte:\nEl presente recurso de amparo se funda en los mismos hechos que han dado lugar a la instrucción de la\ncausa \"Houssay, Abel F. A. representando a Kot, Samuel S.R.L. , denuncia Kot, Juan\" en la que dictamino\ntambién el día de la fecha.\nAquí, sin embargo, se hace especial hincapié en lo resuelto en Fallos: 239, 459 para fundar de ese modo\nla intervención de los tribunales del crimen en la cuestión de que se trata, aun al margen del proceso\npenal antes mencionado.\nY bien, lo decidido en el recurso planteado por Angel Siri no es, a mi juicio, de aplicación al sub iudice.\nAllí, lo mismo que en los casos jurisprudenciales a que expresamente se refirió V. E. para destacar su\napartamiento de la doctrina tradicional hasta entonces observada (Fallos, 168, 15; 169, 103), se pedía\namparo, no contra un hecho realizado por particulares, sino contra un acto arbitrario de la autoridad para\nel que no existía remedio expreso en la legislación a pesar de que comportaba la violación de garantías\nindividuales aseguradas por la Constitución Nacional.\nComo se observa, pues, la situación es fundamentalmente distinta: en primer lugar, porque aquí no se\ntrata de",
+            "[CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)]\ntados (in re: \"Santiago del Estero, Provincia de c.\nacción de amparo\"), la Corte, de acuerdo con lo resuelto por la Corte\nSuprema de los Estados Unidos -en la causa \"AetnaLifeInsurance Co. c.\nHavorth, 300 U.S. 227\"-, definió los presupuestos formales de admisibilidad\nde este tipo de acción: a) actividad administrativa que afecta un interés\nlegítimo; b) que el grado de afectación sea suficientemente directo; y c) que\naquella actividad tenga concreción bastante.\nConsidero cumplidos dichos\nrecaudos en el sub lite, toda vez que el accionante acredita estar excluido de\nlos padrones de aspirantes para acceder al cargo de juez de la Cámara de\nApelaciones local (fs. 163/174) y de la convocatoria efectuada por el Consejo\nde la Magistratura provincial (177/178), por no reunir los recaudos\nconstitucionales para ser aspirante. Así pues, entiendo configurada la\nafectación del interés legítimo del actor en forma directa y concreta.\nVI. Como quedó expuesto a través\ndel relato antes efectuado, el actor es \"argentino naturalizado\" y\npretende acceder al cargo de juez de Cámara en la Provincia de Buenos Aires,\ncuya Constitución le exige \"haber nacido en territorio argentino o ser\nhijo de ciudadano na",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Por ello, y sin perjuicio de señalar la confusión que derivaría de la admisión (cont. 13/20)]\nincias, es digna de señalar la de Entre Ríos, que conserva\nexpresamente el alcance tradicional del hábeas corpus, extendiéndolo, aún, a la protección de cualquiera\nde las garantías establecidas en la Constitución Nacional o Provincial o las leyes (art. 25).\nLa misma amplitud corresponde reconocer al recurso de amparo, que esta Corte, en el precedente antes\nmencionado (Fallos, 239, 459), extrajo de la sabia norma del art. 33 de la Constitución. Sin una reserva\nque, expresa o implícitamente, emane de los preceptos constitucionales y que imponga una inteligencia\nrestringida del recurso de amparo, la interpretación amplia es la que mejor consulta los grandes objetivos\nde la Ley Suprema y las genuinas finalidades de aquellas garantías. Lo que primordialmente tienen en\nvista el hábeas corpus y el recurso de amparo, no es el origen de la restricción ilegítima a cualquiera de\nlos derechos fundamentales de la persona humana, sino estos derechos en sí mismos, a fin de que sean\nsalvaguardados. Dichas garantías no atienden unilateralmente a los agresores, para señalar distinciones\n\nentre ellos, sino a los agredidos, para restablecer sus derechos esenciales. La Constitución está dirigida\nirrevo",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los ",
+            "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)]\nSiri, Angel (1957)\nFuente: https://falloscsn.blogspot.com/2005/08/siri-angel-1957.html\n27 de Diciembre de 1957\nFallos 239:459\n(Amparo contra actos del Estado)\nEl actor era director y propietario del diario «Mercedes», que había sido clausurado por la policía de la\nprovincia de Buenos Aires. Ante ello interpuso un habeas corpus para que la justicia dispusiera su\nreapertura. Habiendo comprobado la base fáctica de que la medida se había dictado sin justificación, la\nmayoría de la Corte (votó en disidencia el juez Herrera) afirmó que “Los preceptos constitucionales tanto\ncomo la experiencia institucional del país reclaman de consuno el goce y ejercicio pleno de las garantías\nindividuales para la efectiva vigencia del Estado de derecho e imponen a los jueces el deber de\nasegurarlas”; y basándose en ese principio admitió la acción. De esta forma surgió el instituto procesal del\namparo, aunque ese nombre no fue formulado por el actor ni se alude a él en este fallo.\nOpinión del procurador general de la Nación (I).\nDe lo informado a fs. 37 y vta. así como de las propias manifestaciones formuladas por el interesado en\nsu escrito de fs. 35, surge que la clausura del periódico \"Mercedes\", que "
+          ],
+          "scores": [
+            0.99607,
+            0.89813,
+            0.86718,
+            0.79394,
+            0.75729
+          ],
+          "respuesta": "La acción de amparo fue creada por la Corte Suprema en el fallo \"Siri, Ángel\" (1957), Fallos 239:459, donde se resolvió un conflicto relacionado con la clausura de un diario y se afirmó la necesidad de asegurar el goce y ejercicio pleno de las garantías individuales para la efectiva vigencia del Estado de derecho [CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 0.2,
+          "abstuvo": null,
+          "segundos_recuperacion": 5.687,
+          "segundos_generacion": 1.723
+        }
+      ],
+      "ragas": {
+        "promedios": {
+          "faithfulness": 1.0,
+          "answer_correctness": 0.8010352487537894,
+          "context_precision": 0.6999999999766667,
+          "context_recall": 1.0
+        },
+        "detalle": [
+          {
+            "id": "s01",
+            "faithfulness": 1.0,
+            "answer_correctness": 0.8010352487537894,
+            "context_precision": 0.6999999999766667,
+            "context_recall": 1.0
+          }
+        ]
+      }
+    },
+    "hibrida + rerank grande": {
+      "preguntas": [
+        {
+          "id": "s01",
+          "categoria": "fuente",
+          "pregunta": "¿En qué fallo la Corte Suprema creó la acción de amparo?",
+          "respuesta_esperada": "En el fallo Siri, de 1957",
+          "ids_relevantes": [
+            1026
+          ],
+          "ids_recuperados": [
+            1110,
+            1026,
+            1063,
+            1229,
+            1096
+          ],
+          "etiquetas_recuperadas": [
+            "CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Dictamen del Procurador General de la Nación (cont. 2/2)",
+            "CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)",
+            "CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)",
+            "CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)"
+          ],
+          "textos_recuperados": [
+            "[CSJN, \"Outón\" (1967), Fallos 267:215 - libertad de agremiación · Dictamen del Procurador General de la Nación (cont. 2/2)]\nn momento oportuno al respecto, como lo demuestran las presentaciones de fs. 66 y 108,\nefectuadas en nombre del Sindicato Obreros Marítimos Unidos, y la circunstancia de que se haya puesto\nen conocimiento del Ministerio de Trabajo y Seguridad Social la interposición de este amparo, con\nremisión de una copia de la demanda inicial, en la que los actores sostuvieron que aquella norma era\ncontraria a garantías de la Constitución Nacional y a disposiciones de la ley 14.455.\nEn cuanto al problema de fondo, comparto los fundamentos de las disidencias que en la sentencia\nrecordada al comienzo suscribieron los doctores Boffi Boggero y Zavala Rodríguez, en cuanto declaran\ninconstitucional el art. 16, inc. b) del reglamento aprobado por decreto 280/64, y en su mérito estimo que\ncorresponde revocar el fallo de fs. 133 de estas actuaciones, y hacer lugar al amparo pedido por los\naccionantes.\nOctubre 6 de 1966. EDUARDO H. MARQUARDT\nFALLO DE LA CORTE SUPREMA",
+            "[CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)]\nSiri, Angel (1957)\nFuente: https://falloscsn.blogspot.com/2005/08/siri-angel-1957.html\n27 de Diciembre de 1957\nFallos 239:459\n(Amparo contra actos del Estado)\nEl actor era director y propietario del diario «Mercedes», que había sido clausurado por la policía de la\nprovincia de Buenos Aires. Ante ello interpuso un habeas corpus para que la justicia dispusiera su\nreapertura. Habiendo comprobado la base fáctica de que la medida se había dictado sin justificación, la\nmayoría de la Corte (votó en disidencia el juez Herrera) afirmó que “Los preceptos constitucionales tanto\ncomo la experiencia institucional del país reclaman de consuno el goce y ejercicio pleno de las garantías\nindividuales para la efectiva vigencia del Estado de derecho e imponen a los jueces el deber de\nasegurarlas”; y basándose en ese principio admitió la acción. De esta forma surgió el instituto procesal del\namparo, aunque ese nombre no fue formulado por el actor ni se alude a él en este fallo.\nOpinión del procurador general de la Nación (I).\nDe lo informado a fs. 37 y vta. así como de las propias manifestaciones formuladas por el interesado en\nsu escrito de fs. 35, surge que la clausura del periódico \"Mercedes\", que ",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · DICTAMEN DEL PROCURADOR GENERAL (cont. 1/2)]\nDICTAMEN DEL PROCURADOR GENERAL\nSuprema Corte:\nEl presente recurso de amparo se funda en los mismos hechos que han dado lugar a la instrucción de la\ncausa \"Houssay, Abel F. A. representando a Kot, Samuel S.R.L. , denuncia Kot, Juan\" en la que dictamino\ntambién el día de la fecha.\nAquí, sin embargo, se hace especial hincapié en lo resuelto en Fallos: 239, 459 para fundar de ese modo\nla intervención de los tribunales del crimen en la cuestión de que se trata, aun al margen del proceso\npenal antes mencionado.\nY bien, lo decidido en el recurso planteado por Angel Siri no es, a mi juicio, de aplicación al sub iudice.\nAllí, lo mismo que en los casos jurisprudenciales a que expresamente se refirió V. E. para destacar su\napartamiento de la doctrina tradicional hasta entonces observada (Fallos, 168, 15; 169, 103), se pedía\namparo, no contra un hecho realizado por particulares, sino contra un acto arbitrario de la autoridad para\nel que no existía remedio expreso en la legislación a pesar de que comportaba la violación de garantías\nindividuales aseguradas por la Constitución Nacional.\nComo se observa, pues, la situación es fundamentalmente distinta: en primer lugar, porque aquí no se\ntrata de",
+            "[CSJN, \"Hooft, Pedro C. F. c/ Provincia de Buenos Aires\" (2004), Fallos 327:5118 · Carátula (cont. 7/18)]\ntados (in re: \"Santiago del Estero, Provincia de c.\nacción de amparo\"), la Corte, de acuerdo con lo resuelto por la Corte\nSuprema de los Estados Unidos -en la causa \"AetnaLifeInsurance Co. c.\nHavorth, 300 U.S. 227\"-, definió los presupuestos formales de admisibilidad\nde este tipo de acción: a) actividad administrativa que afecta un interés\nlegítimo; b) que el grado de afectación sea suficientemente directo; y c) que\naquella actividad tenga concreción bastante.\nConsidero cumplidos dichos\nrecaudos en el sub lite, toda vez que el accionante acredita estar excluido de\nlos padrones de aspirantes para acceder al cargo de juez de la Cámara de\nApelaciones local (fs. 163/174) y de la convocatoria efectuada por el Consejo\nde la Magistratura provincial (177/178), por no reunir los recaudos\nconstitucionales para ser aspirante. Así pues, entiendo configurada la\nafectación del interés legítimo del actor en forma directa y concreta.\nVI. Como quedó expuesto a través\ndel relato antes efectuado, el actor es \"argentino naturalizado\" y\npretende acceder al cargo de juez de Cámara en la Provincia de Buenos Aires,\ncuya Constitución le exige \"haber nacido en territorio argentino o ser\nhijo de ciudadano na",
+            "[CSJN, \"Samuel Kot SRL\" (1958), Fallos 241:291 - amparo contra actos de particulares · Considerando: (cont. 8/18)]\nbilitar la defensa procesal de todos\nlos derechos individuales imaginables, incluso los meros derechos privados existentes en el orden de las\nrelaciones entre particulares, como lo son el dominio y sus atributos. He aquí el aspecto central del\nproblema, que precisa ser subrayado. En el caso \"Siri\" se resolvió un conflicto entre la libertad y la\nautoridad, en amparo de la primera, cuya custodia esta Corte estimó indeclinable. Mientras tanto, lo que\nahora se pide es que el más Alto Tribunal de la Argentina inaugure una doctrina y cree una acción que,\ninevitablemente, servirá para que el enfrentamiento de dos derechos privados sea resuelto en perjuicio de\nuno de ellos.\n5) Que semejante extensión no puede ser judicialmente aceptada sin causar grave daño a principios y\npreceptos de observancia ineludible.\n6) Que, ante todo, el otorgamiento de amparo en casos como el que se juzga, desvirtuaría la naturaleza\njurídica del instituto en cuestión, según ella aparece configurada por la legislación y la doctrina\ncontemporáneas, de las cuales se desprende, por vía de principio prácticamente uniforme, que hay\namparo de la libertad contra actos emanados de autoridades públicas, pero no contra los "
+          ],
+          "scores": [
+            0.86626,
+            0.8376,
+            0.83595,
+            0.8296,
+            0.68981
+          ],
+          "respuesta": "La Corte Suprema creó la acción de amparo en el fallo \"Siri, Ángel\" (1957), donde se afirmó que los preceptos constitucionales reclaman el goce y ejercicio pleno de las garantías individuales, lo que llevó a admitir la acción de amparo en el caso de la clausura del diario \"Mercedes\" [CSJN, \"Siri, Ángel\" (1957), Fallos 239:459 - amparo contra actos del Estado · Carátula (cont. 1/3)].",
+          "recall": 1.0,
+          "precision": 0.2,
+          "mrr": 0.5,
+          "abstuvo": null,
+          "segundos_recuperacion": 37.12,
+          "segundos_generacion": 1.48
+        }
+      ],
+      "ragas": {
+        "promedios": {
+          "faithfulness": 0.75,
+          "answer_correctness": 0.6187267216935568,
+          "context_precision": 0.4499999999775,
+          "context_recall": 1.0
+        },
+        "detalle": [
+          {
+            "id": "s01",
+            "faithfulness": 0.75,
+            "answer_correctness": 0.6187267216935568,
+            "context_precision": 0.4499999999775,
+            "context_recall": 1.0
+          }
+        ]
+      }
+    }
+  }
+}
