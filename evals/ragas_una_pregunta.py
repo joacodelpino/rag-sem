@@ -172,13 +172,14 @@ def imprimir(tabla: list[dict], detalle: dict) -> None:
         # métrica no aplica (una negativa no tiene recall).
         return f"{valor:.3f}" if isinstance(valor, float) and valor == valor else "  -  "
 
-    print("\n" + "=" * 100)
-    print(f"{'config':<26}{'faithful.':>11}{'ans_corr.':>11}{'ctx_prec.':>11}"
-          f"{'ctx_recall':>11}{'recall@k':>10}{'mrr':>8}{'seg':>9}")
-    print("-" * 100)
+    print("\n" + "=" * 111)
+    print(f"{'config':<26}{'faithful.':>11}{'ans_corr.':>11}{'ans_relev.':>11}"
+          f"{'ctx_prec.':>11}{'ctx_recall':>11}{'recall@k':>10}{'mrr':>8}{'seg':>9}")
+    print("-" * 111)
     for f in tabla:
         print(f"{f['config']:<26}{fmt(f.get('faithfulness')):>11}"
               f"{fmt(f.get('answer_correctness')):>11}"
+              f"{fmt(f.get('answer_relevancy')):>11}"
               f"{fmt(f.get('context_precision')):>11}"
               f"{fmt(f.get('context_recall')):>11}"
               f"{fmt(f.get('recall@k')):>10}{fmt(f.get('mrr')):>8}"

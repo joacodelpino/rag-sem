@@ -12,10 +12,17 @@ recuperación y mide dos cosas MUY distintas, que conviene no mezclar:
    corridas sobre el mismo índice dan exactamente el mismo número.
 
 2. MÉTRICAS DE RAGAS (juzgadas por un LLM, cuestan plata, tienen varianza)
-   faithfulness, answer_correctness, context_precision y context_recall.
-   Miden la calidad de la RESPUESTA y la utilidad del contexto. Un juez LLM
-   no es determinístico: correr esto dos veces da números parecidos, no
-   iguales.
+   faithfulness, answer_correctness, answer_relevancy, context_precision y
+   context_recall. Miden la calidad de la RESPUESTA y la utilidad del
+   contexto. Un juez LLM no es determinístico: correr esto dos veces da
+   números parecidos, no iguales. Medido sobre una misma pregunta y el mismo
+   juez: answer_correctness dio 0.619 y 0.801 en dos corridas seguidas,
+   mientras recall@k y MRR salieron idénticos al bit.
+
+   Ojo con answer_correctness y answer_relevancy, que suenan igual y no lo
+   son: la primera compara contra la respuesta esperada, la segunda ni la
+   mira —solo pregunta si la respuesta contesta la pregunta—. Ver el
+   comentario de cada una en metricas_ragas().
 
 Por qué las dos y no solo Ragas: si la tabla de ablación solo tuviera métricas
 juzgadas por un LLM, no habría forma de saber si una configuración bajó porque
@@ -270,6 +277,18 @@ def _embeddings_locales():
     depender. aembed_text no es async de verdad —SentenceTransformer es
     bloqueante— pero la interfaz la exige; Ragas la llama dentro de su propio
     executor y no le molesta que devuelva enseguida.
+
+    HAY QUE IMPLEMENTAR DOS INTERFACES, no una, y esto no se deduce leyendo
+    BaseRagasEmbedding: ragas 0.4.3 no usa la misma en todas sus métricas.
+    answer_correctness llama embed_text (la de BaseRagasEmbedding), pero
+    answer_relevancy llama embed_query y embed_documents (la vieja, estilo
+    LangChain) — en su propio código fuente esas dos líneas van con
+    `# type: ignore[attr-defined]`, o sea que ni ragas cree que existan.
+
+    Sin los dos métodos de abajo, answer_relevancy no falla: sale `n/a` en la
+    tabla, con un `AttributeError` sepultado entre los logs del executor. Se
+    descubrió en un piloto de 3 preguntas, que es exactamente para lo que
+    sirve correr el piloto antes que el set completo.
     """
     from ragas.embeddings import BaseRagasEmbedding
 
@@ -281,6 +300,16 @@ def _embeddings_locales():
 
         async def aembed_text(self, text: str, **kwargs) -> list[float]:
             return self.embed_text(text)
+
+        # Interfaz vieja, la que espera answer_relevancy. Ver el docstring.
+        def embed_query(self, text: str) -> list[float]:
+            return self.embed_text(text)
+
+        def embed_documents(self, texts: list[str]) -> list[list[float]]:
+            # De a lote y no uno por uno: answer_relevancy embebe las N
+            # preguntas artificiales que generó el juez, y SentenceTransformer
+            # las hace todas juntas mucho más rápido que en N llamadas.
+            return modelo.encode(texts, normalize_embeddings=True).tolist()
 
     return BGEM3()
 
@@ -311,6 +340,7 @@ def metricas_ragas(filas: list[dict], modelo_juez: str) -> dict:
         Faithfulness,
         LLMContextPrecisionWithReference,
         LLMContextRecall,
+        ResponseRelevancy,
     )
 
     evaluables = [f for f in filas if f["ids_relevantes"]]
@@ -343,6 +373,24 @@ def metricas_ragas(filas: list[dict], modelo_juez: str) -> dict:
         # un contexto malo (el modelo acertó de memoria) — por eso se lee
         # junto con faithfulness, no sola.
         AnswerCorrectness(llm=juez, embeddings=embeddings),
+        # ¿La respuesta CONTESTA la pregunta? Ojo que no es lo mismo que
+        # answer_correctness y son fáciles de confundir: correctness compara
+        # contra la respuesta esperada, esta ni la mira. Ragas la calcula al
+        # revés de lo que uno esperaría —le pide al juez que genere preguntas
+        # artificiales A PARTIR de la respuesta y mide cuánto se parecen a la
+        # original— así que mide PERTINENCIA, no verdad.
+        #
+        # Consecuencia práctica al leer la tabla: una respuesta rotundamente
+        # falsa pero bien encarada saca answer_relevancy alto. Solo sirve al
+        # lado de faithfulness y correctness, nunca sola. Lo que sí detecta
+        # bien es la evasiva: las respuestas no comprometidas ("no puedo
+        # responder") las manda cerca de cero, que es justamente lo que hace
+        # la híbrida cuando el contexto no le alcanza.
+        #
+        # La clase se llama ResponseRelevancy desde ragas 0.4 (AnswerRelevancy
+        # quedó como alias deprecado), pero su .name sigue siendo
+        # "answer_relevancy" y ese es el nombre de la columna.
+        ResponseRelevancy(llm=juez, embeddings=embeddings),
         # De los chunks recuperados, ¿los útiles salieron primero? Es el
         # equivalente juzgado por LLM del MRR, y donde debería verse el
         # reranking. Se le acorta el nombre para que entre en la tabla.
@@ -377,11 +425,39 @@ def promedio(valores: list[float]) -> float:
     return sum(limpios) / len(limpios) if limpios else float("nan")
 
 
+def percentil(valores: list[float], p: float) -> float:
+    """Percentil por el método del vecino más cercano, sin interpolar.
+
+    Se implementa a mano en vez de usar statistics.quantiles porque acá el
+    valor tiene que ser UNA consulta que realmente ocurrió: "el p95 son 5.481 s"
+    significa que hubo una consulta de 5.481 s, no un promedio ponderado entre
+    dos. Con 29 preguntas la diferencia entre métodos es de milisegundos, pero
+    la interpretación cambia y es la que se cuenta en la exposición.
+    """
+    limpios = sorted(v for v in valores if v == v)
+    if not limpios:
+        return float("nan")
+    return limpios[min(int(len(limpios) * p), len(limpios) - 1)]
+
+
 def resumir(nombre: str, filas: list[dict], ragas: dict | None) -> dict:
     """Arma UNA fila de la tabla de ablación."""
     con_relevantes = [f for f in filas if f["ids_relevantes"]]
     negativas = [f for f in filas if not f["ids_relevantes"]]
     abstenciones = [f["abstuvo"] for f in negativas if f["abstuvo"] is not None]
+
+    # Latencia punta a punta = recuperación + generación, por pregunta. Es la
+    # que percibe quien pregunta, y la única honesta para comparar
+    # configuraciones: seg_recuperacion sola exagera la diferencia porque deja
+    # afuera la llamada al LLM, que es un piso de ~1.7 s que TODAS pagan igual.
+    # Medido sobre el set completo: por recuperación el reranking cuesta 9x lo
+    # que la híbrida (2.699 vs 0.296), punta a punta poco más del doble
+    # (4.374 vs 2.018).
+    #
+    # p50 y no promedio porque un solo outlier corre la media y el p50 no. Y el
+    # p95 al lado porque es donde se ve el peor caso realista: si la demo se
+    # cuelga en vivo va a ser en una consulta del p95, no en la mediana.
+    e2e = [f["segundos_recuperacion"] + f["segundos_generacion"] for f in filas]
 
     fila = {
         "config": nombre,
@@ -393,6 +469,8 @@ def resumir(nombre: str, filas: list[dict], ragas: dict | None) -> dict:
             sum(abstenciones) / len(abstenciones) if abstenciones else float("nan")
         ),
         "seg_recuperacion": promedio([f["segundos_recuperacion"] for f in filas]),
+        "seg_p50_e2e": percentil(e2e, 0.50),
+        "seg_p95_e2e": percentil(e2e, 0.95),
     }
     if ragas:
         fila.update({k: v for k, v in ragas["promedios"].items()})
