@@ -1,0 +1,6 @@
+config,preguntas/0,recall@k,precision@k,mrr,abstencion_negativas,seg_recuperacion,faithfulness,answer_correctness,context_precision,context_recall,reranker,seg_total
+naive,1,0,0,0,,0.371,0.8,0.6118485726063128,0.99999999995,1,-,16.57
+sparse (BM25),1,1,0.2,0.25,,0.027,1,0.4950654719057898,0.499999999975,1,-,9.74
+hibrida (RRF),1,0,0,0,,0.383,0.75,0.07894237330224693,0.9999999999,0,-,9.76
+hibrida + rerank chico,1,1,0.2,0.2,,5.687,1,0.8010352487537894,0.6999999999766667,1,cross-encoder/mmarco-mMiniLMv2-L12-H384-v1,20.29
+hibrida + rerank grande,1,1,0.2,0.5,,37.12,0.75,0.6187267216935568,0.4499999999775,1,BAAI/bge-reranker-v2-m3,50.02
